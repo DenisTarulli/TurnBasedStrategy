@@ -36,8 +36,8 @@ public class GridSystem
     /// <summary>
     /// Returns the world position of the given grid position (x, z index)
     /// </summary>
-    /// <param name="gridPosition"></param>
-    /// <returns></returns>
+    /// <param name="gridPosition">Grid position (x, z index)</param>
+    /// <returns><see cref="Vector3"/></returns>
     public Vector3 GetWorldPosition(GridPosition gridPosition)
     {
         return new Vector3(gridPosition.x, 0, gridPosition.z) * cellSize;
@@ -47,7 +47,7 @@ public class GridSystem
     /// Returns the grid position (x, z index) of the given world position
     /// </summary>
     /// <param name="worldPosition">World position</param>
-    /// <returns></returns>
+    /// <returns><see cref="GridPosition"/></returns>
     public GridPosition GetGridPosition(Vector3 worldPosition)
     {
         return new GridPosition(
@@ -79,7 +79,7 @@ public class GridSystem
     /// Returns the corresponding grid object of the given grid position
     /// </summary>
     /// <param name="gridPosition">Grid position (x, z index)</param>
-    /// <returns></returns>
+    /// <returns><see cref="GridObject"/></returns>
     public GridObject GetGridObject(GridPosition gridPosition)
     {
         return gridObjectArray[gridPosition.x, gridPosition.z];
