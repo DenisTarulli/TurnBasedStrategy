@@ -38,6 +38,8 @@ public class MoveAction : BaseAction
         }
         else
         {
+            transform.position = targetPosition;
+
             unitAnimator.SetBool(UNIT_ISWALKING, false);
             isActive = false;
             onActionComplete();

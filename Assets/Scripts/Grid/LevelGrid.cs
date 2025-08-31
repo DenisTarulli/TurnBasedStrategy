@@ -31,6 +31,11 @@ public class LevelGrid : MonoBehaviour
         gridObject.AddUnit(unit);
     }
 
+    /// <summary>
+    /// Gets all the units that are currently on the given <see href="gridPosition"/>
+    /// </summary>
+    /// <param name="gridPosition"></param>
+    /// <returns><see cref="List{Unit}"/> of units</returns>
     public List<Unit> GetUnitListAtGridPosition(GridPosition gridPosition)
     {
         GridObject gridObject = gridSystem.GetGridObject(gridPosition);
@@ -43,6 +48,13 @@ public class LevelGrid : MonoBehaviour
         gridObject.RemoveUnit(unit);
     }
 
+    /// <summary>
+    /// Removes the <see href="unit"/> from the current grid position list of units and adds it
+    /// to the new grid position
+    /// </summary>
+    /// <param name="unit">Unit to remove and add</param>
+    /// <param name="fromGridPosition">Previous grid position</param>
+    /// <param name="toGridPosition">New grid position</param>
     public void UnitMovedGridPosition(Unit unit, GridPosition fromGridPosition, GridPosition toGridPosition)
     {
         RemoveUnitAtGridPosition(fromGridPosition, unit);
@@ -61,6 +73,11 @@ public class LevelGrid : MonoBehaviour
 
     public bool IsValidGridPosition(GridPosition gridPosition) => gridSystem.IsValidGridPosition(gridPosition);
 
+    /// <summary>
+    /// Checks whether if the given <see href="gridPosition"/> contains any <see cref="Unit"/>
+    /// </summary>
+    /// <param name="gridPosition">Grid position to check</param>
+    /// <returns>Boolean</returns>
     public bool HasAnyUnitOnGridPosition(GridPosition gridPosition)
     {
         GridObject gridObject = gridSystem.GetGridObject(gridPosition);

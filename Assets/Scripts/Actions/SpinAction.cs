@@ -6,7 +6,6 @@ public class SpinAction : BaseAction
 {
     private float totalSpinAmount;
 
-
     private void Update()
     {
         if (!isActive)

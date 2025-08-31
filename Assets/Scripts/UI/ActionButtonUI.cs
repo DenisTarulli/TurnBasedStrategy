@@ -10,6 +10,10 @@ public class ActionButtonUI : MonoBehaviour
 
     private BaseAction baseAction;
 
+    /// <summary>
+    /// Assigns the given action to the onClick event of the button
+    /// </summary>
+    /// <param name="baseAction">Action to perform</param>
     public void SetBaseAction(BaseAction baseAction)
     {
         this.baseAction = baseAction;
@@ -21,6 +25,10 @@ public class ActionButtonUI : MonoBehaviour
         });
     }
 
+    /// <summary>
+    /// Sets the <see href="selectedGameObject"/> visual active if the <see href="selectedBaseAction"/>
+    /// matches the local <see href="baseAction"/> (and deactivates it if it doesn't)
+    /// </summary>
     public void UpdateSelectedVisual()
     {
         BaseAction selectedBaseAction = UnitActionSystem.Instance.GetSelectedAction();

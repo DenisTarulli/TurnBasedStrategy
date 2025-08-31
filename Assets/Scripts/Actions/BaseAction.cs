@@ -28,5 +28,9 @@ public abstract class BaseAction : MonoBehaviour
         return validGridPositionList.Contains(gridPosition);
     }
     
+    /// <summary>
+    /// Gets the valid grid positions where the selected action can be performed
+    /// </summary>
+    /// <returns><see cref="List{GridPosition}"/></returns>
     public abstract List<GridPosition> GetValidActionGridPositionList();
 }
