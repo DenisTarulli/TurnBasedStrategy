@@ -5,7 +5,7 @@ public class UnitActionSystem : MonoBehaviour
 {
     public static UnitActionSystem Instance { get; private set; }
 
-    public static event EventHandler OnSelectedUnitChanged;
+    public event EventHandler OnSelectedUnitChanged;
 
     [SerializeField] private Unit selectedUnit;
     [SerializeField] private LayerMask unitsLayerMask;
