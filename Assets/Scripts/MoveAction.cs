@@ -40,11 +40,27 @@ public class MoveAction : MonoBehaviour
         }
     }
 
-    public void Move(Vector3 targetPosition)
+    public void Move(GridPosition gridPosition)
     {
-        this.targetPosition = targetPosition;
+        targetPosition = LevelGrid.Instance.GetWorldPosition(gridPosition);
     }
 
+    /// <summary>
+    /// Checks if the given <see href="gridPosition"/> is in the <see href="validGridPositionList"/>
+    /// </summary>
+    /// <param name="gridPosition">Grid position to check</param>
+    /// <returns>True if the <see href="gridPosition"/> is valid</returns>
+    public bool IsValidActionGridPosition(GridPosition gridPosition)
+    {
+        List<GridPosition> validGridPositionList = GetValidActionGridPositionList();
+        return validGridPositionList.Contains(gridPosition);
+    }
+
+    /// <summary>
+    /// Cycles through all the of the potential grid positions within the maximum move distance
+    /// and returns a list of all the grid positions that meet the requirements
+    /// </summary>
+    /// <returns><see cref="List{GridPosition}"/> of type <see cref="GridPosition"/></returns>
     public List<GridPosition> GetValidActionGridPositionList()
     {
         List<GridPosition> validGridPositionList = new List<GridPosition>();
@@ -57,7 +73,26 @@ public class MoveAction : MonoBehaviour
             {
                 GridPosition offsetGridPosition = new GridPosition(x, z);
                 GridPosition testGridPosition = unitGridPosition + offsetGridPosition;
-                Debug.Log(testGridPosition);
+
+                if (!LevelGrid.Instance.IsValidGridPosition(testGridPosition))
+                {
+                    // Cell is outside of the grid bounds
+                    continue;
+                }
+
+                if (unitGridPosition == testGridPosition)
+                {
+                    // Same grid position where the unit is already at
+                    continue;
+                }
+
+                if (LevelGrid.Instance.HasAnyUnitOnGridPosition(testGridPosition))
+                {
+                    // Grid position already occupied with another Unit
+                    continue;
+                }
+
+                validGridPositionList.Add(testGridPosition);
             }
         }
 

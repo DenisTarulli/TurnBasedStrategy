@@ -20,7 +20,7 @@ public struct GridPosition : IEquatable<GridPosition>
 
     public bool Equals(GridPosition other)
     {
-        return this.Equals(other);
+        return this == other;
     }
 
     public override int GetHashCode()

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class GridObject
 {
@@ -38,5 +39,10 @@ public class GridObject
     public List<Unit> GetUnitList()
     {
         return unitList;
-    }    
+    }
+
+    public bool HasAnyUnit()
+    {
+        return unitList.Count > 0;
+    }
 }
