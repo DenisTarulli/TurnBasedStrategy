@@ -54,7 +54,11 @@ public class MoveAction : BaseAction
         isActive = true;
     }
 
-    
+    /// <summary>
+    /// Cycles through all the of the potential grid positions within the maximum move distance
+    /// of the unit and returns a list of all the grid positions that meet the requirements
+    /// </summary>
+    /// <returns><see cref="List{GridPosition}"/> of type <see cref="GridPosition"/></returns>
     public override List<GridPosition> GetValidActionGridPositionList()
     {
         List<GridPosition> validGridPositionList = new List<GridPosition>();

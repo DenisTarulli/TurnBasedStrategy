@@ -27,11 +27,6 @@ public abstract class BaseAction : MonoBehaviour
         List<GridPosition> validGridPositionList = GetValidActionGridPositionList();
         return validGridPositionList.Contains(gridPosition);
     }
-
-    /// <summary>
-    /// Cycles through all the of the potential grid positions within the maximum move distance
-    /// of the unit and returns a list of all the grid positions that meet the requirements
-    /// </summary>
-    /// <returns><see cref="List{GridPosition}"/> of type <see cref="GridPosition"/></returns>
+    
     public abstract List<GridPosition> GetValidActionGridPositionList();
 }
