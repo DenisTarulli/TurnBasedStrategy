@@ -1,7 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveAction : MonoBehaviour
+public class MoveAction : BaseAction
 {
     private const string UNIT_ISWALKING = "IsWalking";
 
@@ -9,26 +10,27 @@ public class MoveAction : MonoBehaviour
     [SerializeField] private int maxMoveDistance = 4;
 
     private Vector3 targetPosition;
-    private Unit unit;
 
-    private void Awake()
+    protected override void Awake()
     {
-        unit = GetComponent<Unit>();
+        base.Awake();
         targetPosition = transform.position;
     }
 
     private void Update()
     {
-        float stoppingDistance = 0.1f;
-        float distanceToTarget = Vector3.Distance(transform.position, targetPosition);
-
-        if (distanceToTarget > stoppingDistance)
+        if (!isActive)
         {
-            Vector3 moveDirection = (targetPosition - transform.position).normalized;
-            float moveSpeed = 4f;
+            return;
+        }
 
-            float rotateSpeed = 10f;
-            transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime * rotateSpeed);
+        Vector3 moveDirection = (targetPosition - transform.position).normalized;
+
+        float stoppingDistance = 0.1f;
+
+        if (Vector3.Distance(transform.position, targetPosition) > stoppingDistance)
+        {
+            float moveSpeed = 4f;            
 
             transform.position += moveSpeed * Time.deltaTime * moveDirection;
 
@@ -37,12 +39,19 @@ public class MoveAction : MonoBehaviour
         else
         {
             unitAnimator.SetBool(UNIT_ISWALKING, false);
+            isActive = false;
+            onActionComplete();
         }
+
+        float rotateSpeed = 10f;
+        transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime * rotateSpeed);
     }
 
-    public void Move(GridPosition gridPosition)
+    public void Move(GridPosition gridPosition, Action onActionComplete)
     {
+        this.onActionComplete = onActionComplete;
         targetPosition = LevelGrid.Instance.GetWorldPosition(gridPosition);
+        isActive = true;
     }
 
     /// <summary>
@@ -58,7 +67,7 @@ public class MoveAction : MonoBehaviour
 
     /// <summary>
     /// Cycles through all the of the potential grid positions within the maximum move distance
-    /// and returns a list of all the grid positions that meet the requirements
+    /// of the unit and returns a list of all the grid positions that meet the requirements
     /// </summary>
     /// <returns><see cref="List{GridPosition}"/> of type <see cref="GridPosition"/></returns>
     public List<GridPosition> GetValidActionGridPositionList()
