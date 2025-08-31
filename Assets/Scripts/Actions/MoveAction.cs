@@ -47,30 +47,15 @@ public class MoveAction : BaseAction
         transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime * rotateSpeed);
     }
 
-    public void Move(GridPosition gridPosition, Action onActionComplete)
+    public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
         this.onActionComplete = onActionComplete;
         targetPosition = LevelGrid.Instance.GetWorldPosition(gridPosition);
         isActive = true;
     }
 
-    /// <summary>
-    /// Checks if the given <see href="gridPosition"/> is in the <see href="validGridPositionList"/>
-    /// </summary>
-    /// <param name="gridPosition">Grid position to check</param>
-    /// <returns>True if the <see href="gridPosition"/> is valid</returns>
-    public bool IsValidActionGridPosition(GridPosition gridPosition)
-    {
-        List<GridPosition> validGridPositionList = GetValidActionGridPositionList();
-        return validGridPositionList.Contains(gridPosition);
-    }
-
-    /// <summary>
-    /// Cycles through all the of the potential grid positions within the maximum move distance
-    /// of the unit and returns a list of all the grid positions that meet the requirements
-    /// </summary>
-    /// <returns><see cref="List{GridPosition}"/> of type <see cref="GridPosition"/></returns>
-    public List<GridPosition> GetValidActionGridPositionList()
+    
+    public override List<GridPosition> GetValidActionGridPositionList()
     {
         List<GridPosition> validGridPositionList = new List<GridPosition>();
 
