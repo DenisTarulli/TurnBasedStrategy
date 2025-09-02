@@ -41,6 +41,11 @@ public class UnitActionSystem : MonoBehaviour
             return;
         }
 
+        if (!TurnSystem.Instance.IsPlayerTurn())
+        {
+            return;
+        }
+
         if (EventSystem.current.IsPointerOverGameObject())
         {
             return;
@@ -62,11 +67,13 @@ public class UnitActionSystem : MonoBehaviour
 
             if (!selectedAction.IsValidActionGridPosition(mouseGridPosition))
             {
+                // Not a valid grid position
                 return;
             }
 
             if (!selectedUnit.TrySpendActionPointsToTakeAction(selectedAction))
             {
+                // Not enough action points
                 return;
             }
 
@@ -103,6 +110,12 @@ public class UnitActionSystem : MonoBehaviour
                     if (unit == selectedUnit)
                     {
                         // Unit is already selected
+                        return false;
+                    }
+
+                    if (unit.IsEnemy())
+                    {
+                        // Clicked on an enemy
                         return false;
                     }
 
