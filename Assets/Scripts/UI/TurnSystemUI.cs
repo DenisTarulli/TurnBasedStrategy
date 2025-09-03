@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,7 +23,7 @@ public class TurnSystemUI : MonoBehaviour
         UpdateEndTurnButtonVisibility();
     }
 
-    private void TurnSystem_OnTurnChanged(object sender, System.EventArgs e)
+    private void TurnSystem_OnTurnChanged(object sender, EventArgs e)
     {
         UpdateTurnText();
         UpdateEnemyTurnVisual();

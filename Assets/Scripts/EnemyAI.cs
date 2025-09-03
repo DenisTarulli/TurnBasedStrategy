@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,7 +25,7 @@ public class EnemyAI : MonoBehaviour
             TurnSystem.Instance.NextTurn();
         }
     }
-    private void TurnSystem_OnTurnChanged(object sender, System.EventArgs e)
+    private void TurnSystem_OnTurnChanged(object sender, EventArgs e)
     {
         timer = 2f;
     }
