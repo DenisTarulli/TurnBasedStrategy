@@ -1107,6 +1107,50 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+--- !u!1 &415366553
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 415366555}
+  - component: {fileID: 415366554}
+  m_Layer: 0
+  m_Name: UnitManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &415366554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415366553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1677317dc91e74e4c871658278563f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &415366555
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415366553}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &545999104
 GameObject:
   m_ObjectHideFlags: 0
@@ -1449,7 +1493,7 @@ PrefabInstance:
     - target: {fileID: 4158315844398496917, guid: 61eb706b43f4ad3418cf7850dff48194,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4158315844398496917, guid: 61eb706b43f4ad3418cf7850dff48194,
         type: 3}
@@ -1459,7 +1503,7 @@ PrefabInstance:
     - target: {fileID: 4158315844398496917, guid: 61eb706b43f4ad3418cf7850dff48194,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4158315844398496917, guid: 61eb706b43f4ad3418cf7850dff48194,
         type: 3}
@@ -3250,3 +3294,4 @@ SceneRoots:
   - {fileID: 1034467648}
   - {fileID: 1951674963}
   - {fileID: 320925332}
+  - {fileID: 415366555}
