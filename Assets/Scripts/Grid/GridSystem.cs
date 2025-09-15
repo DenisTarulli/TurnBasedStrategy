@@ -1,34 +1,35 @@
+using System;
 using UnityEngine;
 
-public class GridSystem
+public class GridSystem<TGridObject>
 {
     private int width;
     private int height;
     private float cellSize;
-    private GridObject[,] gridObjectArray;
+    private TGridObject[,] gridObjectArray;
 
     /// <summary>
     /// Constructor which creates a grid of size <see href="width"/> by <see href="height"/>
-    /// where each cell of size <see href="cellSize"/> has a new <see cref="GridObject"/> asigned 
+    /// where each cell of size <see href="cellSize"/> has a new <see cref="TGridObject"/> asigned 
     /// and added to the <see href="gridObjectArray"/> of this class
     /// </summary>
     /// <param name="width">Width of the grid</param>
     /// <param name="height">Height of the grid</param>
     /// <param name="cellSize">Size of the cell</param>
-    public GridSystem(int width, int height, float cellSize)
+    public GridSystem(int width, int height, float cellSize, Func<GridSystem<TGridObject>, GridPosition, TGridObject> createGridObject)
     {
         this.width = width;
         this.height = height;
         this.cellSize = cellSize;
 
-        gridObjectArray = new GridObject[width, height];
+        gridObjectArray = new TGridObject[width, height];
 
         for (int x = 0; x < width; x++)
         {
             for (int z = 0; z < height; z++)
             {
                 GridPosition gridPosition = new GridPosition(x, z);
-                gridObjectArray[x, z] = new GridObject(this, gridPosition);
+                gridObjectArray[x, z] = createGridObject(this, gridPosition);
             }
         }
     }
@@ -70,7 +71,7 @@ public class GridSystem
 
                 Transform debugTransform = GameObject.Instantiate(debugPrefab, GetWorldPosition(gridPosition), Quaternion.identity);
                 GridDebugObject gridDebugObject = debugTransform.GetComponent<GridDebugObject>();
-                gridDebugObject.SetGridObject(GetGridObject(gridPosition));
+                gridDebugObject.SetGridObject(GetGridObject(gridPosition) as GridObject);
             }
         }
     }
@@ -79,8 +80,8 @@ public class GridSystem
     /// Returns the corresponding grid object of the given grid position
     /// </summary>
     /// <param name="gridPosition">Grid position (x, z index)</param>
-    /// <returns><see cref="GridObject"/></returns>
-    public GridObject GetGridObject(GridPosition gridPosition)
+    /// <returns><see cref="TGridObject"/></returns>
+    public TGridObject GetGridObject(GridPosition gridPosition)
     {
         return gridObjectArray[gridPosition.x, gridPosition.z];
     }
