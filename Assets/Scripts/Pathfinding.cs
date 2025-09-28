@@ -27,8 +27,6 @@ public class Pathfinding : MonoBehaviour
         }
 
         Instance = this;
-
-        
     }
 
     public void Setup(int width, int height, float cellSize)
@@ -40,7 +38,7 @@ public class Pathfinding : MonoBehaviour
         gridSystem = new GridSystem<PathNode>(width, height, cellSize,
             (GridSystem<PathNode> gameObject, GridPosition gridPosition) => new PathNode(gridPosition));
 
-        gridSystem.CreateDebugObjects(gridDebugObjectPrefab);
+        //gridSystem.CreateDebugObjects(gridDebugObjectPrefab);
 
         for (int x = 0; x < width; x++)
         {
