@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -32,6 +33,14 @@ public class UnitActionSystem : MonoBehaviour
     private void Start()
     {
         SetSelectedUnit(selectedUnit);
+
+        Unit.OnAnyUnitDead += Unit_OnAnyUnitDead;
+    }
+
+    private void Unit_OnAnyUnitDead(object sender, EventArgs e)
+    {
+        List<Unit> friendlyUnitList = UnitManager.Instance.GetFriendlyUnitList();
+        SetSelectedUnit(friendlyUnitList[0]);
     }
 
     private void Update()

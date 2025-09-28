@@ -11,6 +11,12 @@ public class PathNode
     private PathNode cameFromPathNode;
     private bool isWalkable = true;
 
+    private List<GridPosition> cachedPath = new List<GridPosition>();
+
+    public void SetCachedPath(List<GridPosition> path) => cachedPath = path;
+
+    public List<GridPosition> GetCachedPath() => cachedPath;
+
     public PathNode(GridPosition gridPosition)
     {
         this.gridPosition = gridPosition;
