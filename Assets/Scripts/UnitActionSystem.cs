@@ -34,11 +34,16 @@ public class UnitActionSystem : MonoBehaviour
     {
         SetSelectedUnit(selectedUnit);
 
-        Unit.OnAnyUnitDead += Unit_OnAnyUnitDead;
+        Unit.OnAnyUnitDead += Unit_OnAnyUnitDead; ;
     }
 
-    private void Unit_OnAnyUnitDead(object sender, EventArgs e)
+    private void Unit_OnAnyUnitDead(object sender, Unit.OnAnyUnitDeadEventArgs e)
     {
+        if (e.isEnemy)
+        {
+            return;
+        }
+
         List<Unit> friendlyUnitList = UnitManager.Instance.GetFriendlyUnitList();
         SetSelectedUnit(friendlyUnitList[0]);
     }
