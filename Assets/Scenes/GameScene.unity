@@ -3610,7 +3610,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52249fac6b8109543ac28e9a77b6de51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootScreenShakeIntensity: 0.2
+  shootScreenShakeIntensity: 0.3
+  grenadeScreenShakeIntensity: 3
 --- !u!4 &1366957201
 Transform:
   m_ObjectHideFlags: 0

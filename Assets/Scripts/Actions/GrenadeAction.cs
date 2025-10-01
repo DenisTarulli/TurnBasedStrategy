@@ -72,8 +72,6 @@ public class GrenadeAction : BaseAction
         GrenadeProjectile grenadeProjectile = grenadeProjectileTransform.GetComponent<GrenadeProjectile>();
         grenadeProjectile.Setup(gridPosition, OnGrenadeBehaviourComplete);
 
-        Debug.Log("GrenadeAction");
-
         ActionStart(onActionComplete);
     }
 
