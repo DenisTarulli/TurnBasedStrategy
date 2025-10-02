@@ -11,7 +11,7 @@ public class UnitRagdoll : MonoBehaviour
         MatchAllChildTransforms(originalRootBone, ragdollRootBone);
 
         Vector3 randomDirection = new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f));
-        ApplyExlosionToRagdoll(ragdollRootBone, 500f, transform.position + randomDirection, 10f);
+        ApplyExplosionToRagdoll(ragdollRootBone, 500f, transform.position + randomDirection, 10f);
     }
 
     private void MatchAllChildTransforms(Transform root, Transform clone)
@@ -29,7 +29,7 @@ public class UnitRagdoll : MonoBehaviour
         }
     }
 
-    private void ApplyExlosionToRagdoll(Transform root, float explosionForce, Vector3 explosionPosition, float explosionRange)
+    private void ApplyExplosionToRagdoll(Transform root, float explosionForce, Vector3 explosionPosition, float explosionRange)
     {
         foreach (Transform child in root)
         {
@@ -37,7 +37,7 @@ public class UnitRagdoll : MonoBehaviour
             {
                 childRigidBody.AddExplosionForce(explosionForce, explosionPosition, explosionRange);
 
-                ApplyExlosionToRagdoll(child, explosionForce, explosionPosition, explosionRange);
+                ApplyExplosionToRagdoll(child, explosionForce, explosionPosition, explosionRange);
             }
         }
     }
