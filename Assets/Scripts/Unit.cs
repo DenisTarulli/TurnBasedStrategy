@@ -7,11 +7,7 @@ public class Unit : MonoBehaviour
 
     public static event EventHandler OnAnyActionPointsChanged;
     public static event EventHandler OnAnyUnitSpawned;
-    public static event EventHandler<OnAnyUnitDeadEventArgs> OnAnyUnitDead;
-    public class OnAnyUnitDeadEventArgs : EventArgs
-    {
-        public bool isEnemy;
-    }
+    public static event EventHandler OnAnyUnitDead;
 
     [SerializeField] private bool isEnemy;
 
@@ -138,10 +134,7 @@ public class Unit : MonoBehaviour
 
         Destroy(gameObject);
 
-        OnAnyUnitDead?.Invoke(this, new OnAnyUnitDeadEventArgs
-        {
-            isEnemy = IsEnemy()
-        });
+        OnAnyUnitDead?.Invoke(this, EventArgs.Empty);
     }
 
     public Vector3 GetWorldPosition()

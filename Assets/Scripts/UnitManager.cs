@@ -48,13 +48,13 @@ public class UnitManager : MonoBehaviour
         }
     }
 
-    private void Unit_OnAnyUnitDead(object sender, Unit.OnAnyUnitDeadEventArgs e)
+    private void Unit_OnAnyUnitDead(object sender, EventArgs e)
     {
         Unit unit = sender as Unit;
 
         unitList.Remove(unit);
 
-        if (e.isEnemy)
+        if (unit.IsEnemy())
         {
             enemyUnitList.Remove(unit);
         }
