@@ -6,6 +6,9 @@ public class Door : MonoBehaviour, IInteractable
 {
     private const string IS_OPEN = "IsOpen";
 
+    public static event EventHandler OnAnyDoorOpened;
+    public event EventHandler OnDoorOpened;
+
     [SerializeField] private bool isOpen;
 
     private GridPosition gridPosition;
@@ -72,6 +75,9 @@ public class Door : MonoBehaviour, IInteractable
         isOpen = true;
         animator.SetBool(IS_OPEN, isOpen);
         Pathfinding.Instance.SetIsWalkableGridPosition(gridPosition, true);
+
+        OnDoorOpened?.Invoke(this, EventArgs.Empty);
+        OnAnyDoorOpened?.Invoke(this, EventArgs.Empty);
     }
 
     private void CloseDoor()
