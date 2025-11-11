@@ -6,14 +6,7 @@ public class LevelGrid : MonoBehaviour
 {
     public static LevelGrid Instance { get; private set; }
 
-    public event EventHandler<OnAnyUnitMovedGridPositionEventArgs> OnAnyUnitMovedGridPosition;
-    public class OnAnyUnitMovedGridPositionEventArgs : EventArgs
-    {
-        public Unit unit;
-        public GridPosition fromGridPosition;
-        public GridPosition toGridPosition;
-    }
-
+    public event EventHandler OnAnyUnitMovedGridPosition;
 
     [SerializeField] private Transform gridDebugObjectPrefab;
 
@@ -80,13 +73,7 @@ public class LevelGrid : MonoBehaviour
 
         AddUnitAtGridPosition(toGridPosition, unit);
 
-        OnAnyUnitMovedGridPosition?.Invoke(this, new OnAnyUnitMovedGridPositionEventArgs
-        {
-            unit = unit,
-            fromGridPosition = fromGridPosition,
-            toGridPosition = toGridPosition,
-        });
-
+        OnAnyUnitMovedGridPosition?.Invoke(this, EventArgs.Empty);
     }
 
     // The following lambda expressions are just exposure of each respective functions of the GridSystem class
