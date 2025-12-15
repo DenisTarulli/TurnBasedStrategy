@@ -42,6 +42,25 @@ public class InteractAction : BaseAction
                 GridPosition offsetGridPosition = new GridPosition(x, z);
                 GridPosition testGridPosition = unitGridPosition + offsetGridPosition;
 
+                if (unitGridPosition.z % 2 != 0)
+                {
+                    // Unit is on odd row
+                    if (x == -maxInteractDistance && z != 0)
+                    {
+                        // Hex is out of action range
+                        continue;
+                    }
+                }
+                else
+                {
+                    // Unit is on even row
+                    if (x == maxInteractDistance && z != 0)
+                    {
+                        // Hex is out of action range
+                        continue;
+                    }
+                }
+
                 if (!LevelGrid.Instance.IsValidGridPosition(testGridPosition))
                 {
                     // Cell is outside of the grid bounds

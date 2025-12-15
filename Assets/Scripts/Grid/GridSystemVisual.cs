@@ -106,7 +106,7 @@ public class GridSystemVisual : MonoBehaviour
         ShowGridPositionList(gridPositionList, gridVisualType);
     }
 
-    private void ShowGridPositionRangeSquare(GridPosition gridPosition, int range, GridVisualType gridVisualType)
+    private void ShowGridPositionRangeCircle(GridPosition gridPosition, int range, GridVisualType gridVisualType)
     {
         List<GridPosition> gridPositionList = new List<GridPosition>();
 
@@ -115,6 +115,25 @@ public class GridSystemVisual : MonoBehaviour
             for (int z = -range; z <= range; z++)
             {
                 GridPosition testGridPosition = gridPosition + new GridPosition(x, z);
+
+                if (gridPosition.z % 2 != 0)
+                {
+                    // Unit is on odd row
+                    if (x == -range && z != 0)
+                    {
+                        // Hex is out of action range
+                        continue;
+                    }
+                }
+                else
+                {
+                    // Unit is on even row
+                    if (x == range && z != 0)
+                    {
+                        // Hex is out of action range
+                        continue;
+                    }
+                }
 
                 if (!LevelGrid.Instance.IsValidGridPosition(testGridPosition))
                 {
@@ -166,12 +185,12 @@ public class GridSystemVisual : MonoBehaviour
             case SwordAction swordAction:
                 gridVisualType = GridVisualType.Red;
 
-                ShowGridPositionRangeSquare(selectedUnit.GetGridPosition(), swordAction.GetMaxSwordDistance(), GridVisualType.RedSoft);
+                ShowGridPositionRangeCircle(selectedUnit.GetGridPosition(), swordAction.GetMaxSwordDistance(), GridVisualType.RedSoft);
                 break;
             case InteractAction interactAction:
                 gridVisualType = GridVisualType.Blue;
 
-                ShowGridPositionRangeSquare(selectedUnit.GetGridPosition(), interactAction.GetMaxInteractDistance(), GridVisualType.BlueSoft);
+                ShowGridPositionRangeCircle(selectedUnit.GetGridPosition(), interactAction.GetMaxInteractDistance(), GridVisualType.BlueSoft);
                 break;
         }
 

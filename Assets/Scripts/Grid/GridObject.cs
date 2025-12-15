@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using System.Numerics;
+using System.Transactions;
+using UnityEngine;
 
 public class GridObject
 {
@@ -66,5 +69,10 @@ public class GridObject
     public void SetInteractable(IInteractable interactable)
     {
         this.interactable = interactable;
+    }
+
+    public void ClearInteractable()
+    {
+        this.interactable = null;
     }
 }

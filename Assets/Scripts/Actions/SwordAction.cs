@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 public class SwordAction : BaseAction
 {
@@ -98,6 +99,25 @@ public class SwordAction : BaseAction
             {
                 GridPosition offsetGridPosition = new GridPosition(x, z);
                 GridPosition testGridPosition = unitGridPosition + offsetGridPosition;
+
+                if (unitGridPosition.z % 2 != 0)
+                {
+                    // Unit is on odd row
+                    if (x == -maxSwordDistance && z != 0)
+                    {
+                        // Hex is out of action range
+                        continue;
+                    }
+                }
+                else
+                {
+                    // Unit is on even row
+                    if (x == maxSwordDistance && z != 0)
+                    {
+                        // Hex is out of action range
+                        continue;
+                    }
+                }
 
                 if (!LevelGrid.Instance.IsValidGridPosition(testGridPosition))
                 {
