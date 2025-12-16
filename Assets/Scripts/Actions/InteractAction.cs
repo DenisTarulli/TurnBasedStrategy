@@ -75,6 +75,28 @@ public class InteractAction : BaseAction
                     continue;
                 }
 
+                if (interactable.GetType() == typeof(Chest))
+                {
+                    // Chest on testGridPosition
+                    if (!InventoryManager.Instance.HasAKey())
+                    {
+                        // Player has no keys to open the chest
+                        continue;
+                    }
+                }
+
+                if (interactable.GetType() == typeof(KeyPedestal))
+                {
+                    // KeyPedestal on testGridPosition
+                    KeyPedestal keyPedestal = (KeyPedestal)interactable;
+
+                    if (!keyPedestal.HasKeyToCollect())
+                    {
+                        // Key has already been looted
+                        continue;
+                    }
+                }
+
                 validGridPositionList.Add(testGridPosition);
             }
         }

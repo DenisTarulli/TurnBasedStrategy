@@ -3,25 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chest : MonoBehaviour, IInteractable
+public class KeyPedestal : MonoBehaviour, IInteractable
 {
-    private const string IS_OPEN = "IsOpen";
-
-    private Animator animator;
+    [SerializeField] private GameObject keyObjectVisual;
     private GridPosition gridPosition;
     private Action onInteractionComplete;
     private bool isActive;
     private float timer;
-
-    private void Awake()
-    {
-        animator = GetComponent<Animator>();
-    }
+    private bool hasKeyToCollect;
 
     private void Start()
     {
         gridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
         LevelGrid.Instance.SetInteractableAtGridPosition(gridPosition, this);
+
+        hasKeyToCollect = true;
     }
 
     private void Update()
@@ -32,14 +28,16 @@ public class Chest : MonoBehaviour, IInteractable
         }
 
         timer -= Time.deltaTime;
-        animator.SetTrigger(IS_OPEN);
 
         if (timer <= 0f)
         {
             isActive = false;
+            InventoryManager.Instance.SetHasKey(true);
+
             LevelGrid.Instance.ClearInteractableAtGridPosition(gridPosition);
-            InventoryManager.Instance.SetHasKey(false);
-            Debug.Log("Collected gold");
+
+            Debug.Log("Collected key");
+            HideKeyVisual();
             onInteractionComplete();
         }
     }
@@ -50,5 +48,15 @@ public class Chest : MonoBehaviour, IInteractable
         float interactDuration = 0.5f;
         timer = interactDuration;
         isActive = true;
+    }
+
+    public bool HasKeyToCollect()
+    {
+        return hasKeyToCollect;
+    }
+
+    private void HideKeyVisual()
+    {
+        keyObjectVisual.SetActive(false);
     }
 }
