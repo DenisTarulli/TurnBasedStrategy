@@ -16,6 +16,7 @@ public class KeyPedestal : MonoBehaviour, IInteractable
     {
         gridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
         LevelGrid.Instance.SetInteractableAtGridPosition(gridPosition, this);
+        Pathfinding.Instance.SetIsWalkableGridPosition(gridPosition, false);
 
         hasKeyToCollect = true;
     }

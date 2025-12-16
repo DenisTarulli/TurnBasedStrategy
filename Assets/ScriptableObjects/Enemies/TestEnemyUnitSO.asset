@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: TestEnemyUnitSO
   m_EditorClassIdentifier: 
   unitName: Juancito Test
+  expToGive: 10
