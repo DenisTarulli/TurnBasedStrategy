@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class HealthPotion : BasePotion
 {
+    public override string GetName()
+    {
+        return "Health Potion";
+    }
     public override void ConsumePotion()
     {
-        throw new System.NotImplementedException();
+        base.ConsumePotion();
     }
 }

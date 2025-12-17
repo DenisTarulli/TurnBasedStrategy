@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class ResistancePotion : BasePotion
 {
+    public override string GetName()
+    {
+        return "Resistance Potion";
+    }
     public override void ConsumePotion()
     {
-        throw new System.NotImplementedException();
+        base.ConsumePotion();
     }
 }

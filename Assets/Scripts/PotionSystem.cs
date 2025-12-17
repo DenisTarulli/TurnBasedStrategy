@@ -24,4 +24,18 @@ public class PotionSystem : MonoBehaviour
 
         return basePotionArray;
     }
+
+    public bool TryConsumePotion(BasePotion basePotion)
+    {
+        string potionName = basePotion.GetName();
+
+        if (!InventoryManager.Instance.HasKeyPotion(potionName))
+        {
+            Debug.Log($"No {potionName} available");
+            return false;
+        }
+
+        InventoryManager.Instance.RemovePotion(basePotion.GetName());
+        return true;
+    }
 }
