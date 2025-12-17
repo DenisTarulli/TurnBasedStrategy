@@ -20,6 +20,7 @@ public class ShootAction : BaseAction
     }
 
     [SerializeField] private LayerMask obstaclesLayerMask;
+    [SerializeField] private int damageToDeal = 40;
     private State state;
     private int maxShootDistance = 7;
     private float stateTimer;
@@ -79,7 +80,7 @@ public class ShootAction : BaseAction
 
     private void Shoot()
     {
-        targetUnit.Damage(40);
+        targetUnit.Damage(damageToDeal);
 
         OnAnyShoot?.Invoke(this, new OnShootEventArgs
         {

@@ -10,15 +10,31 @@ public class HealthSystem : MonoBehaviour
 
     [SerializeField] private int health = 100;
     private int healthMax;
+    private int damageModifier;
 
     private void Awake()
     {
         healthMax = health;
     }
 
+    private void Start()
+    {
+        TurnSystem.Instance.OnTurnChanged += TurnSystem_OnTurnChanged;
+    }
+
+    private void TurnSystem_OnTurnChanged(object sender, EventArgs e)
+    {
+        if (!TurnSystem.Instance.IsPlayerTurn())
+        {
+            return;
+        }
+
+        ResetDamageModifier();
+    }
+
     public void Damage(int damageAmount)
     {
-        health -= damageAmount;
+        health -= damageAmount - damageModifier;
 
         if (health < 0)
         {
@@ -54,5 +70,20 @@ public class HealthSystem : MonoBehaviour
         {
             health = healthMax;
         }
+    }
+
+    public int GetDamageModifier()
+    {
+        return damageModifier;
+    }
+
+    public void SetDamageModifier(int damageModifier)
+    {
+        this.damageModifier = damageModifier;
+    }
+
+    private void ResetDamageModifier()
+    {
+        damageModifier = 0;
     }
 }
