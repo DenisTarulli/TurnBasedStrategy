@@ -83,30 +83,21 @@ public class InventoryManager : MonoBehaviour
 
     public void RemovePotion(string potionKey)
     {
-        foreach (KeyValuePair<string, int> potions in potionsInventory)
-        {
-            if (potions.Key == potionKey)
-            {
-                potionsInventory[potionKey]--;
-                int newAmount = potionsInventory[potionKey];
-                OnAnyPotionAmountChanged?.Invoke(this, new OnAnyPotionAmountChangedEventArgs
-                {
-                    amount = newAmount,
-                    name = potionKey
-                });
-
-                return;
-            }
-        }
+        ChangePotionAmount(potionKey, -1);
     }
 
     public void AddPotion(string potionKey)
+    {
+        ChangePotionAmount(potionKey, 1);
+    }
+
+    public void ChangePotionAmount(string potionKey, int amount)
     {
         foreach (KeyValuePair<string, int> potions in potionsInventory)
         {
             if (potions.Key == potionKey)
             {
-                potionsInventory[potionKey]++;
+                potionsInventory[potionKey] += amount;
                 int newAmount = potionsInventory[potionKey];
 
                 OnAnyPotionAmountChanged?.Invoke(this, new OnAnyPotionAmountChangedEventArgs
@@ -132,6 +123,16 @@ public class InventoryManager : MonoBehaviour
                 amount = newAmount,
                 name = potionName
             });
+        }
+    }
+
+    public void ChangeGoldAmount(int amount)
+    {
+        gold += amount;
+
+        if (gold < 0)
+        {
+            gold = 0;
         }
     }
 }

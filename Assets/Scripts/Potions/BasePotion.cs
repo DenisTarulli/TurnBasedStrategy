@@ -10,21 +10,6 @@ public abstract class BasePotion : MonoBehaviour
     protected TextMeshProUGUI potionAmountText;
     protected string potionName;
 
-    private void Start()
-    {
-        InventoryManager.Instance.OnAnyPotionAmountChanged += InventoryManager_OnAnyPotionAmountChanged;
-    }
-
-    private void InventoryManager_OnAnyPotionAmountChanged(object sender, InventoryManager.OnAnyPotionAmountChangedEventArgs e)
-    {
-        if (e.name != GetName())
-        {
-            return;
-        }
-
-        UpdatePotionAmountText(e.amount);
-    }
-
     public abstract string GetName();
     public virtual void ConsumePotion()
     {
@@ -38,13 +23,14 @@ public abstract class BasePotion : MonoBehaviour
     {
         return potionColorUI;
     }
-    protected void UpdatePotionAmountText(int newAmount)
-    {
-        potionAmountText.text = newAmount.ToString();
-    }
 
     public void SetPotionAmountTextObject(TextMeshProUGUI potionAmountText)
     {
         this.potionAmountText = potionAmountText;
+    }
+
+    public TextMeshProUGUI GetPotionAmountTextObject()
+    {
+        return potionAmountText;
     }
 }

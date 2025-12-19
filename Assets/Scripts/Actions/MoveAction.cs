@@ -8,6 +8,7 @@ public class MoveAction : BaseAction
     public event EventHandler OnStopMoving;
 
     [SerializeField] private int maxMoveDistance = 4;
+    [SerializeField] private bool meleeUnit;
 
     private List<Vector3> positionList;
     private int currentPositionIndex;
@@ -120,7 +121,16 @@ public class MoveAction : BaseAction
 
     public override EnemyAIAction GetEnemyAIAction(GridPosition gridPosition)
     {
-        int targetCountAtGridPosition =  unit.GetAction<ShootAction>().GetTargetCountAtPosition(gridPosition);
+        int targetCountAtGridPosition;
+
+        if (meleeUnit)
+        {
+            targetCountAtGridPosition = 1;
+        }
+        else
+        {
+            targetCountAtGridPosition = unit.GetAction<ShootAction>().GetTargetCountAtPosition(gridPosition);
+        }
 
         return new EnemyAIAction
         {

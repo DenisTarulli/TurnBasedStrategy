@@ -10,15 +10,31 @@ public class PotionSystemUI : MonoBehaviour
     [SerializeField] private Transform potionButtonContainerTransform;
     //[SerializeField] private float disabledButtonColorAlpha = 55;
 
+    private BasePotion[] basePotionArray;
+
     private void Start()
     {
+        basePotionArray = PotionSystem.Instance.GetBasePotionArray();
+
         CreatePotionButtons();
+
+        InventoryManager.Instance.OnAnyPotionAmountChanged += InventoryManager_OnAnyPotionAmountChanged;
+    }
+
+    private void InventoryManager_OnAnyPotionAmountChanged(object sender, InventoryManager.OnAnyPotionAmountChangedEventArgs e)
+    {
+        for (int i = 0; i < basePotionArray.Length; i++)
+        {
+            if (basePotionArray[i].GetName() == e.name)
+            {
+                TextMeshProUGUI potionText = basePotionArray[i].GetPotionAmountTextObject();
+                UpdatePotionAmountText(potionText, e.amount);
+            }
+        }
     }
 
     private void CreatePotionButtons()
     {
-        BasePotion[] basePotionArray = PotionSystem.Instance.GetBasePotionArray();
-
         foreach (BasePotion basePotion in basePotionArray)
         {
             Transform potionButtonTransform = Instantiate(potionButtonPrefab, potionButtonContainerTransform);
@@ -31,6 +47,11 @@ public class PotionSystemUI : MonoBehaviour
             
             basePotion.SetPotionAmountTextObject(potionButtonTransform.GetComponentInChildren<TextMeshProUGUI>());
         }
+    }
+
+    private void UpdatePotionAmountText(TextMeshProUGUI potionText, int newAmount)
+    {
+        potionText.text = newAmount.ToString();
     }
 }
 

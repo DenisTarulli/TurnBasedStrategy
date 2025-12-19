@@ -16,5 +16,9 @@ public class Testing : MonoBehaviour
         {
             InventoryManager.Instance.AddPotionsTesting();
         }
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            InventoryManager.Instance.ChangeGoldAmount(5);
+        }
     }
 }

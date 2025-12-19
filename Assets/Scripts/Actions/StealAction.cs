@@ -1,18 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StealAction : MonoBehaviour
+public class StealAction : BaseAction
 {
-    // Start is called before the first frame update
-    void Start()
+    public override string GetActionName()
     {
-        
+        throw new NotImplementedException();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override EnemyAIAction GetEnemyAIAction(GridPosition gridPosition)
     {
-        
+        throw new NotImplementedException();
+    }
+
+    public override List<GridPosition> GetValidActionGridPositionList()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
+    {
+        throw new NotImplementedException();
     }
 }

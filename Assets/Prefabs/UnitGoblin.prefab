@@ -8,6 +8,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2675619301542887084, guid: 4a02b210b4bf4484699592c8ad94742b,
+        type: 3}
+      propertyPath: meleeUnit
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3274479443109023020, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -89,31 +94,5 @@ PrefabInstance:
     - {fileID: 3601897526832684530, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6558083519788646354, guid: 4a02b210b4bf4484699592c8ad94742b,
-        type: 3}
-      insertIndex: 3
-      addedObject: {fileID: 3057378444158822816}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
---- !u!1 &8913802070699169213 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6558083519788646354, guid: 4a02b210b4bf4484699592c8ad94742b,
-    type: 3}
-  m_PrefabInstance: {fileID: 2357302311789931119}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3057378444158822816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8913802070699169213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7df88c376351b08488f1815a1c355ce2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obstaclesLayerMask:
-    serializedVersion: 2
-    m_Bits: 256
-  damageToDeal: 40
