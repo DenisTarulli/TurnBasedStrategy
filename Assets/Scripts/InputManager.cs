@@ -25,6 +25,20 @@ public class InputManager : MonoBehaviour
         playerInputActions.Player.Enable();
     }
 
+    private void OnDestroy()
+    {
+        playerInputActions.Player.Disable();
+    }
+
+    public bool IsEscapeButtonDownThisFrame()
+    {
+#if USE_NEW_INPUT_SYSTEM
+        return playerInputActions.Player.Pause.WasPressedThisFrame();
+#else
+        return Input.GetKeyDown(KeyCode.Escape);
+#endif
+    }
+
     public Vector2 GetMouseScreenPosition()
     {
 #if USE_NEW_INPUT_SYSTEM

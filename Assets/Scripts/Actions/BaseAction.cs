@@ -7,6 +7,12 @@ public abstract class BaseAction : MonoBehaviour
     public static event EventHandler OnAnyActionStarted;
     public static event EventHandler OnAnyActionCompleted;
 
+    public static void ResetStaticData()
+    {
+        OnAnyActionStarted = null;
+        OnAnyActionCompleted = null;
+    }
+
     protected Unit unit;
     protected bool isActive;
     protected Action onActionComplete;

@@ -9,6 +9,13 @@ public class Unit : MonoBehaviour
     public static event EventHandler OnAnyUnitSpawned;
     public static event EventHandler OnAnyUnitDead;
 
+    public static void ResetStaticData()
+    {
+        OnAnyActionPointsChanged = null;
+        OnAnyUnitSpawned = null;
+        OnAnyUnitDead = null;
+    }
+
     [SerializeField] private bool isEnemy;
 
     private GridPosition gridPosition;

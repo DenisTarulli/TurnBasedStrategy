@@ -10,6 +10,11 @@ public class SwordAction : BaseAction
     public event EventHandler OnSwordActionCompleted;
     public static event EventHandler OnAnySwordHit;
 
+    public static new void ResetStaticData()
+    {
+        OnAnySwordHit = null;
+    }
+
     private int maxSwordDistance = 1;
 
     private enum State

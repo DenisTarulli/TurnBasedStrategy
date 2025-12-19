@@ -7,6 +7,11 @@ public class DestructibleCrate : MonoBehaviour
 {
     public static event EventHandler OnAnyDestroyed;
 
+    public static void ResetStaticData()
+    {
+        OnAnyDestroyed = null;
+    }
+
     [SerializeField] private Transform crateDestroyedPrefab;
 
     private GridPosition gridPosition;

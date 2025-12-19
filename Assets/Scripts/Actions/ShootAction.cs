@@ -12,6 +12,11 @@ public class ShootAction : BaseAction
         public Unit shootingUnit;
     }
 
+    public static new void ResetStaticData()
+    {
+        OnAnyShoot = null;
+    }
+
     private enum State
     {
         Aiming,

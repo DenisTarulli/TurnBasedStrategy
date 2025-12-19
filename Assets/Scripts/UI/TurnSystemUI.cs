@@ -6,21 +6,70 @@ using UnityEngine.UI;
 public class TurnSystemUI : MonoBehaviour
 {
     [SerializeField] private Button endTurnButton;
+    [SerializeField] private Color endTurnEnabledColor;
+    [SerializeField] private Color endTurnDisabledColor;
     [SerializeField] private TextMeshProUGUI turnNumberText;
     [SerializeField] private GameObject enemyTurnVisualGameObject;
+    private Unit playerUnit;
+    private TextMeshProUGUI endTurnButtonText;
 
     private void Start()
     {
+        playerUnit = UnitManager.Instance.GetFriendlyUnitList()[0];
+        endTurnButtonText = endTurnButton.GetComponentInChildren<TextMeshProUGUI>();
+
         endTurnButton.onClick.AddListener(() =>
         {
             TurnSystem.Instance.NextTurn();
         });
 
         TurnSystem.Instance.OnTurnChanged += TurnSystem_OnTurnChanged;
+        BaseAction.OnAnyActionStarted += BaseAction_OnAnyActionStarted;
+        BaseAction.OnAnyActionCompleted += BaseAction_OnAnyActionCompleted;
 
         UpdateTurnText();
         UpdateEnemyTurnVisual();
         UpdateEndTurnButtonVisibility();
+    }
+
+    private void BaseAction_OnAnyActionStarted(object sender, EventArgs e)
+    {
+        BaseAction senderAction = sender as BaseAction;
+        Unit senderUnit = senderAction.gameObject.GetComponent<Unit>();
+
+        if (senderUnit != playerUnit)
+        {
+            return;
+        }
+
+        ToggleEndTurnButton();
+    }
+
+    private void BaseAction_OnAnyActionCompleted(object sender, EventArgs e)
+    {
+        BaseAction senderAction = sender as BaseAction;
+        Unit senderUnit = senderAction.gameObject.GetComponent<Unit>();
+
+        if (senderUnit != playerUnit)
+        {
+            return;
+        }
+
+        ToggleEndTurnButton();
+    }
+
+    private void ToggleEndTurnButton()
+    {
+        endTurnButton.interactable = !endTurnButton.interactable;
+
+        if (endTurnButton.interactable)
+        {
+            endTurnButtonText.color = endTurnEnabledColor;
+        }
+        else
+        {
+            endTurnButtonText.color = endTurnDisabledColor;
+        }
     }
 
     private void TurnSystem_OnTurnChanged(object sender, EventArgs e)
