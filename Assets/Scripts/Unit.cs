@@ -116,6 +116,7 @@ public class Unit : MonoBehaviour
     {
         return actionPoints;
     }
+
     private void TurnSystem_OnTurnChanged(object sender, EventArgs e)
     {
         if ((IsEnemy() && !TurnSystem.Instance.IsPlayerTurn()) ||
