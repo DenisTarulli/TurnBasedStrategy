@@ -11,10 +11,20 @@ public class InventoryManager : MonoBehaviour
         public int amount;
         public string name;
     }
+    public event EventHandler<OnGoldAmountChangedEventArgs> OnGoldAmountChanged;
+    public class OnGoldAmountChangedEventArgs : EventArgs
+    {
+        public int gold;
+    }
+    public event EventHandler<OnKeysAmountChangedEventArgs> OnKeysAmountChanged;
+    public class OnKeysAmountChangedEventArgs : EventArgs
+    {
+        public int keys;
+    }
 
     public static InventoryManager Instance { get; private set; }
 
-    private bool hasKey;
+    private int keys;
     private int gold;
 
     private Dictionary<string, int> potionsInventory = new Dictionary<string, int>();
@@ -47,20 +57,34 @@ public class InventoryManager : MonoBehaviour
             potionsInventory.Add(potionsNames[i], 0);
         }
 
-        foreach (KeyValuePair<string, int> potions in potionsInventory)
+        //foreach (KeyValuePair<string, int> potions in potionsInventory)
+        //{
+        //    Debug.Log($"Potion: {potions.Key} - Amount: {potions.Value}");
+        //}
+    }
+
+    /// <summary>
+    /// Add or remove x amount of keys
+    /// </summary>
+    /// <param name="amount">Amount to add/remove</param>
+    public void ChangeKeysAmount(int amount)
+    {
+        this.keys += amount;
+
+        if (keys < 0)
         {
-            Debug.Log($"Potion: {potions.Key} - Amount: {potions.Value}");
+            keys = 0;
         }
+
+        OnKeysAmountChanged?.Invoke(this, new OnKeysAmountChangedEventArgs
+        {
+            keys = this.keys
+        });
     }
 
-    public void SetHasKey(bool hasKey)
+    public bool HasKeys()
     {
-        this.hasKey = hasKey;
-    }
-
-    public bool HasAKey()
-    {
-        return hasKey;
+        return keys > 0;
     }
 
     public int GetGoldAmount()
@@ -91,6 +115,11 @@ public class InventoryManager : MonoBehaviour
         ChangePotionAmount(potionKey, 1);
     }
 
+    /// <summary>
+    /// Add or remove x amount of potions matching the given key
+    /// </summary>
+    /// <param name="potionKey">Potion key name</param>
+    /// <param name="amount">Amount to add/remove</param>
     public void ChangePotionAmount(string potionKey, int amount)
     {
         foreach (KeyValuePair<string, int> potions in potionsInventory)
@@ -134,5 +163,10 @@ public class InventoryManager : MonoBehaviour
         {
             gold = 0;
         }
+
+        OnGoldAmountChanged?.Invoke(this, new OnGoldAmountChangedEventArgs
+        {
+            gold = this.gold
+        });
     }
 }

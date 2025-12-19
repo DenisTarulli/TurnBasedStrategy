@@ -78,7 +78,7 @@ public class InteractAction : BaseAction
                 if (interactable.GetType() == typeof(Chest))
                 {
                     // Chest on testGridPosition
-                    if (!InventoryManager.Instance.HasAKey())
+                    if (!InventoryManager.Instance.HasKeys())
                     {
                         // Player has no keys to open the chest
                         continue;

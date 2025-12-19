@@ -7,6 +7,8 @@ public class Chest : MonoBehaviour, IInteractable
 {
     private const string IS_OPEN = "IsOpen";
 
+    [SerializeField] private int goldDrop = 5;
+
     private Animator animator;
     private GridPosition gridPosition;
     private Action onInteractionComplete;
@@ -39,8 +41,10 @@ public class Chest : MonoBehaviour, IInteractable
         {
             isActive = false;
             LevelGrid.Instance.ClearInteractableAtGridPosition(gridPosition);
-            InventoryManager.Instance.SetHasKey(false);
-            Debug.Log("Collected gold");
+
+            InventoryManager.Instance.ChangeKeysAmount(-1);
+            InventoryManager.Instance.ChangeGoldAmount(goldDrop);
+
             onInteractionComplete();
         }
     }

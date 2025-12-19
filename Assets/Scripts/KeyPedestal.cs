@@ -33,11 +33,10 @@ public class KeyPedestal : MonoBehaviour, IInteractable
         if (timer <= 0f)
         {
             isActive = false;
-            InventoryManager.Instance.SetHasKey(true);
+            InventoryManager.Instance.ChangeKeysAmount(1);
 
             LevelGrid.Instance.ClearInteractableAtGridPosition(gridPosition);
 
-            Debug.Log("Collected key");
             HideKeyVisual();
             onInteractionComplete();
         }
