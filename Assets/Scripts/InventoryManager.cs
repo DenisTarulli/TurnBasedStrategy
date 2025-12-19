@@ -30,7 +30,10 @@ public class InventoryManager : MonoBehaviour
         }
 
         Instance = this;
+    }
 
+    private void Start()
+    {
         BasePotion[] basePotionArray = PotionSystem.Instance.GetBasePotionArray();
         potionsNames = new string[basePotionArray.Length];
 
@@ -43,10 +46,6 @@ public class InventoryManager : MonoBehaviour
         {
             potionsInventory.Add(potionsNames[i], 0);
         }
-    }
-
-    private void Start()
-    {
 
         foreach (KeyValuePair<string, int> potions in potionsInventory)
         {

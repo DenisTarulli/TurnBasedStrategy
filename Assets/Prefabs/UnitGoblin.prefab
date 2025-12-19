@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &6755496521116028349
+--- !u!1001 &2357302311789931119
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,26 +8,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 626817428373390544, guid: 4a02b210b4bf4484699592c8ad94742b,
-        type: 3}
-      propertyPath: ragdollPrefab
-      value: 
-      objectReference: {fileID: 1182337121296861693, guid: 6cb74ad2d2a1fdd458fabc51041ae3ce,
-        type: 3}
     - target: {fileID: 3274479443109023020, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 7d22fc6b9a431b043a917fb89a80bcfc, type: 2}
+      objectReference: {fileID: 2100000, guid: f685a57b9da560a448bb95374a652f90, type: 2}
     - target: {fileID: 6558083519788646354, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
       propertyPath: m_Name
-      value: UnitEnemy
+      value: UnitGoblin
       objectReference: {fileID: 0}
     - target: {fileID: 7238716653469577512, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7238716653469577512, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
@@ -42,7 +36,7 @@ PrefabInstance:
     - target: {fileID: 7238716653469577512, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7238716653469577512, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
@@ -52,7 +46,7 @@ PrefabInstance:
     - target: {fileID: 7238716653469577512, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7238716653469577512, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
@@ -67,7 +61,7 @@ PrefabInstance:
     - target: {fileID: 7238716653469577512, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7238716653469577512, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
@@ -82,10 +76,44 @@ PrefabInstance:
     - target: {fileID: 7745505955916596467, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
       propertyPath: actionPointsMax
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1293953526380841009, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
+    - {fileID: 2450972907125092273, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
+    - {fileID: 7263831377536425997, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
+    - {fileID: 1818496213098754558, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
+    - {fileID: 6626201822665126324, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
+    - {fileID: 6301559735661326554, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
+    - {fileID: 941020660096621766, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
+    - {fileID: 3601897526832684530, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6558083519788646354, guid: 4a02b210b4bf4484699592c8ad94742b,
+        type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 3057378444158822816}
   m_SourcePrefab: {fileID: 100100000, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
+--- !u!1 &8913802070699169213 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6558083519788646354, guid: 4a02b210b4bf4484699592c8ad94742b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2357302311789931119}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3057378444158822816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8913802070699169213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df88c376351b08488f1815a1c355ce2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclesLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  damageToDeal: 40
