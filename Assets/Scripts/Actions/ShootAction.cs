@@ -128,6 +128,8 @@ public class ShootAction : BaseAction
         gridPositionsInRangeList.RemoveAll(testGridPosition => !LevelGrid.Instance.IsValidGridPosition(testGridPosition));
         gridPositionsInRangeList.RemoveAll(testGridPosition => !LevelGrid.Instance.HasAnyUnitOnGridPosition(testGridPosition));
 
+        List<GridPosition> gridPositionsToRemove = new List<GridPosition>();
+
         for (int i = 0; i < gridPositionsInRangeList.Count; i++)
         {
             GridPosition testGridPosition = gridPositionsInRangeList[i];
@@ -135,11 +137,11 @@ public class ShootAction : BaseAction
 
             if (targetUnit.IsEnemy() == unit.IsEnemy())
             {
-                gridPositionsInRangeList.Remove(testGridPosition);
+                gridPositionsToRemove.Add(testGridPosition);
                 continue;
             }
 
-                Vector3 unitWorldPosition = LevelGrid.Instance.GetWorldPosition(unitGridPosition);
+            Vector3 unitWorldPosition = LevelGrid.Instance.GetWorldPosition(unitGridPosition);
             Vector3 shootDirection = (targetUnit.GetWorldPosition() - unitWorldPosition).normalized;
 
             float unitShoulderHeight = 1.7f;
@@ -153,6 +155,9 @@ public class ShootAction : BaseAction
                 gridPositionsInRangeList.Remove(testGridPosition);
             }
         }
+
+        HashSet<GridPosition> elementsToRemove = new HashSet<GridPosition>(gridPositionsToRemove);
+        gridPositionsInRangeList.RemoveAll(gridPosition => elementsToRemove.Contains(gridPosition));
 
         return gridPositionsInRangeList;
     }
