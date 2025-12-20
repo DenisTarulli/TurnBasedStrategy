@@ -6,17 +6,16 @@ using UnityEngine;
 public class GrenadeAction : BaseAction
 {
     [SerializeField] private Transform grenadeProjectilePrefab;
+    [SerializeField] private int maxThrowDistance = 7;
+    [SerializeField] private LayerMask obstaclesLayerMask;
 
-    private int maxThrowDistance = 7;
 
     private void Update()
     {
         if (!isActive)
         {
             return;
-        }
-
-        
+        }        
     }
 
     public override string GetActionName()
@@ -35,35 +34,38 @@ public class GrenadeAction : BaseAction
 
     public override List<GridPosition> GetValidActionGridPositionList()
     {
-        List<GridPosition> validGridPositionList = new List<GridPosition>();
-
         GridPosition unitGridPosition = unit.GetGridPosition();
+        return GetValidActionGridPositionList(unitGridPosition, maxThrowDistance);
+    }
 
-        for (int x = -maxThrowDistance; x <= maxThrowDistance; x++)
+    public List<GridPosition> GetValidActionGridPositionList(GridPosition unitGridPosition, int maxRange)
+    {
+        List<GridPosition> gridPositionsInRangeList = new List<GridPosition>();
+
+        gridPositionsInRangeList = HexRangeUtils.GetGridPositionsInRange(unitGridPosition, maxRange);
+        gridPositionsInRangeList.RemoveAll(testGridPosition => !LevelGrid.Instance.IsValidGridPosition(testGridPosition));
+
+        for (int i = 0; i < gridPositionsInRangeList.Count; i++)
         {
-            for (int z = -maxThrowDistance; z <= maxThrowDistance; z++)
+            GridPosition testGridPosition = gridPositionsInRangeList[i];
+            Vector3 targetHex = LevelGrid.Instance.GetWorldPosition(testGridPosition);
+
+            Vector3 unitWorldPosition = LevelGrid.Instance.GetWorldPosition(unitGridPosition);
+            Vector3 shootDirection = (targetHex- unitWorldPosition).normalized;
+
+            float unitShoulderHeight = 1.7f;
+            if (Physics.Raycast(
+                unitWorldPosition + Vector3.up * unitShoulderHeight,
+                shootDirection,
+                Vector3.Distance(unitWorldPosition, targetHex),
+                obstaclesLayerMask))
             {
-                GridPosition offsetGridPosition = new GridPosition(x, z);
-                GridPosition testGridPosition = unitGridPosition + offsetGridPosition;
-
-                if (!LevelGrid.Instance.IsValidGridPosition(testGridPosition))
-                {
-                    // Cell is outside of the grid bounds
-                    continue;
-                }
-
-                int testDistance = Mathf.Abs(x) + Mathf.Abs(z);
-                if (testDistance > maxThrowDistance)
-                {
-                    // Target out of range
-                    continue;
-                }
-
-                validGridPositionList.Add(testGridPosition);
+                // Blocked by an obstacle
+                gridPositionsInRangeList.Remove(testGridPosition);
             }
         }
 
-        return validGridPositionList;
+        return gridPositionsInRangeList;
     }
 
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)

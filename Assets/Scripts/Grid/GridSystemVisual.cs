@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 using static GridSystemVisual;
 
 public class GridSystemVisual : MonoBehaviour
@@ -52,10 +53,10 @@ public class GridSystemVisual : MonoBehaviour
 
         for (int x = 0; x < LevelGrid.Instance.GetWidth(); x++)
         {
-            for (int z = 0;  z < LevelGrid.Instance.GetHeight(); z++)
+            for (int z = 0; z < LevelGrid.Instance.GetHeight(); z++)
             {
                 GridPosition gridPosition = new GridPosition(x, z);
-                Transform gridSystemVisualSingleTransform = 
+                Transform gridSystemVisualSingleTransform =
                     Instantiate(gridSystemVisualSinglePrefab, LevelGrid.Instance.GetWorldPosition(gridPosition), Quaternion.identity);
 
                 gridSystemVisualSingleArray[x, z] = gridSystemVisualSingleTransform.GetComponent<GridSystemVisualSingle>();
@@ -81,75 +82,14 @@ public class GridSystemVisual : MonoBehaviour
         }
     }
 
-    private void ShowGridPositionRange(GridPosition gridPosition, int range, GridVisualType gridVisualType)
+    private void ShowGridPositionRange(GridPosition gridPosition, int maxRange, GridVisualType gridVisualType)
     {
-        List<GridPosition> gridPositionList = new List<GridPosition>();
+        List<GridPosition> gridPositionsInRangeList = new List<GridPosition>();
 
-        for (int x = -range; x <= range; x++)
-        {
-            for (int z = -range; z <= range; z++)
-            {
-                GridPosition testGridPosition = gridPosition + new GridPosition(x, z);
+        gridPositionsInRangeList = HexRangeUtils.GetGridPositionsInRange(gridPosition, maxRange);
+        gridPositionsInRangeList.RemoveAll(p => !LevelGrid.Instance.IsValidGridPosition(p));
 
-                if (!LevelGrid.Instance.IsValidGridPosition(testGridPosition))
-                {
-                    // Cell is outside of the grid bounds
-                    continue;
-                }
-
-                int testDistance = Mathf.Abs(x) + Mathf.Abs(z);
-                if (testDistance > range)
-                {
-                    continue;
-                }
-
-                gridPositionList.Add(testGridPosition);
-            }
-        }
-
-        ShowGridPositionList(gridPositionList, gridVisualType);
-    }
-
-    private void ShowGridPositionRangeCircle(GridPosition gridPosition, int range, GridVisualType gridVisualType)
-    {
-        List<GridPosition> gridPositionList = new List<GridPosition>();
-
-        for (int x = -range; x <= range; x++)
-        {
-            for (int z = -range; z <= range; z++)
-            {
-                GridPosition testGridPosition = gridPosition + new GridPosition(x, z);
-
-                if (gridPosition.z % 2 != 0)
-                {
-                    // Unit is on odd row
-                    if (x == -range && z != 0)
-                    {
-                        // Hex is out of action range
-                        continue;
-                    }
-                }
-                else
-                {
-                    // Unit is on even row
-                    if (x == range && z != 0)
-                    {
-                        // Hex is out of action range
-                        continue;
-                    }
-                }
-
-                if (!LevelGrid.Instance.IsValidGridPosition(testGridPosition))
-                {
-                    // Cell is outside of the grid bounds
-                    continue;
-                }
-
-                gridPositionList.Add(testGridPosition);
-            }
-        }
-
-        ShowGridPositionList(gridPositionList, gridVisualType);
+        ShowGridPositionList(gridPositionsInRangeList, gridVisualType);
     }
 
     public void ShowGridPositionList(List<GridPosition> gridPositionList, GridVisualType gridVisualType)
@@ -189,12 +129,12 @@ public class GridSystemVisual : MonoBehaviour
             case SwordAction swordAction:
                 gridVisualType = GridVisualType.Red;
 
-                ShowGridPositionRangeCircle(selectedUnit.GetGridPosition(), swordAction.GetMaxSwordDistance(), GridVisualType.RedSoft);
+                ShowGridPositionRange(selectedUnit.GetGridPosition(), swordAction.GetMaxSwordDistance(), GridVisualType.RedSoft);
                 break;
             case InteractAction interactAction:
                 gridVisualType = GridVisualType.Blue;
 
-                ShowGridPositionRangeCircle(selectedUnit.GetGridPosition(), interactAction.GetMaxInteractDistance(), GridVisualType.BlueSoft);
+                ShowGridPositionRange(selectedUnit.GetGridPosition(), interactAction.GetMaxInteractDistance(), GridVisualType.BlueSoft);
                 break;
             case HealAction healAction:
                 gridVisualType = GridVisualType.Green;

@@ -18,6 +18,11 @@ PrefabInstance:
       propertyPath: meleeUnit
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2675619301542887084, guid: 4a02b210b4bf4484699592c8ad94742b,
+        type: 3}
+      propertyPath: maxMoveDistance
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3274479443109023020, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -36,7 +41,7 @@ PrefabInstance:
     - target: {fileID: 7238716653469577512, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7238716653469577512, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
@@ -105,5 +110,29 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 132938279026215209, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6558083519788646354, guid: 4a02b210b4bf4484699592c8ad94742b,
+        type: 3}
+      insertIndex: 6
+      addedObject: {fileID: 2436429922855458016}
   m_SourcePrefab: {fileID: 100100000, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
+--- !u!1 &8913802070699169213 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6558083519788646354, guid: 4a02b210b4bf4484699592c8ad94742b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2357302311789931119}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2436429922855458016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8913802070699169213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6576224d91cd03c46aad60608397b096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energyCost: 0
+  damageToDeal: 40

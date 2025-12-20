@@ -16,12 +16,18 @@ public abstract class BaseAction : MonoBehaviour
     protected Unit unit;
     protected bool isActive;
     protected Action onActionComplete;
+    protected Unit playerUnit;
 
     [SerializeField] protected int energyCost;
 
     protected virtual void Awake()
     {
         unit = GetComponent<Unit>();
+    }
+
+    protected virtual void Start()
+    {
+        playerUnit = GameObject.FindWithTag("Player").GetComponent<Unit>();
     }
 
     public abstract string GetActionName();

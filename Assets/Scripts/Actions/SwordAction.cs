@@ -15,6 +15,7 @@ public class SwordAction : BaseAction
         OnAnySwordHit = null;
     }
 
+    [SerializeField] private int damageToDeal = 30;
     private int maxSwordDistance = 1;
 
     private enum State
@@ -59,7 +60,7 @@ public class SwordAction : BaseAction
                 state = State.SwingingSwordAfterHit;
                 float afterHitStateTime = 0.5f;
                 stateTimer = afterHitStateTime;
-                int damage = 100;
+                int damage = damageToDeal;
                 targetUnit.Damage(damage);
                 OnAnySwordHit?.Invoke(this, EventArgs.Empty);
                 break;
@@ -94,9 +95,13 @@ public class SwordAction : BaseAction
 
     public override List<GridPosition> GetValidActionGridPositionList()
     {
-        List<GridPosition> validGridPositionList = new List<GridPosition>();
-
         GridPosition unitGridPosition = unit.GetGridPosition();
+        return GetValidActionGridPositionList(unitGridPosition);
+    }
+
+    public List<GridPosition> GetValidActionGridPositionList(GridPosition unitGridPosition)
+    {
+        List<GridPosition> validGridPositionList = new List<GridPosition>();
 
         for (int x = -maxSwordDistance; x <= maxSwordDistance; x++)
         {
@@ -167,5 +172,9 @@ public class SwordAction : BaseAction
     public int GetMaxSwordDistance()
     {
         return maxSwordDistance;
+    }
+    public int GetTargetCountAtPosition(GridPosition gridPosition)
+    {
+        return GetValidActionGridPositionList(gridPosition).Count;
     }
 }

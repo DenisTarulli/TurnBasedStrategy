@@ -122,20 +122,49 @@ public class MoveAction : BaseAction
     public override EnemyAIAction GetEnemyAIAction(GridPosition gridPosition)
     {
         int targetCountAtGridPosition;
+        int pathLengthMod = 0;
 
         if (meleeUnit)
         {
-            targetCountAtGridPosition = 1;
+            targetCountAtGridPosition = unit.GetAction<SwordAction>().GetTargetCountAtPosition(gridPosition);
+
+            if (targetCountAtGridPosition != 0)
+            {
+                int pathLengthModDiv = 10;
+                int pathLength = Pathfinding.Instance.GetPathLength(unit.GetGridPosition(), gridPosition) / pathLengthModDiv;
+                pathLengthMod = 20 - pathLength;
+            }
+            else
+            {
+                int pathLengthModDiv = 10;
+                GridPosition playerGridPosition = playerUnit.GetGridPosition();
+                int pathLength = Pathfinding.Instance.GetPathLength(gridPosition, playerGridPosition) / pathLengthModDiv;
+                pathLengthMod = 20 - pathLength;
+            }
         }
         else
         {
             targetCountAtGridPosition = unit.GetAction<ShootAction>().GetTargetCountAtPosition(gridPosition);
+            
+            if (targetCountAtGridPosition != 0)
+            {
+                int pathLengthModDiv = 10;
+                int pathLength = Pathfinding.Instance.GetPathLength(unit.GetGridPosition(), gridPosition) / pathLengthModDiv;
+                pathLengthMod = 20 - pathLength;
+            }
+            else
+            {
+                int pathLengthModDiv = 10;
+                GridPosition playerGridPosition = playerUnit.GetGridPosition();
+                int pathLength = Pathfinding.Instance.GetPathLength(gridPosition, playerGridPosition) / pathLengthModDiv;
+                pathLengthMod = 20 - pathLength;
+            }
         }
 
         return new EnemyAIAction
         {
             gridPosition = gridPosition,
-            actionValue = targetCountAtGridPosition * 10
+            actionValue = (targetCountAtGridPosition * 10) + pathLengthMod
         };
     }
 }
