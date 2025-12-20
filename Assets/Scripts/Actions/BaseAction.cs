@@ -17,6 +17,8 @@ public abstract class BaseAction : MonoBehaviour
     protected bool isActive;
     protected Action onActionComplete;
 
+    [SerializeField] protected int energyCost;
+
     protected virtual void Awake()
     {
         unit = GetComponent<Unit>();
@@ -46,6 +48,18 @@ public abstract class BaseAction : MonoBehaviour
     public virtual int GetActionPointsCost()
     {
         return 1;
+    }
+
+    public virtual int GetEnergyCost()
+    {
+        if (unit.IsEnemy())
+        {
+            return 0;
+        }
+        else
+        {
+            return energyCost;
+        }
     }
 
     protected void ActionStart(Action onActionComplete)

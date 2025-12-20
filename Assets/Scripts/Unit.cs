@@ -4,14 +4,19 @@ using UnityEngine;
 public class Unit : MonoBehaviour
 {
     [SerializeField] private int actionPointsMax = 3;
+    [SerializeField] private int maxEnergy = 10;
+    [SerializeField] private int passiveEnergyGain;
+    private int currentEnergy;
 
     public static event EventHandler OnAnyActionPointsChanged;
+    public static event EventHandler OnAnyEnergyChanged;
     public static event EventHandler OnAnyUnitSpawned;
     public static event EventHandler OnAnyUnitDead;
 
     public static void ResetStaticData()
     {
         OnAnyActionPointsChanged = null;
+        OnAnyEnergyChanged = null;
         OnAnyUnitSpawned = null;
         OnAnyUnitDead = null;
     }
@@ -21,14 +26,19 @@ public class Unit : MonoBehaviour
     private GridPosition gridPosition;
     private HealthSystem healthSystem;
     private BaseAction[] baseActionArray;
-    private int actionPoints;
+    private int currentActionPoints;
+
+
+    private int spareActionPoints;
+    private int spareEnergy;
 
     private void Awake()
     {
         baseActionArray = GetComponents<BaseAction>();
         healthSystem = GetComponent<HealthSystem>();
 
-        actionPoints = actionPointsMax;
+        currentActionPoints = actionPointsMax;
+        currentEnergy = maxEnergy;
     }
 
     private void Start()
@@ -80,11 +90,12 @@ public class Unit : MonoBehaviour
         return baseActionArray;
     }
 
-    public bool TrySpendActionPointsToTakeAction(BaseAction baseAction)
+    public bool TrySpendActionPointsAndEnergyToTakeAction(BaseAction baseAction)
     {
-        if (CanSpendActionPointsToTakeAction(baseAction))
+        if (CanSpendActionPointsToTakeAction(baseAction) && CanSpendEnergyToTakeAction(baseAction))
         {
             SpendActionPoint(baseAction.GetActionPointsCost());
+            SpendEnergy(baseAction.GetEnergyCost());
             return true;
         }
         else
@@ -95,7 +106,19 @@ public class Unit : MonoBehaviour
 
     public bool CanSpendActionPointsToTakeAction(BaseAction baseAction)
     {
-        if (actionPoints >= baseAction.GetActionPointsCost())
+        if (currentActionPoints >= baseAction.GetActionPointsCost())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool CanSpendEnergyToTakeAction(BaseAction baseAction)
+    {
+        if (currentEnergy >= baseAction.GetEnergyCost())
         {
             return true;
         }
@@ -107,25 +130,55 @@ public class Unit : MonoBehaviour
 
     private void SpendActionPoint(int amount)
     {
-        actionPoints -= amount;
+        currentActionPoints -= amount;
 
         OnAnyActionPointsChanged?.Invoke(this, EventArgs.Empty);
     }
 
+    private void SpendEnergy(int amount)
+    {
+        currentEnergy -= amount;
+
+        OnAnyEnergyChanged?.Invoke(this, EventArgs.Empty);
+    }
+
     public int GetActionsPoints()
     {
-        return actionPoints;
+        return currentActionPoints;
+    }
+
+    public int GetEnergy()
+    {
+        return currentEnergy;
     }
 
     private void TurnSystem_OnTurnChanged(object sender, EventArgs e)
     {
-        if ((IsEnemy() && !TurnSystem.Instance.IsPlayerTurn()) ||
-            !IsEnemy() && TurnSystem.Instance.IsPlayerTurn())
+        if ((!IsEnemy() && !TurnSystem.Instance.IsPlayerTurn()))
         {
-            actionPoints = actionPointsMax;
+            spareActionPoints = currentActionPoints;
+            spareEnergy = currentEnergy;
+        }
+
+        if ((IsEnemy() && !TurnSystem.Instance.IsPlayerTurn()))
+        {
+            currentActionPoints = actionPointsMax;
 
             OnAnyActionPointsChanged?.Invoke(this, EventArgs.Empty);
-        }        
+        }
+        else if (!IsEnemy() && TurnSystem.Instance.IsPlayerTurn())
+        {
+            currentActionPoints = actionPointsMax;
+            currentEnergy += spareEnergy + spareActionPoints + passiveEnergyGain;
+
+            if (currentEnergy > maxEnergy)
+            {
+                currentEnergy = maxEnergy;
+            }
+
+            OnAnyActionPointsChanged?.Invoke(this, EventArgs.Empty);
+            OnAnyEnergyChanged?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     public bool IsEnemy()

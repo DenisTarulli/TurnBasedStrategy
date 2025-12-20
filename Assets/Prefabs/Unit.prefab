@@ -1,5 +1,139 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &132938279026215209
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2546098413338065776}
+  - component: {fileID: 2413358332644969498}
+  - component: {fileID: 8839105988016196814}
+  m_Layer: 7
+  m_Name: EnergyText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2546098413338065776
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132938279026215209}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6301423966198016762}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.6, y: -0.25}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &2413358332644969498
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132938279026215209}
+  m_CullTransparentMesh: 1
+--- !u!114 &8839105988016196814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132938279026215209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 7
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278249471
+  m_fontColor: {r: 1, g: 0.90713394, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 0.5
+  m_fontSizeBase: 0.5
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 0
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &3224002330987695877
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,6 +388,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7015464927829684766}
+  - {fileID: 2546098413338065776}
   - {fileID: 376649572538989804}
   m_Father: {fileID: 7238716653469577512}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -338,6 +473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionPointsText: {fileID: 3721686017273229022}
+  energyText: {fileID: 8839105988016196814}
   unit: {fileID: 7745505955916596467}
   healthBarImage: {fileID: 5976697899765349446}
   healthSystem: {fileID: -6659020039490339111}
@@ -611,6 +747,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionPointsMax: 10
+  maxEnergy: 10
   isEnemy: 0
 --- !u!114 &2675619301542887084
 MonoBehaviour:
@@ -624,7 +761,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a7d07811e5e2341a8f6c72e09a424b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energyCost: 0
   maxMoveDistance: 6
+  meleeUnit: 0
 --- !u!114 &1293953526380841009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -637,6 +776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c46572b4a8daaf04ba75af88be6594c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energyCost: 0
 --- !u!114 &2450972907125092273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -649,6 +789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7df88c376351b08488f1815a1c355ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energyCost: 0
   obstaclesLayerMask:
     serializedVersion: 2
     m_Bits: 256
@@ -665,6 +806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a491602914eba5c429a94944a4b1f567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energyCost: 0
   grenadeProjectilePrefab: {fileID: 2673750652276929574, guid: cc0b6b74e6163e54186df3f9c316debd,
     type: 3}
 --- !u!114 &1818496213098754558
@@ -679,6 +821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6576224d91cd03c46aad60608397b096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energyCost: 0
 --- !u!114 &6626201822665126324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -691,6 +834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a841503ed1ea03b469c2ba18f4e486ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energyCost: 0
 --- !u!114 &6301559735661326554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -703,6 +847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5500fc5e087bc014a8d205e0d99dd132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energyCost: 0
   healAmount: 20
 --- !u!114 &941020660096621766
 MonoBehaviour:
@@ -716,6 +861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cdb17d5ea17ad04e9188e70031a8905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energyCost: 0
   damageMitigated: 30
 --- !u!114 &3601897526832684530
 MonoBehaviour:
@@ -878,7 +1024,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.6, y: 0}
+  m_AnchoredPosition: {x: 0.6, y: 0.25}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7660729488011058864

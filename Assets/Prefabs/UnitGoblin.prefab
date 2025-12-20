@@ -8,6 +8,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 138735091604180726, guid: 4a02b210b4bf4484699592c8ad94742b,
+        type: 3}
+      propertyPath: energyText
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2675619301542887084, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
       propertyPath: meleeUnit
@@ -22,6 +27,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UnitGoblin
+      objectReference: {fileID: 0}
+    - target: {fileID: 7015464927829684766, guid: 4a02b210b4bf4484699592c8ad94742b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7238716653469577512, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
@@ -92,7 +102,8 @@ PrefabInstance:
     - {fileID: 6301559735661326554, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
     - {fileID: 941020660096621766, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
     - {fileID: 3601897526832684530, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 132938279026215209, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}

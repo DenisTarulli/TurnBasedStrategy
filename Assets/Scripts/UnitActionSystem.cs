@@ -87,7 +87,7 @@ public class UnitActionSystem : MonoBehaviour
                 return;
             }
 
-            if (!selectedUnit.TrySpendActionPointsToTakeAction(selectedAction))
+            if (!selectedUnit.TrySpendActionPointsAndEnergyToTakeAction(selectedAction))
             {
                 // Not enough action points
                 return;

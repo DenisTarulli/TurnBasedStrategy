@@ -113,7 +113,7 @@ public class EnemyAI : MonoBehaviour
             baseAction.GetBestEnemyAIAction();
         }
 
-        if (bestEnemyAIAction != null && enemyUnit.TrySpendActionPointsToTakeAction(bestBaseAction))
+        if (bestEnemyAIAction != null && enemyUnit.TrySpendActionPointsAndEnergyToTakeAction(bestBaseAction))
         {
             bestBaseAction.TakeAction(bestEnemyAIAction.gridPosition, onEnemyAIActionComplete);
             return true;

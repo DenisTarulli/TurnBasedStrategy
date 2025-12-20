@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &6393902840499096846
+--- !u!1001 &4409341484314306746
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,30 +8,50 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 138735091604180726, guid: 4a02b210b4bf4484699592c8ad94742b,
+    - target: {fileID: 941020660096621766, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
-      propertyPath: energyText
-      value: 
+      propertyPath: energyCost
+      value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 3274479443109023020, guid: 4a02b210b4bf4484699592c8ad94742b,
+    - target: {fileID: 1293953526380841009, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 6ba9f4735549d5b44b46a1e2a07ff751, type: 2}
+      propertyPath: energyCost
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818496213098754558, guid: 4a02b210b4bf4484699592c8ad94742b,
+        type: 3}
+      propertyPath: energyCost
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2450972907125092273, guid: 4a02b210b4bf4484699592c8ad94742b,
+        type: 3}
+      propertyPath: energyCost
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2675619301542887084, guid: 4a02b210b4bf4484699592c8ad94742b,
+        type: 3}
+      propertyPath: energyCost
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301559735661326554, guid: 4a02b210b4bf4484699592c8ad94742b,
+        type: 3}
+      propertyPath: energyCost
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6558083519788646354, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
       propertyPath: m_Name
-      value: UnitSkeleton
+      value: UnitPlayer
       objectReference: {fileID: 0}
-    - target: {fileID: 7015464927829684766, guid: 4a02b210b4bf4484699592c8ad94742b,
+    - target: {fileID: 6626201822665126324, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
+      propertyPath: energyCost
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7238716653469577512, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7238716653469577512, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
@@ -41,7 +61,7 @@ PrefabInstance:
     - target: {fileID: 7238716653469577512, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7238716653469577512, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
@@ -78,26 +98,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7745505955916596467, guid: 4a02b210b4bf4484699592c8ad94742b,
+    - target: {fileID: 7263831377536425997, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
-      propertyPath: isEnemy
-      value: 1
+      propertyPath: energyCost
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7745505955916596467, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
       propertyPath: actionPointsMax
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1293953526380841009, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
-    - {fileID: 7263831377536425997, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
-    - {fileID: 1818496213098754558, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
-    - {fileID: 6626201822665126324, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
-    - {fileID: 6301559735661326554, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
-    - {fileID: 941020660096621766, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
-    - {fileID: 3601897526832684530, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
-    m_RemovedGameObjects:
-    - {fileID: 132938279026215209, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
+    - target: {fileID: 7745505955916596467, guid: 4a02b210b4bf4484699592c8ad94742b,
+        type: 3}
+      propertyPath: passiveEnergyGain
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
