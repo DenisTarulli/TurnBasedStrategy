@@ -62,6 +62,7 @@ public class SwordAction : BaseAction
                 stateTimer = afterHitStateTime;
                 int damage = damageToDeal;
                 targetUnit.Damage(damage);
+                unit.ToggleHasStolen();
                 OnAnySwordHit?.Invoke(this, EventArgs.Empty);
                 break;
             case State.SwingingSwordAfterHit:
@@ -86,10 +87,17 @@ public class SwordAction : BaseAction
 
     public override EnemyAIAction GetEnemyAIAction(GridPosition gridPosition)
     {
+        int valueMod = 0;
+        
+        if (unit.HasStolen())
+        {
+            valueMod = 10;
+        }
+
         return new EnemyAIAction
         {
             gridPosition = gridPosition,
-            actionValue = 200
+            actionValue = 200 + valueMod
         };
     }
 

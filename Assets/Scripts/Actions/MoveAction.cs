@@ -145,7 +145,6 @@ public class MoveAction : BaseAction
         else
         {
             targetCountAtGridPosition = unit.GetAction<ShootAction>().GetTargetCountAtPosition(gridPosition);
-            Debug.Log(targetCountAtGridPosition);
             if (targetCountAtGridPosition != 0)
             {
                 int pathLengthModDiv = 10;

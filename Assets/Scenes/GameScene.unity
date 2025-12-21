@@ -648,7 +648,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   x: 0
   z: 0
-  range: 0
+  range: 3
 --- !u!4 &79730119
 Transform:
   m_ObjectHideFlags: 0
@@ -4970,7 +4970,7 @@ PrefabInstance:
     - target: {fileID: 6432326393000925586, guid: 40fa79d1e187d6c48b15afa9535a6dde,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6432326393000925586, guid: 40fa79d1e187d6c48b15afa9535a6dde,
         type: 3}
@@ -4980,7 +4980,7 @@ PrefabInstance:
     - target: {fileID: 6432326393000925586, guid: 40fa79d1e187d6c48b15afa9535a6dde,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6432326393000925586, guid: 40fa79d1e187d6c48b15afa9535a6dde,
         type: 3}
@@ -9345,7 +9345,7 @@ PrefabInstance:
     - target: {fileID: 1604364419137140249, guid: 70caadc517a10f940a2d468b1abb234b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1604364419137140249, guid: 70caadc517a10f940a2d468b1abb234b,
         type: 3}
@@ -9355,7 +9355,7 @@ PrefabInstance:
     - target: {fileID: 1604364419137140249, guid: 70caadc517a10f940a2d468b1abb234b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 1604364419137140249, guid: 70caadc517a10f940a2d468b1abb234b,
         type: 3}
@@ -9698,10 +9698,15 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3249309846511100548, guid: d0c14d236ce75fe49be2d6d9bf1b5ed9,
+        type: 3}
+      propertyPath: goldToSteal
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 4955023398438705991, guid: d0c14d236ce75fe49be2d6d9bf1b5ed9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4955023398438705991, guid: d0c14d236ce75fe49be2d6d9bf1b5ed9,
         type: 3}
@@ -9711,7 +9716,7 @@ PrefabInstance:
     - target: {fileID: 4955023398438705991, guid: d0c14d236ce75fe49be2d6d9bf1b5ed9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 18
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 4955023398438705991, guid: d0c14d236ce75fe49be2d6d9bf1b5ed9,
         type: 3}
@@ -9752,11 +9757,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UnitGoblin
-      objectReference: {fileID: 0}
-    - target: {fileID: 8913802070699169213, guid: d0c14d236ce75fe49be2d6d9bf1b5ed9,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

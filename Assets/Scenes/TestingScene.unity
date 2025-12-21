@@ -152,9 +152,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unit: {fileID: 0}
-  x: 0
-  z: 0
-  range: 2
+  x: 1
+  z: 1
+  range: 5
 --- !u!4 &348529216
 Transform:
   m_ObjectHideFlags: 0

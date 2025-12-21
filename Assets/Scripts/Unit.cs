@@ -28,9 +28,10 @@ public class Unit : MonoBehaviour
     private BaseAction[] baseActionArray;
     private int currentActionPoints;
 
-
     private int spareActionPoints;
     private int spareEnergy;
+
+    private bool hasStolen;
 
     private void Awake()
     {
@@ -39,6 +40,8 @@ public class Unit : MonoBehaviour
 
         currentActionPoints = actionPointsMax;
         currentEnergy = maxEnergy;
+
+        hasStolen = true;
     }
 
     private void Start()
@@ -208,5 +211,15 @@ public class Unit : MonoBehaviour
     public float GetHealthNormalized()
     {
         return healthSystem.GetHealthNormalized();
+    }
+
+    public bool HasStolen()
+    {
+        return hasStolen;
+    }
+
+    public void ToggleHasStolen()
+    {
+        hasStolen = !hasStolen;
     }
 }

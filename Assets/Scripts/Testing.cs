@@ -7,12 +7,6 @@ public class Testing : MonoBehaviour
     [SerializeField] private int x;
     [SerializeField] private int z;
     [SerializeField] private int range;
-    private GridPosition center;
-    
-    private void Start()
-    {
-        center = new(x, z);
-    }
 
     private void Update()
     {
@@ -29,13 +23,12 @@ public class Testing : MonoBehaviour
 
     //private void OnDrawGizmos()
     //{
-    //    GridPosition center = new GridPosition(5, 4);
-    //    int range = 3;
+    //    GridPosition center = new GridPosition(x, z);
 
     //    List<GridPosition> positions =
     //        HexRangeUtils.GetGridPositionsInRange(center, range);
 
-    //    positions.RemoveAll(p => !LevelGrid.Instance.IsValidGridPosition(p));
+    //    //positions.RemoveAll(p => !LevelGrid.Instance.IsValidGridPosition(p));
 
     //    foreach (var p in positions)
     //    {
