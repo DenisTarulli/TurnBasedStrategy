@@ -19,6 +19,11 @@ public class HealthSystem : MonoBehaviour
 
     private void Start()
     {
+        if (!GetComponent<Unit>().IsEnemy())
+        {
+            healthMax = PlayerStats.Instance.GetHealth();
+        }
+
         TurnSystem.Instance.OnTurnChanged += TurnSystem_OnTurnChanged;
     }
 

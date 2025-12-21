@@ -18,6 +18,10 @@ public class Testing : MonoBehaviour
         {
             InventoryManager.Instance.ChangeGoldAmount(5);
         }
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            PlayerStats.Instance.ChangeExp(3);
+        }       
         
     }
 

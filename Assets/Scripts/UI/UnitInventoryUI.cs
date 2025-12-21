@@ -13,6 +13,20 @@ public class UnitInventoryUI : MonoBehaviour
     {
         InventoryManager.Instance.OnGoldAmountChanged += InventoryManager_OnGoldAmountChanged;
         InventoryManager.Instance.OnKeysAmountChanged += InventoryManager_OnKeysAmountChanged;
+        PlayerStats.Instance.OnExpChanged += PlayerStats_OnExpChanged;
+
+        int currentExp = PlayerStats.Instance.GetExp();
+        int requiredExp = PlayerStats.Instance.GetExpToLevelUp();
+
+        UpdateExpText(currentExp, requiredExp);
+    }
+
+    private void PlayerStats_OnExpChanged(object sender, System.EventArgs e)
+    {
+        int currentExp = PlayerStats.Instance.GetExp();
+        int requiredExp = PlayerStats.Instance.GetExpToLevelUp();
+
+        UpdateExpText(currentExp, requiredExp);
     }
 
     private void InventoryManager_OnKeysAmountChanged(object sender, InventoryManager.OnKeysAmountChangedEventArgs e)
@@ -23,5 +37,10 @@ public class UnitInventoryUI : MonoBehaviour
     private void InventoryManager_OnGoldAmountChanged(object sender, InventoryManager.OnGoldAmountChangedEventArgs e)
     {
         goldText.text = $"Gold: {e.gold}";
+    }
+
+    private void UpdateExpText(int currentExp, int requiredExp)
+    {
+        expText.text = $"Exp: {currentExp}/{requiredExp}";
     }
 }

@@ -8,20 +8,36 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6659020039490339111, guid: 4a02b210b4bf4484699592c8ad94742b,
+        type: 3}
+      propertyPath: health
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 138735091604180726, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
       propertyPath: energyText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 626817428373390544, guid: 4a02b210b4bf4484699592c8ad94742b,
+        type: 3}
+      propertyPath: ragdollPrefab
+      value: 
+      objectReference: {fileID: 3308711374446600201, guid: 66f7e72827fbdf7449665e7cb2c01134,
+        type: 3}
+    - target: {fileID: 2450972907125092273, guid: 4a02b210b4bf4484699592c8ad94742b,
+        type: 3}
+      propertyPath: damageToDeal
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2450972907125092273, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
       propertyPath: maxShootDistance
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2675619301542887084, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
       propertyPath: maxMoveDistance
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3274479443109023020, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
@@ -41,7 +57,7 @@ PrefabInstance:
     - target: {fileID: 7238716653469577512, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7238716653469577512, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
@@ -51,7 +67,7 @@ PrefabInstance:
     - target: {fileID: 7238716653469577512, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 16.5
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7238716653469577512, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
@@ -92,6 +108,11 @@ PrefabInstance:
         type: 3}
       propertyPath: isEnemy
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7745505955916596467, guid: 4a02b210b4bf4484699592c8ad94742b,
+        type: 3}
+      propertyPath: maxEnergy
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7745505955916596467, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}

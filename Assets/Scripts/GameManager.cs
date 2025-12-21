@@ -34,6 +34,11 @@ public class GameManager : MonoBehaviour
 
     public void TogglePauseGame()
     {
+        if (ShopSystem.Instance.IsShopOpen())
+        {
+            return;
+        }
+
         isGamePaused = !isGamePaused;
 
         if (isGamePaused)
