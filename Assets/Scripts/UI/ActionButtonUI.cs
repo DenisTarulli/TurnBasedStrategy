@@ -4,9 +4,11 @@ using UnityEngine.UI;
 
 public class ActionButtonUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI textMeshPro;
+    [SerializeField] private TextMeshProUGUI actionNameText;
+    [SerializeField] private TextMeshProUGUI actionCostText;
     [SerializeField] private Button button;
     [SerializeField] private GameObject selectedGameObject;
+    [SerializeField] private GameObject selectedGameObjectText;
 
     private BaseAction baseAction;
 
@@ -17,7 +19,8 @@ public class ActionButtonUI : MonoBehaviour
     public void SetBaseAction(BaseAction baseAction)
     {
         this.baseAction = baseAction;
-        textMeshPro.text = baseAction.GetActionName().ToUpper();
+        actionNameText.text = baseAction.GetActionName().ToUpper();
+        actionCostText.text = baseAction.GetEnergyCost().ToString();
 
         button.onClick.AddListener(() =>
         {
@@ -33,5 +36,6 @@ public class ActionButtonUI : MonoBehaviour
     {
         BaseAction selectedBaseAction = UnitActionSystem.Instance.GetSelectedAction();
         selectedGameObject.SetActive(selectedBaseAction == baseAction);
+        selectedGameObjectText.SetActive(selectedBaseAction == baseAction);
     }
 }
