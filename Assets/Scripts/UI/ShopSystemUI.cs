@@ -168,12 +168,19 @@ public class ShopSystemUI : MonoBehaviour
 
     private void ShopSystem_OnShopClosed(object sender, System.EventArgs e)
     {
-        rewardsToGiveList.Clear();
+        ClearLists();
 
         Hide();
 
         // Another iterarion of change exp to check if the spare exp is enough to level up
         PlayerStats.Instance.ChangeExp(0);
+    }
+
+    private void ClearLists()
+    {
+        statsRewardsToGiveList.Clear();
+        itemsRewardsToGiveList.Clear();
+        rewardsToGiveList.Clear();
     }
 
     private void PlayerStats_OnLevelUp(object sender, System.EventArgs e)
