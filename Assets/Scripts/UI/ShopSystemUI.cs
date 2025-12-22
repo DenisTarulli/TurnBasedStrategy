@@ -133,6 +133,12 @@ public class ShopSystemUI : MonoBehaviour
                     ShopSystem.Instance.SetSelectedItemRewardButton(shopButtonUI);
                     itemsRewardsToGiveList.Add(potionRewards[randomPotion]);
                 });
+
+                if (InventoryManager.Instance.GetGoldAmount() < 10)
+                {
+                    shopButtonUI.GetButton().interactable = false;
+                    shopButtonUI.SetDisabledTextColor();
+                }
             }
             else if (i == 1)
             {
@@ -148,6 +154,12 @@ public class ShopSystemUI : MonoBehaviour
                     ShopSystem.Instance.SetSelectedItemRewardButton(shopButtonUI);
                     itemsRewardsToGiveList.Add(potionRewards[randomPotion]);
                 });
+
+                if (InventoryManager.Instance.GetGoldAmount() < 10)
+                {
+                    shopButtonUI.GetButton().interactable = false;
+                    shopButtonUI.SetDisabledTextColor();
+                }
             }
             else
             {

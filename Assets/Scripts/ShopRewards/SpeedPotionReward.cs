@@ -7,5 +7,6 @@ public class SpeedPotionReward : BaseReward
     public override void Behaviour()
     {
         InventoryManager.Instance.AddPotion("Speed Potion");
+        InventoryManager.Instance.ChangeGoldAmount(-10);
     }
 }

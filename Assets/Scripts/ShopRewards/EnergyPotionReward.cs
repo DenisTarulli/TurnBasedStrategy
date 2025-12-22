@@ -7,5 +7,6 @@ public class EnergyPotionReward : BaseReward
     public override void Behaviour()
     {
         InventoryManager.Instance.AddPotion("Energy Potion");
+        InventoryManager.Instance.ChangeGoldAmount(-10);
     }
 }

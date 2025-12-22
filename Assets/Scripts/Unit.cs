@@ -8,6 +8,7 @@ public class Unit : MonoBehaviour
     [SerializeField] private int expToGive = 0;
     [SerializeField] private int passiveEnergyGain;
     private int currentEnergy;
+    private int initialMaxEnergy;
 
     public static event EventHandler OnAnyActionPointsChanged;
     public static event EventHandler OnAnyEnergyChanged;
@@ -21,6 +22,8 @@ public class Unit : MonoBehaviour
         OnAnyUnitSpawned = null;
         OnAnyUnitDead = null;
     }
+
+    public event EventHandler OnMaxEnergyChanged;
 
     [SerializeField] private bool isEnemy;
 
@@ -42,6 +45,7 @@ public class Unit : MonoBehaviour
 
         currentActionPoints = actionPointsMax;
         currentEnergy = maxEnergy;
+        initialMaxEnergy = maxEnergy;
 
         hasStolen = true;
     }
@@ -56,7 +60,18 @@ public class Unit : MonoBehaviour
         healthSystem.OnDead += HealthSystem_OnDead;
 
         OnAnyUnitSpawned?.Invoke(this, EventArgs.Empty);
-    }    
+
+        if (!isEnemy)
+        {
+            PlayerStats.Instance.OnEnergyChanged += PlayerStats_OnEnergyChanged;
+        }
+    }
+
+    private void PlayerStats_OnEnergyChanged(object sender, EventArgs e)
+    {
+        maxEnergy = initialMaxEnergy + PlayerStats.Instance.GetEnergy();
+        OnMaxEnergyChanged?.Invoke(this, EventArgs.Empty);
+    }
 
     private void Update()
     {
@@ -173,19 +188,9 @@ public class Unit : MonoBehaviour
         }
         else if (!IsEnemy() && TurnSystem.Instance.IsPlayerTurn())
         {
-            currentActionPoints = actionPointsMax;
+            currentEnergy = GetNextTurnEnergyRegen();
 
-            int extraEnergy = 0;
-
-            if (BuffSystem.Instance.IsEnergyBuffActive())
-            {
-                extraEnergy = 3;
-                BuffSystem.Instance.SetEnergyBuff(false);
-            }
-
-            int energyStat = PlayerStats.Instance.GetEnergy();
-
-            currentEnergy += spareEnergy + spareActionPoints + passiveEnergyGain + energyStat + extraEnergy;
+            currentActionPoints = actionPointsMax;            
 
             if (currentEnergy > maxEnergy)
             {
@@ -197,6 +202,24 @@ public class Unit : MonoBehaviour
             OnAnyActionPointsChanged?.Invoke(this, EventArgs.Empty);
             OnAnyEnergyChanged?.Invoke(this, EventArgs.Empty);
         }
+    }
+
+    public int GetNextTurnEnergyRegen()
+    {
+        int energyGain = 0;
+
+        if (BuffSystem.Instance.IsEnergyBuffActive())
+        {
+            energyGain = 3;
+            BuffSystem.Instance.SetEnergyBuff(false);
+        }
+
+        spareEnergy = currentEnergy;
+        spareActionPoints = currentActionPoints;
+
+        energyGain += spareEnergy + spareActionPoints + passiveEnergyGain;
+
+        return energyGain;
     }
 
     public bool IsEnemy()
@@ -254,5 +277,20 @@ public class Unit : MonoBehaviour
     public bool IsDefending()
     {
         return isDefending;
+    }
+
+    public int GetMaxEnergy()
+    {
+        return maxEnergy;
+    }
+
+    public int GetMaxActionPoints()
+    {
+        return actionPointsMax;
+    }
+
+    public int GetActionPoints()
+    {
+        return currentActionPoints;
     }
 }

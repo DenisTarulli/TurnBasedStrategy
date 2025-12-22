@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,10 +19,16 @@ public class BuffSystem : MonoBehaviour
         Instance = this;
     }
 
-    private bool healthBuff;
+    public event EventHandler OnEnergyBuffChanged;
+    public event EventHandler OnHealthBuffChanged;
+    public event EventHandler OnPowerBuffChanged;
+    public event EventHandler OnResistanceBuffChanged;
+    public event EventHandler OnSpeedBuffChanged;
+
     private bool energyBuff;
-    private bool resistanceBuff;
+    private bool healthBuff;
     private bool powerBuff;
+    private bool resistanceBuff;
     private bool speedBuff;
 
     private void Start()
@@ -41,10 +48,10 @@ public class BuffSystem : MonoBehaviour
 
     public void ResetBuffs()
     {
-        healthBuff = false;
-        resistanceBuff = false;
-        powerBuff = false;
-        speedBuff = false;
+        SetHealthBuff(false);
+        SetPowerBuff(false);
+        SetResistanceBuff(false);
+        SetSpeedBuff(false);
     }
 
     public void ApplyDamageModifier(Unit unit, int modifier)
@@ -53,19 +60,14 @@ public class BuffSystem : MonoBehaviour
         healthSystem.SetDamageModifier(modifier);
     }
 
-    public bool IsHealthBuffActive()
-    {
-        return healthBuff;
-    }
-
     public bool IsEnergyBuffActive()
     {
         return energyBuff;
     }
 
-    public bool IsResistanceBuffActive()
+    public bool IsHealthBuffActive()
     {
-        return resistanceBuff;
+        return healthBuff;
     }
 
     public bool IsPowerBuffActive()
@@ -73,34 +75,44 @@ public class BuffSystem : MonoBehaviour
         return powerBuff;
     }
 
+    public bool IsResistanceBuffActive()
+    {
+        return resistanceBuff;
+    }
+
     public bool IsSpeedBuffActive()
     {
         return speedBuff;
     }
 
-    public void SetHealthBuff(bool newState)
-    {
-        healthBuff = newState;
-    }
-
     public void SetEnergyBuff(bool newState)
     {
         energyBuff = newState;
+        OnEnergyBuffChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    public void SetResistanceBuff(bool newState)
+    public void SetHealthBuff(bool newState)
     {
-        resistanceBuff = newState;
+        healthBuff = newState;
+        OnHealthBuffChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public void SetPowerBuff(bool newState)
     {
         powerBuff = newState;
+        OnPowerBuffChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void SetResistanceBuff(bool newState)
+    {
+        resistanceBuff = newState;
+        OnResistanceBuffChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public void SetSpeedBuff(bool newState)
     {
         speedBuff = newState;
+        OnSpeedBuffChanged?.Invoke(this, EventArgs.Empty);
     }
 
 }

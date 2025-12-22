@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,8 @@ public class ShopButtonUI : MonoBehaviour
     [SerializeField] private GameObject selectedGameObject;
     [SerializeField] private Transform displayContainer;
     [SerializeField] private Button button;
+    [SerializeField] private TextMeshProUGUI buttonText;
+    [SerializeField] private Color disabledTextColor;
 
     private bool isSelected;
 
@@ -37,6 +40,11 @@ public class ShopButtonUI : MonoBehaviour
     {
         Image newImage = Instantiate(image, displayContainer);
         newImage.color = color;
+    }
+
+    public void SetDisabledTextColor()
+    {
+        buttonText.color = disabledTextColor;
     }
 
     public void UpdateSelectedVisual()
