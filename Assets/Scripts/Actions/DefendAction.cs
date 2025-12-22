@@ -31,6 +31,7 @@ public class DefendAction : BaseAction
             }
 
             BuffSystem.Instance.ApplyDamageModifier(unit, damageMitigated + PlayerStats.Instance.GetResistance() + activeBuff);
+            unit.SetIsDefending(true);
             OnDefendStateChanged?.Invoke(this, EventArgs.Empty);
 
             ActionComplete();
@@ -53,6 +54,14 @@ public class DefendAction : BaseAction
 
     public override List<GridPosition> GetValidActionGridPositionList()
     {
+        if (unit.IsDefending())
+        {
+            return new List<GridPosition>
+            {
+            
+            };
+        }
+
         GridPosition unitGridPosition = unit.GetGridPosition();
 
         return new List<GridPosition>

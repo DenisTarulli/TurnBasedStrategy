@@ -40,7 +40,6 @@ public class ShopSystemUI : MonoBehaviour
 
     private void Start()
     {
-        PlayerStats.Instance.OnLevelUp += PlayerStats_OnLevelUp;
         ShopSystem.Instance.OnShopClosed += ShopSystem_OnShopClosed;
 
         Hide();
@@ -183,12 +182,7 @@ public class ShopSystemUI : MonoBehaviour
         rewardsToGiveList.Clear();
     }
 
-    private void PlayerStats_OnLevelUp(object sender, System.EventArgs e)
-    {
-        Show();
-    }
-
-    private void Show()
+    public void Show()
     {
         gameObject.SetActive(true);
         ShopSystem.Instance.OpenShop();

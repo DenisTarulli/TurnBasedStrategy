@@ -33,6 +33,7 @@ public class Unit : MonoBehaviour
     private int spareEnergy;
 
     private bool hasStolen;
+    private bool isDefending;
 
     private void Awake()
     {
@@ -191,6 +192,8 @@ public class Unit : MonoBehaviour
                 currentEnergy = maxEnergy;
             }
 
+            SetIsDefending(false);
+
             OnAnyActionPointsChanged?.Invoke(this, EventArgs.Empty);
             OnAnyEnergyChanged?.Invoke(this, EventArgs.Empty);
         }
@@ -241,5 +244,15 @@ public class Unit : MonoBehaviour
     public void ToggleHasStolen()
     {
         hasStolen = !hasStolen;
+    }
+
+    public void SetIsDefending(bool newState)
+    {
+        isDefending = newState;
+    }
+
+    public bool IsDefending()
+    {
+        return isDefending;
     }
 }

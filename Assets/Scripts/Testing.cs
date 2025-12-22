@@ -22,8 +22,7 @@ public class Testing : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.U))
         {
             PlayerStats.Instance.ChangeExp(exp);
-        }       
-        
+        }
     }
 
     //private void OnDrawGizmos()

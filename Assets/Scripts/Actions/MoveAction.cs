@@ -33,6 +33,10 @@ public class MoveAction : BaseAction
             {
                 currentMoveDistance = maxMoveDistance + 3;
             }
+            else
+            {
+                currentMoveDistance = maxMoveDistance;
+            }
         }
 
         if (!isActive)

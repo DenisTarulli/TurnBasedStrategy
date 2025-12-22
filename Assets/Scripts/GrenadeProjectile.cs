@@ -15,6 +15,7 @@ public class GrenadeProjectile : MonoBehaviour
     [SerializeField] private TrailRenderer trailRenderer;
     [SerializeField] private AnimationCurve arcYAnimationCurve;
     [SerializeField] private int damage;
+    [SerializeField] private int range;
 
     private Vector3 targetPosition;
     private Action onGrenadeBehaviourComplete;
@@ -38,30 +39,59 @@ public class GrenadeProjectile : MonoBehaviour
         float reachedTargetDistance = .2f;
         if (Vector3.Distance(positionXZ, targetPosition) < reachedTargetDistance)
         {
-            float damageRadius = 2f;
-            Collider[] colliderArray = Physics.OverlapSphere(targetPosition, damageRadius);
+            GridPosition targetGridPosition = LevelGrid.Instance.GetGridPosition(targetPosition);
 
-            foreach (Collider collider in colliderArray)
+            List<GridPosition> gridPositionsInRange = HexRangeUtils.GetGridPositionsInRange(targetGridPosition, range);
+            Debug.Log(gridPositionsInRange.Count);
+
+            int extraDamage = 0;
+
+            if (BuffSystem.Instance.IsPowerBuffActive())
             {
-                if (collider.TryGetComponent<Unit>(out Unit targetUnit))
+                extraDamage = 3;
+                BuffSystem.Instance.SetPowerBuff(false);
+            }
+
+            foreach (GridPosition gridPosition in gridPositionsInRange)
+            {
+                Unit unitInGridPosition = LevelGrid.Instance.GetUnitAtGridPosition(gridPosition);
+                DestructibleCrate destructibleCrate = LevelGrid.Instance.GetDestructibleCrateAtGridPosition(gridPosition);
+
+                if (unitInGridPosition != null)
                 {
-                    int extraDamage = 0;
-
-                    if (BuffSystem.Instance.IsPowerBuffActive())
-                    {
-                        extraDamage = 3;
-                        BuffSystem.Instance.SetPowerBuff(false);
-                    }
-
-                    targetUnit.Damage(damage + extraDamage);
-                    continue;
+                    unitInGridPosition.Damage(damage + extraDamage + PlayerStats.Instance.GetPower());
                 }
 
-                if (collider.TryGetComponent<DestructibleCrate>(out DestructibleCrate destructibleCrate))
+                if (destructibleCrate != null)
                 {
                     destructibleCrate.Damage();
                 }
             }
+
+            //float damageRadius = 2f;
+            //Collider[] colliderArray = Physics.OverlapSphere(targetPosition, damageRadius);
+
+            //foreach (Collider collider in colliderArray)
+            //{
+            //    if (collider.TryGetComponent<Unit>(out Unit targetUnit))
+            //    {
+            //        int extraDamage = 0;
+
+            //        if (BuffSystem.Instance.IsPowerBuffActive())
+            //        {
+            //            extraDamage = 3;
+            //            BuffSystem.Instance.SetPowerBuff(false);
+            //        }
+
+            //        targetUnit.Damage(damage + extraDamage + PlayerStats.Instance.GetPower());
+            //        continue;
+            //    }
+
+            //    if (collider.TryGetComponent<DestructibleCrate>(out DestructibleCrate destructibleCrate))
+            //    {
+            //        destructibleCrate.Damage();
+            //    }
+            //}
 
             OnAnyGrenadeExploded?.Invoke(this, EventArgs.Empty);
 

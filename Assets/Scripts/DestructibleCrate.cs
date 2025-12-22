@@ -19,6 +19,8 @@ public class DestructibleCrate : MonoBehaviour
     private void Start()
     {
         gridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
+        GridObject gridObject = LevelGrid.Instance.GetGridObjectAtGridPosition(gridPosition);
+        gridObject.SetDestructibleCrate(this);
     }
 
     public void Damage()

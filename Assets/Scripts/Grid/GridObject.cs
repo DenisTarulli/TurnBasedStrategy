@@ -9,6 +9,7 @@ public class GridObject
     private GridPosition gridPosition;
     private List<Unit> unitList;
     private IInteractable interactable;
+    private DestructibleCrate destructibleCrate;
 
     public GridObject(GridSystemHex<GridObject> gridSystem, GridPosition gridPosition)
     {
@@ -74,5 +75,15 @@ public class GridObject
     public void ClearInteractable()
     {
         this.interactable = null;
+    }
+
+    public void SetDestructibleCrate(DestructibleCrate crate)
+    {
+        this.destructibleCrate = crate;
+    }
+
+    public DestructibleCrate GetDestructibleCrate()
+    {
+        return destructibleCrate;
     }
 }

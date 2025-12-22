@@ -121,4 +121,15 @@ public class LevelGrid : MonoBehaviour
         GridObject gridObject = gridSystem.GetGridObject(gridPosition);
         gridObject.ClearInteractable();
     }
+
+    public DestructibleCrate GetDestructibleCrateAtGridPosition(GridPosition gridPosition)
+    {
+        GridObject gridObject = gridSystem.GetGridObject(gridPosition);
+        return gridObject.GetDestructibleCrate();
+    }
+
+    public GridObject GetGridObjectAtGridPosition(GridPosition gridPosition)
+    {
+        return gridSystem.GetGridObject(gridPosition);
+    }
 }
