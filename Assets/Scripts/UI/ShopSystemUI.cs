@@ -43,6 +43,8 @@ public class ShopSystemUI : MonoBehaviour
         ShopSystem.Instance.OnShopClosed += ShopSystem_OnShopClosed;
 
         Hide();
+
+        Show();
     }
 
     private void CreateShopButtons()
@@ -61,7 +63,6 @@ public class ShopSystemUI : MonoBehaviour
             if (i == 0)
             {
                 int randomIndex = UnityEngine.Random.Range(0, availableInts.Count);
-                Debug.Log(availableInts.Count);
                 int randomStat = availableInts[randomIndex];
                 availableInts.RemoveAt(randomIndex);
 

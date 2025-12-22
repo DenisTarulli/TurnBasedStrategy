@@ -52,9 +52,19 @@ public class HealthSystem : MonoBehaviour
 
     public void Damage(int damageAmount)
     {
+        Debug.Log($"damageAmount: {damageAmount}");
         if (damageAmount > damageModifier)
         {
-            health -= damageAmount - damageModifier;
+            int amountToDamage = 0;
+
+            if (!unit.IsEnemy())
+            {
+                amountToDamage = -damageModifier - PlayerStats.Instance.GetResistance();
+            }
+
+            amountToDamage += damageAmount;
+
+            health -= amountToDamage;
         }
 
         if (health < 0)

@@ -18,10 +18,10 @@ public class TurnSystemUI : MonoBehaviour
         playerUnit = UnitManager.Instance.GetFriendlyUnitList()[0];
         endTurnButtonText = endTurnButton.GetComponentInChildren<TextMeshProUGUI>();
 
-        endTurnButton.onClick.AddListener(() =>
-        {
-            TurnSystem.Instance.NextTurn();
-        });
+        //endTurnButton.onClick.AddListener(() =>
+        //{
+        //    TurnSystem.Instance.NextTurn();
+        //});
 
         TurnSystem.Instance.OnTurnChanged += TurnSystem_OnTurnChanged;
         BaseAction.OnAnyActionStarted += BaseAction_OnAnyActionStarted;

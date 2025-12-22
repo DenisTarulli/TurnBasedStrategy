@@ -63,13 +63,18 @@ public class SwordAction : BaseAction
                 int damage = damageToDeal;
                 int extraDamage = 0;
 
-                if (BuffSystem.Instance.IsPowerBuffActive())
+                if (!unit.IsEnemy() && BuffSystem.Instance.IsPowerBuffActive())
                 {
                     extraDamage = 3;
                     BuffSystem.Instance.SetPowerBuff(false);
                 }
 
-                targetUnit.Damage(damage + extraDamage + PlayerStats.Instance.GetPower());
+                if (!unit.IsEnemy())
+                {
+                    extraDamage += PlayerStats.Instance.GetPower();
+                }
+
+                targetUnit.Damage(damage + extraDamage);
                 unit.ToggleHasStolen();
                 OnAnySwordHit?.Invoke(this, EventArgs.Empty);
                 break;

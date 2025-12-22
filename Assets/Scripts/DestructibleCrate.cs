@@ -21,6 +21,7 @@ public class DestructibleCrate : MonoBehaviour
         gridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
         GridObject gridObject = LevelGrid.Instance.GetGridObjectAtGridPosition(gridPosition);
         gridObject.SetDestructibleCrate(this);
+        Pathfinding.Instance.SetIsWalkableGridPosition(gridPosition, false);
     }
 
     public void Damage()
@@ -31,6 +32,7 @@ public class DestructibleCrate : MonoBehaviour
         float explosionRange = 10f;
         ApplyExplosionToChildren(crateDestroyedTransform, explosionForce, transform.position, explosionRange);
 
+        Pathfinding.Instance.SetIsWalkableGridPosition(gridPosition, true);
         Destroy(gameObject);
 
         OnAnyDestroyed?.Invoke(this, EventArgs.Empty);

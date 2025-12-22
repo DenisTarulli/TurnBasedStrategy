@@ -93,7 +93,12 @@ public class ShootAction : BaseAction
             BuffSystem.Instance.SetPowerBuff(false);
         }
 
-        targetUnit.Damage(damageToDeal + extraDamage + PlayerStats.Instance.GetPower());
+        if (!unit.IsEnemy())
+        {
+            extraDamage += PlayerStats.Instance.GetPower();
+        }
+
+        targetUnit.Damage(damageToDeal + extraDamage);
 
         OnAnyShoot?.Invoke(this, new OnShootEventArgs
         {

@@ -11,18 +11,22 @@ public class Testing : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            InventoryManager.Instance.AddPotionsTesting();
-        }
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            InventoryManager.Instance.ChangeGoldAmount(5);
-        }
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            PlayerStats.Instance.ChangeExp(exp);
-        }
+        //if (Input.GetKeyDown(KeyCode.T))
+        //{
+        //    InventoryManager.Instance.AddPotionsTesting();
+        //}
+        //if (Input.GetKeyDown(KeyCode.Y))
+        //{
+        //    InventoryManager.Instance.ChangeGoldAmount(5);
+        //}
+        //if (Input.GetKeyDown(KeyCode.U))
+        //{
+        //    PlayerStats.Instance.ChangeExp(exp);
+        //}
+        //if (Input.GetKeyDown(KeyCode.I))
+        //{
+        //    GameManager.Instance.GameOver();
+        //}
     }
 
     //private void OnDrawGizmos()

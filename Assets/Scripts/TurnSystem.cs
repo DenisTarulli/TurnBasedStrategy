@@ -26,6 +26,7 @@ public class TurnSystem : MonoBehaviour
     private int turnLimit;
     private int currentRoom = 0;
     private bool isPlayerTurn = true;
+    [SerializeField] private int additionalRooms;
 
     [SerializeField] private int[] turnLimitArray;
     [SerializeField] private Door[] doorArray;
@@ -34,6 +35,20 @@ public class TurnSystem : MonoBehaviour
     private void Start()
     {
         Door.OnAnyDoorOpened += Door_OnAnyDoorOpened;
+        Unit.OnAnyUnitDead += Unit_OnAnyUnitDead;
+    }
+
+    private void Unit_OnAnyUnitDead(object sender, EventArgs e)
+    {
+        if (currentRoom != additionalRooms)
+        {
+            return;
+        }
+
+        if (UnitManager.Instance.GetEnemyUnitList().Count == 0)
+        {
+            GameManager.Instance.GameOver();
+        }
     }
 
     private void Door_OnAnyDoorOpened(object sender, EventArgs e)
@@ -81,7 +96,6 @@ public class TurnSystem : MonoBehaviour
 
         turnLimit = turnLimitArray[currentRoom];
         turnNumber = 1;
-
 
         OnNewRoomEntered?.Invoke(this, EventArgs.Empty);
     }

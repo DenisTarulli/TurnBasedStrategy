@@ -6,6 +6,7 @@ using UnityEngine;
 public class StealAction : BaseAction
 {
     [SerializeField] private int goldToSteal = 30;
+    [SerializeField] private GameObject stealVisual;
     private int maxStealDistance = 1;
 
     private enum State
@@ -31,8 +32,10 @@ public class StealAction : BaseAction
         {
             case State.SwingingSwordBeforeHit:
                 RotateTowardsTarget();
+                stealVisual.SetActive(true);
                 break;
             case State.SwingingSwordAfterHit:
+                stealVisual.SetActive(false);
                 break;
         }
 

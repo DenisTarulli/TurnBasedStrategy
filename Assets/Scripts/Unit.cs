@@ -246,7 +246,7 @@ public class Unit : MonoBehaviour
         }
         else
         {
-            Time.timeScale = 0f;
+            GameManager.Instance.GameOver();
         }
         
         OnAnyUnitDead?.Invoke(this, EventArgs.Empty);

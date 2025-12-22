@@ -30,7 +30,7 @@ public class DefendAction : BaseAction
                 BuffSystem.Instance.SetResistanceBuff(false);
             }
 
-            BuffSystem.Instance.ApplyDamageModifier(unit, damageMitigated + PlayerStats.Instance.GetResistance() + activeBuff);
+            BuffSystem.Instance.ApplyDamageModifier(unit, damageMitigated + activeBuff);
             unit.SetIsDefending(true);
             OnDefendStateChanged?.Invoke(this, EventArgs.Empty);
 

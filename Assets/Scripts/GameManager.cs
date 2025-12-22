@@ -23,11 +23,17 @@ public class GameManager : MonoBehaviour
     public event EventHandler OnGameUnpaused;
 
     private bool isGamePaused = false;
+    private bool isGameOver = false;
 
     [SerializeField] private GameObject gameOverUI;
 
     private void Update()
     {
+        if (isGameOver)
+        {
+            return;
+        }
+
         if (InputManager.Instance.IsEscapeButtonDownThisFrame())
         {
             TogglePauseGame();
@@ -61,8 +67,24 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         gameOverUI.SetActive(true);
+        isGameOver = true;
 
         Debug.Log("GAME OVER");
         Time.timeScale = 0f;
+    }
+
+    public bool IsGameOver()
+    {
+        return isGameOver;
+    }
+
+    public void MainMenu()
+    {
+        Loader.Load(Loader.Scene.MainMenuScene);
+    }
+
+    public void Restart()
+    {
+        Loader.Load(Loader.Scene.GameScene);
     }
 }
