@@ -26,10 +26,16 @@ public class TurnSystemUI : MonoBehaviour
         TurnSystem.Instance.OnTurnChanged += TurnSystem_OnTurnChanged;
         BaseAction.OnAnyActionStarted += BaseAction_OnAnyActionStarted;
         BaseAction.OnAnyActionCompleted += BaseAction_OnAnyActionCompleted;
+        TurnSystem.Instance.OnNewRoomEntered += TurnSystem_OnNewRoomEntered;
 
         UpdateTurnText();
         UpdateEnemyTurnVisual();
         UpdateEndTurnButtonVisibility();
+    }
+
+    private void TurnSystem_OnNewRoomEntered(object sender, EventArgs e)
+    {
+        UpdateTurnText();
     }
 
     private void BaseAction_OnAnyActionStarted(object sender, EventArgs e)
@@ -81,7 +87,7 @@ public class TurnSystemUI : MonoBehaviour
 
     public void UpdateTurnText()
     {
-        turnNumberText.text = "TURN " + TurnSystem.Instance.GetTurnNumber();
+        turnNumberText.text = $"TURN {TurnSystem.Instance.GetTurnNumber()}/{TurnSystem.Instance.GetTurnLimit()}";
     }
 
     private void UpdateEnemyTurnVisual()

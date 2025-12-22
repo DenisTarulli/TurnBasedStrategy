@@ -188,14 +188,18 @@ public class Unit : MonoBehaviour
         }
         else if (!IsEnemy() && TurnSystem.Instance.IsPlayerTurn())
         {
-            currentEnergy = GetNextTurnEnergyRegen();
+            int energyToGain = GetNextTurnEnergyRegen();
 
-            currentActionPoints = actionPointsMax;            
+            currentEnergy += energyToGain;
+
+            currentActionPoints = actionPointsMax; 
 
             if (currentEnergy > maxEnergy)
             {
                 currentEnergy = maxEnergy;
             }
+
+            BuffSystem.Instance.SetEnergyBuff(false);
 
             SetIsDefending(false);
 
@@ -211,7 +215,6 @@ public class Unit : MonoBehaviour
         if (BuffSystem.Instance.IsEnergyBuffActive())
         {
             energyGain = 3;
-            BuffSystem.Instance.SetEnergyBuff(false);
         }
 
         spareEnergy = currentEnergy;

@@ -97,6 +97,18 @@ public class InteractAction : BaseAction
                     }
                 }
 
+                if (interactable.GetType() == typeof(Door))
+                {
+                    // Door on testGridPosition
+                    Door door = (Door)interactable;
+
+                    if (door.IsOpen())
+                    {
+                        // Door has already been opened
+                        continue;
+                    }
+                }
+
                 validGridPositionList.Add(testGridPosition);
             }
         }

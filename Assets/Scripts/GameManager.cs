@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
 
     private bool isGamePaused = false;
 
+    [SerializeField] private GameObject gameOverUI;
+
     private void Update()
     {
         if (InputManager.Instance.IsEscapeButtonDownThisFrame())
@@ -54,5 +56,13 @@ public class GameManager : MonoBehaviour
             OnGameUnpaused?.Invoke(this, EventArgs.Empty);
         }
 
+    }
+
+    public void GameOver()
+    {
+        gameOverUI.SetActive(true);
+
+        Debug.Log("GAME OVER");
+        Time.timeScale = 0f;
     }
 }

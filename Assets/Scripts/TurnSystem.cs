@@ -3,12 +3,7 @@ using UnityEngine;
 
 public class TurnSystem : MonoBehaviour
 {
-    public static TurnSystem Instance { get; private set; }
-
-    public event EventHandler OnTurnChanged;
-
-    private int turnNumber = 1;
-    private bool isPlayerTurn = true;
+    public static TurnSystem Instance { get; private set; }    
 
     private void Awake()
     {
@@ -20,12 +15,45 @@ public class TurnSystem : MonoBehaviour
         }
 
         Instance = this;
+
+        turnLimit = turnLimitArray[currentRoom];
+    }
+
+    public event EventHandler OnTurnChanged;
+    public event EventHandler OnNewRoomEntered;
+
+    private int turnNumber = 1;
+    private int turnLimit;
+    private int currentRoom = 0;
+    private bool isPlayerTurn = true;
+
+    [SerializeField] private int[] turnLimitArray;
+    [SerializeField] private Door[] doorArray;
+    [SerializeField] private GameObject[] roomArray;
+
+    private void Start()
+    {
+        Door.OnAnyDoorOpened += Door_OnAnyDoorOpened;
+    }
+
+    private void Door_OnAnyDoorOpened(object sender, EventArgs e)
+    {
+        NextRoom();
     }
 
     public void NextTurn()
     {
-        turnNumber++;
         isPlayerTurn = !isPlayerTurn;
+
+        if (isPlayerTurn)
+        {
+            turnNumber++;
+
+            if (turnNumber > turnLimit)
+            {
+                GameManager.Instance.GameOver();
+            }
+        }
 
         OnTurnChanged?.Invoke(this, EventArgs.Empty);
     }
@@ -38,5 +66,23 @@ public class TurnSystem : MonoBehaviour
     public bool IsPlayerTurn()
     {
         return isPlayerTurn;
+    }
+
+    public int GetTurnLimit()
+    {
+        return turnLimit;
+    }
+
+    private void NextRoom()
+    {
+        roomArray[currentRoom].SetActive(true);
+
+        currentRoom++;
+
+        turnLimit = turnLimitArray[currentRoom];
+        turnNumber = 1;
+
+
+        OnNewRoomEntered?.Invoke(this, EventArgs.Empty);
     }
 }
