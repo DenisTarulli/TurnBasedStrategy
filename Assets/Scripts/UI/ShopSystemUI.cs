@@ -48,7 +48,7 @@ public class ShopSystemUI : MonoBehaviour
 
     private void CreateShopButtons()
     {
-        for (int i = 0; i < totalOptions; i++)
+        for (int i = 0; i < statRewards.Length; i++)
         {
             availableInts.Add(i);
         }
@@ -62,6 +62,7 @@ public class ShopSystemUI : MonoBehaviour
             if (i == 0)
             {
                 int randomIndex = UnityEngine.Random.Range(0, availableInts.Count);
+                Debug.Log(availableInts.Count);
                 int randomStat = availableInts[randomIndex];
                 availableInts.RemoveAt(randomIndex);
 
@@ -108,7 +109,7 @@ public class ShopSystemUI : MonoBehaviour
 
         availableInts.Clear();
 
-        for (int i = 0; i < totalOptions; i++)
+        for (int i = 0; i < potionRewards.Length; i++)
         {
             availableInts.Add(i);
         }
@@ -170,6 +171,9 @@ public class ShopSystemUI : MonoBehaviour
         rewardsToGiveList.Clear();
 
         Hide();
+
+        // Another iterarion of change exp to check if the spare exp is enough to level up
+        PlayerStats.Instance.ChangeExp(0);
     }
 
     private void PlayerStats_OnLevelUp(object sender, System.EventArgs e)

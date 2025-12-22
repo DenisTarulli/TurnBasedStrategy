@@ -82,6 +82,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  damage: 3
 --- !u!1 &4905328723407596626
 GameObject:
   m_ObjectHideFlags: 0

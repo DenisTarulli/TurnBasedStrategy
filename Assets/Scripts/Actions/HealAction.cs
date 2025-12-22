@@ -20,7 +20,16 @@ public class HealAction : BaseAction
         if (!alreadyHealed)
         {
             HealthSystem healthSystem = GetComponent<HealthSystem>();
-            healthSystem.Heal(healAmount);
+
+            int extraHeal = 0;
+
+            if (BuffSystem.Instance.IsHealthBuffActive())
+            {
+                extraHeal = 3;
+                BuffSystem.Instance.SetHealthBuff(false);
+            }
+
+            healthSystem.Heal(healAmount + extraHeal);
 
             alreadyHealed = true;
         }

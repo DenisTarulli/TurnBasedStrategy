@@ -5,6 +5,7 @@ public class Unit : MonoBehaviour
 {
     [SerializeField] private int actionPointsMax = 3;
     [SerializeField] private int maxEnergy = 10;
+    [SerializeField] private int expToGive = 0;
     [SerializeField] private int passiveEnergyGain;
     private int currentEnergy;
 
@@ -172,7 +173,18 @@ public class Unit : MonoBehaviour
         else if (!IsEnemy() && TurnSystem.Instance.IsPlayerTurn())
         {
             currentActionPoints = actionPointsMax;
-            currentEnergy += spareEnergy + spareActionPoints + passiveEnergyGain;
+
+            int extraEnergy = 0;
+
+            if (BuffSystem.Instance.IsEnergyBuffActive())
+            {
+                extraEnergy = 3;
+                BuffSystem.Instance.SetEnergyBuff(false);
+            }
+
+            int energyStat = PlayerStats.Instance.GetEnergy();
+
+            currentEnergy += spareEnergy + spareActionPoints + passiveEnergyGain + energyStat + extraEnergy;
 
             if (currentEnergy > maxEnergy)
             {
@@ -198,8 +210,16 @@ public class Unit : MonoBehaviour
     {
         LevelGrid.Instance.RemoveUnitAtGridPosition(gridPosition, this);
 
-        Destroy(gameObject);
-
+        if (IsEnemy())
+        {
+            PlayerStats.Instance.ChangeExp(expToGive);
+            Destroy(gameObject);
+        }
+        else
+        {
+            Time.timeScale = 0f;
+        }
+        
         OnAnyUnitDead?.Invoke(this, EventArgs.Empty);
     }
 

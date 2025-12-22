@@ -17,12 +17,18 @@ public class UnitWorldUI : MonoBehaviour
         {
             Unit.OnAnyEnergyChanged += Unit_OnAnyEnergyChanged;
             UpdateEnergyText();
+            PlayerStats.Instance.OnHealthChanged += PlayerStats_OnHealthChanged;
         }
 
         Unit.OnAnyActionPointsChanged += Unit_OnAnyActionPointsChanged;
         healthSystem.OnHealthAmountChange += HealthSystem_OnHealthAmountChange;        
 
         UpdateActionsPointsText();
+        UpdateHealthBar();
+    }
+
+    private void PlayerStats_OnHealthChanged(object sender, EventArgs e)
+    {
         UpdateHealthBar();
     }
 
@@ -46,11 +52,10 @@ public class UnitWorldUI : MonoBehaviour
         UpdateActionsPointsText();
     }
 
-    private void UpdateHealthBar()
+    public void UpdateHealthBar()
     {
         healthBarImage.fillAmount = healthSystem.GetHealthNormalized();
     }
-
 
     private void HealthSystem_OnHealthAmountChange(object sender, EventArgs e)
     {

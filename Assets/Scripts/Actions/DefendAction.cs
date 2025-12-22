@@ -22,7 +22,15 @@ public class DefendAction : BaseAction
 
         if (timer <= 0)
         {
-            BuffSystem.Instance.ApplyDamageModifier(unit, damageMitigated);
+            int activeBuff = 0;
+
+            if (BuffSystem.Instance.IsResistanceBuffActive())
+            {
+                activeBuff = 3;
+                BuffSystem.Instance.SetResistanceBuff(false);
+            }
+
+            BuffSystem.Instance.ApplyDamageModifier(unit, damageMitigated + PlayerStats.Instance.GetResistance() + activeBuff);
             OnDefendStateChanged?.Invoke(this, EventArgs.Empty);
 
             ActionComplete();

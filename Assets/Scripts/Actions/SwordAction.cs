@@ -61,7 +61,15 @@ public class SwordAction : BaseAction
                 float afterHitStateTime = 0.5f;
                 stateTimer = afterHitStateTime;
                 int damage = damageToDeal;
-                targetUnit.Damage(damage);
+                int extraDamage = 0;
+
+                if (BuffSystem.Instance.IsPowerBuffActive())
+                {
+                    extraDamage = 3;
+                    BuffSystem.Instance.SetPowerBuff(false);
+                }
+
+                targetUnit.Damage(damage + extraDamage);
                 unit.ToggleHasStolen();
                 OnAnySwordHit?.Invoke(this, EventArgs.Empty);
                 break;

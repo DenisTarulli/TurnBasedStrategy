@@ -14,6 +14,7 @@ public class GrenadeProjectile : MonoBehaviour
     [SerializeField] private Transform grenadeExplodeVfxPrefab;
     [SerializeField] private TrailRenderer trailRenderer;
     [SerializeField] private AnimationCurve arcYAnimationCurve;
+    [SerializeField] private int damage;
 
     private Vector3 targetPosition;
     private Action onGrenadeBehaviourComplete;
@@ -44,7 +45,15 @@ public class GrenadeProjectile : MonoBehaviour
             {
                 if (collider.TryGetComponent<Unit>(out Unit targetUnit))
                 {
-                    targetUnit.Damage(30);
+                    int extraDamage = 0;
+
+                    if (BuffSystem.Instance.IsPowerBuffActive())
+                    {
+                        extraDamage = 3;
+                        BuffSystem.Instance.SetPowerBuff(false);
+                    }
+
+                    targetUnit.Damage(damage + extraDamage);
                     continue;
                 }
 

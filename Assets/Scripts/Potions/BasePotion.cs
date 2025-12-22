@@ -11,14 +11,7 @@ public abstract class BasePotion : MonoBehaviour
     protected string potionName;
 
     public abstract string GetName();
-    public virtual void ConsumePotion()
-    {
-        if (PotionSystem.Instance.TryConsumePotion(this))
-        {
-            Debug.Log($"Used {GetName()}");
-        }
-
-    }
+    public abstract void ConsumePotion();
     public Color GetColor()
     {
         return potionColorUI;

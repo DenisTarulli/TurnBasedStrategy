@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,9 @@ public class HealthPotion : BasePotion
     }
     public override void ConsumePotion()
     {
-        base.ConsumePotion();
+        if (PotionSystem.Instance.TryConsumePotion(this))
+        {
+            BuffSystem.Instance.SetHealthBuff(true);
+        }
     }
 }

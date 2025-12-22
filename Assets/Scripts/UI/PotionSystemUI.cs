@@ -44,7 +44,7 @@ public class PotionSystemUI : MonoBehaviour
             {
                 basePotion.ConsumePotion();
             });
-            
+
             basePotion.SetPotionAmountTextObject(potionButtonTransform.GetComponentInChildren<TextMeshProUGUI>());
         }
     }

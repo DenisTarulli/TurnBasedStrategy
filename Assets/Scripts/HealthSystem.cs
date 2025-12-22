@@ -9,22 +9,34 @@ public class HealthSystem : MonoBehaviour
     public event EventHandler OnHealthAmountChange;
 
     [SerializeField] private int health = 100;
+    private Unit unit;
     private int healthMax;
     private int damageModifier;
 
     private void Awake()
     {
         healthMax = health;
+        unit = GetComponent<Unit>();
     }
 
     private void Start()
     {
-        if (!GetComponent<Unit>().IsEnemy())
+        if (!unit.IsEnemy())
         {
-            healthMax = PlayerStats.Instance.GetHealth();
+            int newHealth = PlayerStats.Instance.GetHealth();
+            healthMax = newHealth;
+            health = healthMax;
+            PlayerStats.Instance.OnHealthChanged += PlayerStats_OnHealthChanged;
         }
 
         TurnSystem.Instance.OnTurnChanged += TurnSystem_OnTurnChanged;
+    }
+
+    private void PlayerStats_OnHealthChanged(object sender, EventArgs e)
+    {
+        healthMax = PlayerStats.Instance.GetHealth();
+        GetComponentInChildren<UnitWorldUI>().UpdateHealthBar();
+        Debug.Log(healthMax);
     }
 
     private void TurnSystem_OnTurnChanged(object sender, EventArgs e)
@@ -39,7 +51,10 @@ public class HealthSystem : MonoBehaviour
 
     public void Damage(int damageAmount)
     {
-        health -= damageAmount - damageModifier;
+        if (damageAmount > damageModifier)
+        {
+            health -= damageAmount - damageModifier;
+        }
 
         if (health < 0)
         {
@@ -75,6 +90,8 @@ public class HealthSystem : MonoBehaviour
         {
             health = healthMax;
         }
+
+        Debug.Log(health);
     }
 
     public int GetDamageModifier()

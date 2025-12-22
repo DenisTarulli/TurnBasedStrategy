@@ -10,6 +10,9 @@ public class PowerPotion : BasePotion
     }
     public override void ConsumePotion()
     {
-        base.ConsumePotion();
+        if (PotionSystem.Instance.TryConsumePotion(this))
+        {
+            BuffSystem.Instance.SetPowerBuff(true);
+        }
     }
 }

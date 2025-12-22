@@ -10,6 +10,9 @@ public class ResistancePotion : BasePotion
     }
     public override void ConsumePotion()
     {
-        base.ConsumePotion();
+        if (PotionSystem.Instance.TryConsumePotion(this))
+        {
+            BuffSystem.Instance.SetResistanceBuff(true);
+        }
     }
 }

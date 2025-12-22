@@ -7,6 +7,7 @@ public class Testing : MonoBehaviour
     [SerializeField] private int x;
     [SerializeField] private int z;
     [SerializeField] private int range;
+    [SerializeField] private int exp;
 
     private void Update()
     {
@@ -20,7 +21,7 @@ public class Testing : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.U))
         {
-            PlayerStats.Instance.ChangeExp(3);
+            PlayerStats.Instance.ChangeExp(exp);
         }       
         
     }

@@ -7,14 +7,34 @@ public class MoveAction : BaseAction
     public event EventHandler OnStartMoving;
     public event EventHandler OnStopMoving;
 
-    [SerializeField] private int maxMoveDistance = 4;
+    [SerializeField] private int currentMoveDistance = 4;
     [SerializeField] private bool meleeUnit;
+    private int maxMoveDistance = 0;
 
     private List<Vector3> positionList;
     private int currentPositionIndex;
+    private float checkTimer = 0;
+    private float interval = 0.5f;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        maxMoveDistance = currentMoveDistance;
+    }
 
     private void Update()
     {
+        if (checkTimer <= Time.time && !unit.IsEnemy())
+        {
+            checkTimer = Time.time + interval;
+
+            if (BuffSystem.Instance.IsSpeedBuffActive())
+            {
+                currentMoveDistance = maxMoveDistance + 3;
+            }
+        }
+
         if (!isActive)
         {
             return;
@@ -41,9 +61,10 @@ public class MoveAction : BaseAction
             if (currentPositionIndex >= positionList.Count)
             {
                 OnStopMoving?.Invoke(this, EventArgs.Empty);
-
                 ActionComplete();
-            }            
+            }
+
+            BuffSystem.Instance.SetSpeedBuff(false);
         }
     }
 
@@ -75,9 +96,11 @@ public class MoveAction : BaseAction
 
         GridPosition unitGridPosition = unit.GetGridPosition();
 
-        for (int x = -maxMoveDistance; x <= maxMoveDistance; x++)
+        int moveDistance = currentMoveDistance + PlayerStats.Instance.GetSpeed();
+
+        for (int x = -moveDistance; x <= moveDistance; x++)
         {
-            for (int z = -maxMoveDistance; z <= maxMoveDistance; z++)
+            for (int z = -moveDistance; z <= moveDistance; z++)
             {
                 GridPosition offsetGridPosition = new GridPosition(x, z);
                 GridPosition testGridPosition = unitGridPosition + offsetGridPosition;
@@ -101,7 +124,7 @@ public class MoveAction : BaseAction
                 }
                 
                 int pathFindingDistanceMultiplier = 10;
-                if (Pathfinding.Instance.GetPathLength(unitGridPosition, testGridPosition) > maxMoveDistance * pathFindingDistanceMultiplier)
+                if (Pathfinding.Instance.GetPathLength(unitGridPosition, testGridPosition) > moveDistance * pathFindingDistanceMultiplier)
                 {
                     // Path length is too long
                     continue;

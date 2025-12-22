@@ -82,11 +82,6 @@ public class PlayerStats : MonoBehaviour
         }
 
         OnExpChanged?.Invoke(this, EventArgs.Empty);
-
-        if (exp >= expToLevelUp)
-        {
-            ChangeExp(0);
-        }
     }
 
     public int GetHealth()
