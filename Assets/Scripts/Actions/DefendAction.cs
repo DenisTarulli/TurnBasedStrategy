@@ -10,6 +10,9 @@ public class DefendAction : BaseAction
     private float timer;
 
     public event EventHandler OnDefendStateChanged;
+    public event EventHandler OnDefendStarted;
+    public event EventHandler OnDefendCompleted;
+
 
     private void Update()
     {
@@ -33,6 +36,7 @@ public class DefendAction : BaseAction
             BuffSystem.Instance.ApplyDamageModifier(unit, damageMitigated + activeBuff);
             unit.SetIsDefending(true);
             OnDefendStateChanged?.Invoke(this, EventArgs.Empty);
+            OnDefendCompleted?.Invoke(this, EventArgs.Empty);
 
             ActionComplete();
         }
@@ -72,7 +76,9 @@ public class DefendAction : BaseAction
 
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
-        timer = 0.25f;
+        timer = 1.8f;
+
+        OnDefendStarted?.Invoke(this, EventArgs.Empty);
 
         ActionStart(onActionComplete);
     }
