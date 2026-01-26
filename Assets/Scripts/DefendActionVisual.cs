@@ -1,39 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DefendActionVisual : MonoBehaviour
 {
     [SerializeField] private GameObject defendBuffVisual;
+    private Unit unit;
 
-    private void Start()
+    private void Awake()
     {
-        GetComponent<DefendAction>().OnDefendStateChanged += DefendActionVisual_OnDefendStateChanged;
-        TurnSystem.Instance.OnTurnChanged += TurnSystem_OnTurnChanged;
+        unit = GetComponent<Unit>();
     }
 
-    private void TurnSystem_OnTurnChanged(object sender, System.EventArgs e)
+    private void Update()
     {
-        if (!TurnSystem.Instance.IsPlayerTurn())
-        {
-            return;
-        }
-
-        Hide();
-    }
-
-    private void DefendActionVisual_OnDefendStateChanged(object sender, System.EventArgs e)
-    {
-        Show();
-    }
-
-    private void Show()
-    {
-        defendBuffVisual.SetActive(true);
-    }
-
-    private void Hide()
-    {
-        defendBuffVisual.SetActive(false);
+        defendBuffVisual.SetActive(unit.IsDefending());
     }
 }

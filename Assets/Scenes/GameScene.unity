@@ -6776,18 +6776,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6681ffe9d667a6247b39a979414e988a, type: 3}
---- !u!114 &701661208 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6218538797347793993, guid: 40fa79d1e187d6c48b15afa9535a6dde,
-    type: 3}
-  m_PrefabInstance: {fileID: 1079361122}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf446ed2a13ef3e438d7dd4cc802238d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &705481818
 GameObject:
   m_ObjectHideFlags: 0
@@ -6860,7 +6848,7 @@ MonoBehaviour:
   energyText: {fileID: 1288696250}
   unit: {fileID: 1776924310}
   healthBarImage: {fileID: 149686203}
-  healthSystem: {fileID: 1776924300}
+  healthSystem: {fileID: 1592291410}
 --- !u!114 &705481822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7432,7 +7420,7 @@ Transform:
   m_GameObject: {fileID: 785661390}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.05, y: 0, z: 0.0905478}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7491,7 +7479,7 @@ MonoBehaviour:
   energyText: {fileID: 20619425}
   actionPointsText: {fileID: 167821402}
   nextTurnEnergyGainText: {fileID: 352453898}
-  playerUnit: {fileID: 701661208}
+  playerUnit: {fileID: 1592291420}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -9254,6 +9242,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: c4763bd4b2c81b046baecb755cf205c8, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 4daa7a2e5ab883c469a387e39e46850d,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6161469597309378781, guid: 4daa7a2e5ab883c469a387e39e46850d,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -14024,7 +14017,7 @@ GameObject:
   - component: {fileID: 1592291409}
   m_Layer: 7
   m_Name: Wizard
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15815,18 +15808,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6681ffe9d667a6247b39a979414e988a, type: 3}
---- !u!114 &1776924300 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2208813556060313187, guid: 40fa79d1e187d6c48b15afa9535a6dde,
-    type: 3}
-  m_PrefabInstance: {fileID: 660751607}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af88bed6aa37d6849ac588485aa6b7fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1776924310 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6218538797347793993, guid: 40fa79d1e187d6c48b15afa9535a6dde,

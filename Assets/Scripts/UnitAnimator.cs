@@ -37,7 +37,6 @@ public class UnitAnimator : MonoBehaviour
         if (TryGetComponent<DefendAction>(out DefendAction defendAction))
         {
             defendAction.OnDefendStarted += DefendAction_OnDefendStarted;
-            defendAction.OnDefendCompleted += DefendAction_OnDefendCompleted;
         }
 
         if (TryGetComponent<InteractAction>(out InteractAction interactAction))
@@ -87,13 +86,8 @@ public class UnitAnimator : MonoBehaviour
     }
 
     private void DefendAction_OnDefendStarted(object sender, EventArgs e)
-    { 
-        animator.SetBool(UNIT_DEFEND, true);
-    }
-
-    private void DefendAction_OnDefendCompleted(object sender, EventArgs e)
     {
-        animator.SetBool(UNIT_DEFEND, false);
+        animator.SetTrigger(UNIT_DEFEND);
     }
 
     private void InteractAction_OnInteractStarted(object sender, EventArgs e)

@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,10 +8,8 @@ public class DefendAction : BaseAction
     [SerializeField] private int damageMitigated = 10;
     private float timer;
 
-    public event EventHandler OnDefendStateChanged;
     public event EventHandler OnDefendStarted;
     public event EventHandler OnDefendCompleted;
-
 
     private void Update()
     {
@@ -35,11 +32,12 @@ public class DefendAction : BaseAction
 
             BuffSystem.Instance.ApplyDamageModifier(unit, damageMitigated + activeBuff);
             unit.SetIsDefending(true);
-            OnDefendStateChanged?.Invoke(this, EventArgs.Empty);
+
             OnDefendCompleted?.Invoke(this, EventArgs.Empty);
 
             ActionComplete();
         }
+
     }
 
     public override string GetActionName()
@@ -60,17 +58,12 @@ public class DefendAction : BaseAction
     {
         if (unit.IsDefending())
         {
-            return new List<GridPosition>
-            {
-            
-            };
+            return new List<GridPosition>();
         }
-
-        GridPosition unitGridPosition = unit.GetGridPosition();
 
         return new List<GridPosition>
         {
-            unitGridPosition,
+            unit.GetGridPosition()
         };
     }
 
@@ -78,8 +71,8 @@ public class DefendAction : BaseAction
     {
         timer = 1.8f;
 
-        OnDefendStarted?.Invoke(this, EventArgs.Empty);
+        OnDefendStarted?.Invoke(this, EventArgs.Empty); 
 
-        ActionStart(onActionComplete);
+        ActionStart(onActionComplete); 
     }
 }
