@@ -7,6 +7,7 @@ public class UnitAnimator : MonoBehaviour
     private const string UNIT_SHOOT = "Shoot";
     private const string UNIT_SWORD_SLASH = "SwordSlash";
     private const string UNIT_DEFEND = "Defend";
+    private const string UNIT_INTERACT = "Interact";
 
     [SerializeField] private Animator animator;
     [SerializeField] private Transform bulletProjectilePrefab;
@@ -37,6 +38,11 @@ public class UnitAnimator : MonoBehaviour
         {
             defendAction.OnDefendStarted += DefendAction_OnDefendStarted;
             defendAction.OnDefendCompleted += DefendAction_OnDefendCompleted;
+        }
+
+        if (TryGetComponent<InteractAction>(out InteractAction interactAction))
+        {
+            interactAction.OnInteractStarted += InteractAction_OnInteractStarted;            
         }
     }
 
@@ -81,7 +87,7 @@ public class UnitAnimator : MonoBehaviour
     }
 
     private void DefendAction_OnDefendStarted(object sender, EventArgs e)
-    {
+    { 
         animator.SetBool(UNIT_DEFEND, true);
     }
 
@@ -89,6 +95,12 @@ public class UnitAnimator : MonoBehaviour
     {
         animator.SetBool(UNIT_DEFEND, false);
     }
+
+    private void InteractAction_OnInteractStarted(object sender, EventArgs e)
+    {
+        animator.SetTrigger(UNIT_INTERACT);
+    }
+
 
     private void EquipSword()
     {

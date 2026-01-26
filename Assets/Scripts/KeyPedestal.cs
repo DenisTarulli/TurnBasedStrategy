@@ -45,7 +45,7 @@ public class KeyPedestal : MonoBehaviour, IInteractable
     public void Interact(Action onInteractionComplete)
     {
         this.onInteractionComplete = onInteractionComplete;
-        float interactDuration = 0.5f;
+        float interactDuration = 3f;
         timer = interactDuration;
         isActive = true;
     }
