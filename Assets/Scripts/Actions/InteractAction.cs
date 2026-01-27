@@ -9,13 +9,7 @@ public class InteractAction : BaseAction
 
     private int maxInteractDistance = 1;
 
-    private void Update()
-    {
-        if (!isActive)
-        {
-            return;
-        }
-    }
+    [SerializeField] private float rotationSpeed = 7200f; // grados por segundo
 
     public override string GetActionName()
     {
@@ -34,7 +28,6 @@ public class InteractAction : BaseAction
     public override List<GridPosition> GetValidActionGridPositionList()
     {
         List<GridPosition> validGridPositionList = new List<GridPosition>();
-
         GridPosition unitGridPosition = unit.GetGridPosition();
 
         for (int x = -maxInteractDistance; x <= maxInteractDistance; x++)
@@ -46,70 +39,19 @@ public class InteractAction : BaseAction
 
                 if (unitGridPosition.z % 2 != 0)
                 {
-                    // Unit is on odd row
-                    if (x == -maxInteractDistance && z != 0)
-                    {
-                        // Hex is out of action range
-                        continue;
-                    }
+                    if (x == -maxInteractDistance && z != 0) continue;
                 }
                 else
                 {
-                    // Unit is on even row
-                    if (x == maxInteractDistance && z != 0)
-                    {
-                        // Hex is out of action range
-                        continue;
-                    }
+                    if (x == maxInteractDistance && z != 0) continue;
                 }
 
-                if (!LevelGrid.Instance.IsValidGridPosition(testGridPosition))
-                {
-                    // Cell is outside of the grid bounds
-                    continue;
-                }
+                if (!LevelGrid.Instance.IsValidGridPosition(testGridPosition)) continue;
 
-                IInteractable interactable = LevelGrid.Instance.GetInteractableAtGridPosition(testGridPosition);
+                IInteractable interactable =
+                    LevelGrid.Instance.GetInteractableAtGridPosition(testGridPosition);
 
-                if (interactable == null)
-                {
-                    // No interactable on this GridPosition
-                    continue;
-                }
-
-                if (interactable.GetType() == typeof(Chest))
-                {
-                    // Chest on testGridPosition
-                    if (!InventoryManager.Instance.HasKeys())
-                    {
-                        // Player has no keys to open the chest
-                        continue;
-                    }
-                }
-
-                if (interactable.GetType() == typeof(KeyPedestal))
-                {
-                    // KeyPedestal on testGridPosition
-                    KeyPedestal keyPedestal = (KeyPedestal)interactable;
-
-                    if (!keyPedestal.HasKeyToCollect())
-                    {
-                        // Key has already been looted
-                        continue;
-                    }
-                }
-
-                if (interactable.GetType() == typeof(Door))
-                {
-                    // Door on testGridPosition
-                    Door door = (Door)interactable;
-
-                    if (door.IsOpen())
-                    {
-                        // Door has already been opened
-                        continue;
-                    }
-                }
+                if (interactable == null) continue;
 
                 validGridPositionList.Add(testGridPosition);
             }
@@ -118,24 +60,63 @@ public class InteractAction : BaseAction
         return validGridPositionList;
     }
 
+    // ACÁ EMPIEZA LO IMPORTANTE
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
-        IInteractable interactable = LevelGrid.Instance.GetInteractableAtGridPosition(gridPosition);
+        StartCoroutine(InteractSequence(gridPosition, onActionComplete));
+    }
 
+    private IEnumerator InteractSequence(GridPosition gridPosition, Action onActionComplete)
+    {
+        IInteractable interactable =
+            LevelGrid.Instance.GetInteractableAtGridPosition(gridPosition);
+
+        Transform interactableTransform = ((MonoBehaviour)interactable).transform;
+
+
+        // ROTAR HACIA EL OBJETO
+        yield return RotateTowards(interactableTransform.position);
+
+        // DISPARAR ANIMACIÓN
         OnInteractStarted?.Invoke(this, EventArgs.Empty);
 
+        //  INTERACTUAR
         interactable.Interact(OnInteractComplete);
 
         ActionStart(onActionComplete);
     }
 
-    public int GetMaxInteractDistance()
+    private IEnumerator RotateTowards(Vector3 targetPosition)
     {
-        return maxInteractDistance;
+        Vector3 direction = (targetPosition - unit.transform.position).normalized;
+        direction.y = 0f;
+
+        if (direction == Vector3.zero)
+            yield break;
+
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+        while (Quaternion.Angle(unit.transform.rotation, targetRotation) > 1f)
+        {
+            unit.transform.rotation = Quaternion.RotateTowards(
+                unit.transform.rotation,
+                targetRotation,
+                rotationSpeed * Time.deltaTime
+            );
+
+            yield return null;
+        }
+
+        unit.transform.rotation = targetRotation;
     }
 
     private void OnInteractComplete()
     {
         ActionComplete();
+    }
+
+    public int GetMaxInteractDistance()
+    {
+        return maxInteractDistance;
     }
 }

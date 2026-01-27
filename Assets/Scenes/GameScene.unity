@@ -8560,6 +8560,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 663991407}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &999935032 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6984396513660920426, guid: 819cb5388cda0254ea79d107ad8a197c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6355407459723335114}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1005769180
 GameObject:
   m_ObjectHideFlags: 0
@@ -19682,6 +19688,16 @@ PrefabInstance:
       propertyPath: shootPointTransform
       value: 
       objectReference: {fileID: 1409955858}
+    - target: {fileID: 1388529149624149824, guid: 819cb5388cda0254ea79d107ad8a197c,
+        type: 3}
+      propertyPath: unitVisual
+      value: 
+      objectReference: {fileID: 999935032}
+    - target: {fileID: 3894948796509042704, guid: 819cb5388cda0254ea79d107ad8a197c,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4466711017896993649, guid: 819cb5388cda0254ea79d107ad8a197c,
         type: 3}
       propertyPath: m_LocalPosition.x
