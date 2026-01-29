@@ -10,6 +10,9 @@ public class HealAction : BaseAction
     private float timer;
     private bool alreadyHealed;
 
+    public event EventHandler OnHealStarted;
+
+
     private void Update()
     {
         if (!isActive)
@@ -75,6 +78,8 @@ public class HealAction : BaseAction
     {
         timer = 0.25f;
         alreadyHealed = false;
+
+        OnHealStarted?.Invoke(this, EventArgs.Empty);
 
         ActionStart(onActionComplete);
     }

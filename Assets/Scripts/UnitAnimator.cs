@@ -8,6 +8,8 @@ public class UnitAnimator : MonoBehaviour
     private const string UNIT_SWORD_SLASH = "SwordSlash";
     private const string UNIT_DEFEND = "Defend";
     private const string UNIT_INTERACT = "Interact";
+    private const string UNIT_HEAL = "Heal";
+    private const string UNIT_THROW = "Throw";
 
     [SerializeField] private Animator animator;
     [SerializeField] private Transform bulletProjectilePrefab;
@@ -41,6 +43,18 @@ public class UnitAnimator : MonoBehaviour
         {
             interactAction.OnInteractStarted += InteractAction_OnInteractStarted;            
         }
+
+        if (TryGetComponent<HealAction>(out HealAction healAction))
+        {
+            healAction.OnHealStarted += HealAction_OnHealStarted;
+        }
+
+        if (TryGetComponent<GrenadeAction>(out GrenadeAction grenadeAction))
+        {
+            grenadeAction.OnThrowStarted += GrenadeAction_OnThrowStarted;
+        }
+
+
     }
 
     private void SwordAction_OnSwordActionStarted(object sender, EventArgs e)
@@ -81,4 +95,16 @@ public class UnitAnimator : MonoBehaviour
     {
         animator.SetTrigger(UNIT_INTERACT);
     }
+
+    private void HealAction_OnHealStarted(object sender, EventArgs e)
+    {
+        animator.SetTrigger(UNIT_HEAL);
+    }
+
+    private void GrenadeAction_OnThrowStarted(object sender, EventArgs e)
+    {
+        animator.SetTrigger(UNIT_THROW);
+    }
+
+
 }

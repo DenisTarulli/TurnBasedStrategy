@@ -9,6 +9,7 @@ public class GrenadeAction : BaseAction
     [SerializeField] private int maxThrowDistance = 7;
     [SerializeField] private LayerMask obstaclesLayerMask;
 
+    public event EventHandler OnThrowStarted;
 
     private void Update()
     {
@@ -70,6 +71,8 @@ public class GrenadeAction : BaseAction
 
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
+        OnThrowStarted?.Invoke(this, EventArgs.Empty);
+
         Transform grenadeProjectileTransform = Instantiate(grenadeProjectilePrefab, unit.GetWorldPosition(), Quaternion.identity);
         GrenadeProjectile grenadeProjectile = grenadeProjectileTransform.GetComponent<GrenadeProjectile>();
         grenadeProjectile.Setup(gridPosition, OnGrenadeBehaviourComplete);
