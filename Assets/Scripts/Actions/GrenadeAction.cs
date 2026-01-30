@@ -8,6 +8,11 @@ public class GrenadeAction : BaseAction
     [SerializeField] private Transform grenadeProjectilePrefab;
     [SerializeField] private int maxThrowDistance = 7;
     [SerializeField] private LayerMask obstaclesLayerMask;
+    [SerializeField] private float rotateSpeed = 100f;
+
+    private float timer;
+    private bool grenadeThrown;
+    private GridPosition targetGridPosition;
 
     public event EventHandler OnThrowStarted;
 
@@ -16,8 +21,24 @@ public class GrenadeAction : BaseAction
         if (!isActive)
         {
             return;
-        }        
+        }
+
+        timer -= Time.deltaTime;
+
+        if (timer <= 0f && !grenadeThrown)
+        {
+            grenadeThrown = true;
+
+            Transform grenadeProjectileTransform =
+                Instantiate(grenadeProjectilePrefab, unit.GetWorldPosition(), Quaternion.identity);
+
+            GrenadeProjectile grenadeProjectile =
+                grenadeProjectileTransform.GetComponent<GrenadeProjectile>();
+
+            grenadeProjectile.Setup(targetGridPosition, OnGrenadeBehaviourComplete);
+        }
     }
+
 
     public override string GetActionName()
     {
@@ -71,14 +92,39 @@ public class GrenadeAction : BaseAction
 
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
+        targetGridPosition = gridPosition;
+        grenadeThrown = false;
+        timer = 1.8f;
+
+        StartCoroutine(ThrowSequence(onActionComplete));
+    }
+
+    private IEnumerator ThrowSequence(Action onActionComplete)
+    {
+        Vector3 targetWorldPosition = LevelGrid.Instance.GetWorldPosition(targetGridPosition);
+
+        Vector3 direction = (targetWorldPosition - unit.transform.position).normalized;
+        direction.y = 0f;
+
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+        // ROTAR HACIA EL OBJETIVO
+        while (Quaternion.Angle(unit.transform.rotation, targetRotation) > 0.1f)
+        {
+            unit.transform.rotation = Quaternion.RotateTowards(
+                unit.transform.rotation,
+                targetRotation,
+                rotateSpeed * Time.deltaTime
+            );
+            yield return null;
+        }
+
+        // ARRANCA LA ACCIÓN
         OnThrowStarted?.Invoke(this, EventArgs.Empty);
-
-        Transform grenadeProjectileTransform = Instantiate(grenadeProjectilePrefab, unit.GetWorldPosition(), Quaternion.identity);
-        GrenadeProjectile grenadeProjectile = grenadeProjectileTransform.GetComponent<GrenadeProjectile>();
-        grenadeProjectile.Setup(gridPosition, OnGrenadeBehaviourComplete);
-
         ActionStart(onActionComplete);
     }
+
+
 
     private void OnGrenadeBehaviourComplete()
     {

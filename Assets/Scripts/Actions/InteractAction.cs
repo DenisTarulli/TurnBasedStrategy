@@ -9,7 +9,7 @@ public class InteractAction : BaseAction
 
     private int maxInteractDistance = 1;
 
-    [SerializeField] private float rotationSpeed = 7200f; // grados por segundo
+    [SerializeField] private float rotateSpeed = 100f; // grados por segundo
 
     public override string GetActionName()
     {
@@ -73,42 +73,31 @@ public class InteractAction : BaseAction
 
         Transform interactableTransform = ((MonoBehaviour)interactable).transform;
 
-
-        // ROTAR HACIA EL OBJETO
-        yield return RotateTowards(interactableTransform.position);
-
-        // DISPARAR ANIMACIÓN
-        OnInteractStarted?.Invoke(this, EventArgs.Empty);
-
-        //  INTERACTUAR
-        interactable.Interact(OnInteractComplete);
-
-        ActionStart(onActionComplete);
-    }
-
-    private IEnumerator RotateTowards(Vector3 targetPosition)
-    {
-        Vector3 direction = (targetPosition - unit.transform.position).normalized;
+        Vector3 direction = (interactableTransform.position - unit.transform.position).normalized;
         direction.y = 0f;
-
-        if (direction == Vector3.zero)
-            yield break;
 
         Quaternion targetRotation = Quaternion.LookRotation(direction);
 
-        while (Quaternion.Angle(unit.transform.rotation, targetRotation) > 1f)
+        while (Quaternion.Angle(unit.transform.rotation, targetRotation) > 0.1f)
         {
             unit.transform.rotation = Quaternion.RotateTowards(
                 unit.transform.rotation,
                 targetRotation,
-                rotationSpeed * Time.deltaTime
+                Time.deltaTime * rotateSpeed 
             );
-
             yield return null;
         }
 
-        unit.transform.rotation = targetRotation;
+
+        ActionStart(onActionComplete);
+
+        // DISPARAR ANIMACIÓN
+        OnInteractStarted?.Invoke(this, EventArgs.Empty);
+
+        // INTERACTUAR
+        interactable.Interact(OnInteractComplete);
     }
+
 
     private void OnInteractComplete()
     {

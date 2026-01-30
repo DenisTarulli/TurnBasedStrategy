@@ -6,26 +6,24 @@ using UnityEngine;
 public class HealAction : BaseAction
 {
     [SerializeField] private int healAmount = 20;
+    [SerializeField] private float healDelay = 2f;
 
     private float timer;
-    private bool alreadyHealed;
 
     public event EventHandler OnHealStarted;
 
 
     private void Update()
     {
-        if (!isActive)
-        {
-            return;
-        }
+        timer -= Time.deltaTime;
 
-        if (!alreadyHealed)
+        if (timer <= 0f)
         {
+            if (!isActive) return;
+
             HealthSystem healthSystem = GetComponent<HealthSystem>();
 
             int extraHeal = 0;
-
             if (BuffSystem.Instance.IsHealthBuffActive())
             {
                 extraHeal = 3;
@@ -34,13 +32,6 @@ public class HealAction : BaseAction
 
             healthSystem.Heal(healAmount + extraHeal);
 
-            alreadyHealed = true;
-        }
-
-        timer -= Time.deltaTime;
-
-        if (timer <= 0)
-        {
             ActionComplete();
         }
     }
@@ -76,8 +67,7 @@ public class HealAction : BaseAction
 
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
-        timer = 0.25f;
-        alreadyHealed = false;
+        timer = healDelay;
 
         OnHealStarted?.Invoke(this, EventArgs.Empty);
 
