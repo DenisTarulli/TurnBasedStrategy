@@ -10,6 +10,7 @@ public class UnitAnimator : MonoBehaviour
     private const string UNIT_INTERACT = "Interact";
     private const string UNIT_HEAL = "Heal";
     private const string UNIT_THROW = "Throw";
+    private const string UNIT_HIT = "Hit";
 
     [SerializeField] private Animator animator;
     [SerializeField] private Transform bulletProjectilePrefab;
@@ -54,6 +55,10 @@ public class UnitAnimator : MonoBehaviour
             grenadeAction.OnThrowStarted += GrenadeAction_OnThrowStarted;
         }
 
+        if (TryGetComponent<HealthSystem>(out HealthSystem healthSystem))
+        {
+            healthSystem.OnDamaged += HealthSystem_OnDamaged;
+        }
 
     }
 
@@ -106,5 +111,9 @@ public class UnitAnimator : MonoBehaviour
         animator.SetTrigger(UNIT_THROW);
     }
 
+    private void HealthSystem_OnDamaged(object sender, EventArgs e)
+    {
+        animator.SetTrigger(UNIT_HIT);
+    }
 
 }
