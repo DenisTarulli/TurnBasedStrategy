@@ -2888,7 +2888,7 @@ GameObject:
   - component: {fileID: 99684019294395102}
   - component: {fileID: 3518958802913310279}
   - component: {fileID: 154090624489082795}
-  - component: {fileID: 6447751649933378832}
+  - component: {fileID: -89999986999850024}
   m_Layer: 7
   m_Name: Skeleton
   m_TagString: Untagged
@@ -3015,7 +3015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 7
---- !u!114 &6447751649933378832
+--- !u!114 &-89999986999850024
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3024,12 +3024,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 7628062123232847872}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d324d60c5e4d4af49b8398246153eaa6, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f7bfc5c65079d942ab0983cb4ad7a8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ragdollPrefab: {fileID: 3308711374446600201, guid: 66f7e72827fbdf7449665e7cb2c01134,
+  explodedPrefab: {fileID: 8282656680355673944, guid: e25b5f43d7cfcba4887bbe3a45261e1c,
     type: 3}
-  originalRootBone: {fileID: 3102802386753581891}
+  visualRoot: {fileID: 5793589876279976559}
+  minExplosionForce: 1
+  maxExplosionForce: 1
+  explosionRadius: 1
+  upwardModifier: 0.3
+  destroyExplodedAfter: 5
 --- !u!1 &7709014198648067853
 GameObject:
   m_ObjectHideFlags: 0
