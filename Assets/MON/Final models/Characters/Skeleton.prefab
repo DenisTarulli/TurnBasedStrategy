@@ -3031,8 +3031,8 @@ MonoBehaviour:
     type: 3}
   visualRoot: {fileID: 5793589876279976559}
   minExplosionForce: 1
-  maxExplosionForce: 1
-  explosionRadius: 1
+  maxExplosionForce: 5
+  explosionRadius: 1.5
   upwardModifier: 0.3
   destroyExplodedAfter: 5
 --- !u!1 &7709014198648067853
