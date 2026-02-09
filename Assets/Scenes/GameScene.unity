@@ -9589,12 +9589,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!4 &1122364041 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7121000224476904260, guid: 1f27dad60dc434a4a99809e2345b64ba,
-    type: 3}
-  m_PrefabInstance: {fileID: 4711717907217436154}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1134391959
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18959,16 +18953,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -390125309866171617, guid: 1f27dad60dc434a4a99809e2345b64ba,
-        type: 3}
-      propertyPath: visualRoot
-      value: 
-      objectReference: {fileID: 1122364041}
-    - target: {fileID: -390125309866171617, guid: 1f27dad60dc434a4a99809e2345b64ba,
-        type: 3}
-      propertyPath: maxExplosionForce
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 5314114187486040629, guid: 1f27dad60dc434a4a99809e2345b64ba,
         type: 3}
       propertyPath: m_Name
@@ -20094,11 +20078,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -89999986999850024, guid: 4dc9211556880df4bb5c4594c494afc3,
-        type: 3}
-      propertyPath: maxExplosionForce
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 5596499300325381006, guid: 4dc9211556880df4bb5c4594c494afc3,
         type: 3}
       propertyPath: unit

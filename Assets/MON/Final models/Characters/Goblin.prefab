@@ -1875,9 +1875,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explodedPrefab: {fileID: 7121000224476904260, guid: 1699da9f152d7264484ad49c604a75c6,
     type: 3}
-  visualRoot: {fileID: 757051454167224298}
+  visualRoot: {fileID: 7121000224476904260}
   minExplosionForce: 1
-  maxExplosionForce: 5
+  maxExplosionForce: 7
   explosionRadius: 1.5
   upwardModifier: 0.3
   destroyExplodedAfter: 5
