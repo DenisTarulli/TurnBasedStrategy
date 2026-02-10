@@ -17,50 +17,70 @@ public class UnitAnimator : MonoBehaviour
     [SerializeField] private Transform shootPointTransform;
     [SerializeField] private Transform rifleTransform;
 
+    private HealthSystem healthSystem;
+    private MoveAction moveAction;
+    private ShootAction shootAction;
+    private SwordAction swordAction;
+    private DefendAction defendAction;
+    private InteractAction interactAction;
+    private HealAction healAction;
+    private GrenadeAction grenadeAction;
+
+
     private void Awake()
     {
-        if (TryGetComponent<MoveAction>(out MoveAction moveAction))
+        animator ??= GetComponent<Animator>();
+
+        moveAction = GetComponent<MoveAction>();
+        if (moveAction != null)
         {
             moveAction.OnStartMoving += MoveAction_OnStartMoving;
             moveAction.OnStopMoving += MoveAction_OnStopMoving;
         }
 
-        if (TryGetComponent<ShootAction>(out ShootAction shootAction))
+        shootAction = GetComponent<ShootAction>();
+        if (shootAction != null)
         {
             shootAction.OnShoot += ShootAction_OnShoot;
         }
 
-        if (TryGetComponent<SwordAction>(out SwordAction swordAction))
+        swordAction = GetComponent<SwordAction>();
+        if (swordAction != null)
         {
             swordAction.OnSwordActionStarted += SwordAction_OnSwordActionStarted;
         }
 
-        if (TryGetComponent<DefendAction>(out DefendAction defendAction))
+        defendAction = GetComponent<DefendAction>();
+        if (defendAction != null)
         {
             defendAction.OnDefendStarted += DefendAction_OnDefendStarted;
         }
 
-        if (TryGetComponent<InteractAction>(out InteractAction interactAction))
+        interactAction = GetComponent<InteractAction>();
+        if (interactAction != null)
         {
-            interactAction.OnInteractStarted += InteractAction_OnInteractStarted;            
+            interactAction.OnInteractStarted += InteractAction_OnInteractStarted;
         }
 
-        if (TryGetComponent<HealAction>(out HealAction healAction))
+        healAction = GetComponent<HealAction>();
+        if (healAction != null)
         {
             healAction.OnHealStarted += HealAction_OnHealStarted;
         }
 
-        if (TryGetComponent<GrenadeAction>(out GrenadeAction grenadeAction))
+        grenadeAction = GetComponent<GrenadeAction>();
+        if (grenadeAction != null)
         {
             grenadeAction.OnThrowStarted += GrenadeAction_OnThrowStarted;
         }
 
-        if (TryGetComponent<HealthSystem>(out HealthSystem healthSystem))
+        healthSystem = GetComponent<HealthSystem>();
+        if (healthSystem != null)
         {
             healthSystem.OnDamaged += HealthSystem_OnDamaged;
         }
-
     }
+
 
     private void SwordAction_OnSwordActionStarted(object sender, EventArgs e)
     {
@@ -113,7 +133,53 @@ public class UnitAnimator : MonoBehaviour
 
     private void HealthSystem_OnDamaged(object sender, EventArgs e)
     {
+        if (animator == null) return;
         animator.SetTrigger(UNIT_HIT);
+    }
+
+
+    private void OnDestroy()
+    {
+        if (moveAction != null)
+        {
+            moveAction.OnStartMoving -= MoveAction_OnStartMoving;
+            moveAction.OnStopMoving -= MoveAction_OnStopMoving;
+        }
+
+        if (shootAction != null)
+        {
+            shootAction.OnShoot -= ShootAction_OnShoot;
+        }
+
+        if (swordAction != null)
+        {
+            swordAction.OnSwordActionStarted -= SwordAction_OnSwordActionStarted;
+        }
+
+        if (defendAction != null)
+        {
+            defendAction.OnDefendStarted -= DefendAction_OnDefendStarted;
+        }
+
+        if (interactAction != null)
+        {
+            interactAction.OnInteractStarted -= InteractAction_OnInteractStarted;
+        }
+
+        if (healAction != null)
+        {
+            healAction.OnHealStarted -= HealAction_OnHealStarted;
+        }
+
+        if (grenadeAction != null)
+        {
+            grenadeAction.OnThrowStarted -= GrenadeAction_OnThrowStarted;
+        }
+
+        if (healthSystem != null)
+        {
+            healthSystem.OnDamaged -= HealthSystem_OnDamaged;
+        }
     }
 
 }

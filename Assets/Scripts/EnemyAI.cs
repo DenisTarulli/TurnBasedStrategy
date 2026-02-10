@@ -25,6 +25,11 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.IsPlayerDead())
+        {
+            return;
+        }
+
         if (TurnSystem.Instance.IsPlayerTurn())
         {
             return;

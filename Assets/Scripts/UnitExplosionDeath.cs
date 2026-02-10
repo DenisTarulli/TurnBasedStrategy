@@ -66,7 +66,7 @@ public class UnitExplosionDeath : MonoBehaviour
         );
 
         Destroy(explodedTransform.gameObject, destroyExplodedAfter);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     private void CopyPose(Transform source, Transform target)

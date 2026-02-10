@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Unit : MonoBehaviour
@@ -246,7 +247,9 @@ public class Unit : MonoBehaviour
         }
         else
         {
-            GameManager.Instance.GameOver();
+            GameManager.Instance.SetPlayerDead();
+            DisableUnit();
+            GameManager.Instance.StartGameOverWithDelay(5f);
         }
         
         OnAnyUnitDead?.Invoke(this, EventArgs.Empty);
@@ -295,5 +298,10 @@ public class Unit : MonoBehaviour
     public int GetActionPoints()
     {
         return currentActionPoints;
+    }
+    public void DisableUnit()
+    {
+        // Apagar visual
+        gameObject.SetActive(false);
     }
 }

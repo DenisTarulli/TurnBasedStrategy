@@ -38,6 +38,11 @@ public class UnitActionSystemUI : MonoBehaviour
 
         Unit selectedUnit = UnitActionSystem.Instance.GetSelectedUnit();
 
+        if (selectedUnit == null)
+        {
+            return;
+        }
+
         foreach (BaseAction baseAction in selectedUnit.GetBaseActionArray())
         {
             Transform actionButtonTransform = Instantiate(actionButtonPrefab, actionButtonContainterTransform);
@@ -48,17 +53,43 @@ public class UnitActionSystemUI : MonoBehaviour
         }
     }
 
+
     private void UnitActionSystem_OnSelectedUnitChanged(object sender, EventArgs e)
     {
+        Unit selectedUnit = UnitActionSystem.Instance.GetSelectedUnit();
+
+        if (selectedUnit == null)
+        {
+            ClearActionButtons();
+            return;
+        }
+
         CreateUnitActionButtons();
         UpdateSelectedVisual();
     }
 
+
     private void UpdateSelectedVisual()
     {
+        if (actionButtonUIList == null || actionButtonUIList.Count == 0)
+        {
+            return;
+        }
+
         foreach (ActionButtonUI actionButtonUI in actionButtonUIList)
         {
             actionButtonUI.UpdateSelectedVisual();
         }
     }
+
+    private void ClearActionButtons()
+    {
+        foreach (Transform buttonTransform in actionButtonContainterTransform)
+        {
+            Destroy(buttonTransform.gameObject);
+        }
+
+        actionButtonUIList.Clear();
+    }
+
 }

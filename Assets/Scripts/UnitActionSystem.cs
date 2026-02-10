@@ -41,14 +41,33 @@ public class UnitActionSystem : MonoBehaviour
     {
         Unit unit = sender as Unit;
 
+        if (unit == null)
+        {
+            return;
+        }
+
         if (unit.IsEnemy())
         {
             return;
         }
 
         List<Unit> friendlyUnitList = UnitManager.Instance.GetFriendlyUnitList();
+
+        if (friendlyUnitList.Count == 0)
+        {
+            // No quedan jugadores vivos: limpiar selección
+            selectedUnit = null;
+            selectedAction = null;
+
+            OnSelectedUnitChanged?.Invoke(this, EventArgs.Empty);
+            OnSelectedActionChanged?.Invoke(this, EventArgs.Empty);
+
+            return;
+        }
+
         SetSelectedUnit(friendlyUnitList[0]);
     }
+
 
     private void Update()
     {

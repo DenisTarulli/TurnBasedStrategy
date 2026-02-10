@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private bool isPlayerDead;
+
     public static GameManager Instance { get; private set; }
 
     private void Awake()
@@ -87,4 +89,26 @@ public class GameManager : MonoBehaviour
     {
         Loader.Load(Loader.Scene.GameScene);
     }
+
+    public void StartGameOverWithDelay(float delay)
+    {
+        StartCoroutine(GameOverCoroutine(delay));
+    }
+
+    private IEnumerator GameOverCoroutine(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        GameOver();
+    }
+    public void SetPlayerDead()
+    {
+        isPlayerDead = true;
+    }
+
+    public bool IsPlayerDead()
+    {
+        return isPlayerDead;
+    }
+
+
 }
