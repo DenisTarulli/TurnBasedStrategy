@@ -16,6 +16,9 @@ public class Unit : MonoBehaviour
     public static event EventHandler OnAnyUnitSpawned;
     public static event EventHandler OnAnyUnitDead;
 
+    [SerializeField] private GameObject visualRoot;
+    private bool isDead;
+
     public static void ResetStaticData()
     {
         OnAnyActionPointsChanged = null;
@@ -238,22 +241,33 @@ public class Unit : MonoBehaviour
 
     private void HealthSystem_OnDead(object sender, EventArgs e)
     {
+        isDead = true;
+
+        // Sacarlo del grid
         LevelGrid.Instance.RemoveUnitAtGridPosition(gridPosition, this);
 
-        if (IsEnemy())
+        // OCULTAR SOLO LO VISUAL
+        if (visualRoot != null)
         {
-            PlayerStats.Instance.ChangeExp(expToGive);
-            Destroy(gameObject);
+            visualRoot.SetActive(false);
         }
-        else
+
+        // DESACTIVAR TODAS LAS ACCIONES
+        foreach (BaseAction action in GetBaseActionArray())
         {
-            GameManager.Instance.SetPlayerDead();
-            DisableUnit();
-            GameManager.Instance.StartGameOverWithDelay(5f);
+            action.enabled = false;
         }
-        
+
+        // Avisar a los sistemas
         OnAnyUnitDead?.Invoke(this, EventArgs.Empty);
+
+        // Game Over
+        if (!IsEnemy())
+        {
+            GameManager.Instance.GameOver();
+        }
     }
+
 
     public Vector3 GetWorldPosition()
     {
@@ -303,5 +317,9 @@ public class Unit : MonoBehaviour
     {
         // Apagar visual
         gameObject.SetActive(false);
+    }
+    public bool IsDead()
+    {
+        return isDead;
     }
 }

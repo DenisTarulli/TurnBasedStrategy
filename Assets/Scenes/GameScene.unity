@@ -4893,12 +4893,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b4d53c5d91a3dc42bbcedae5fca255b, type: 3}
---- !u!4 &514415759 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6984396513660920426, guid: 819cb5388cda0254ea79d107ad8a197c,
-    type: 3}
-  m_PrefabInstance: {fileID: 6355407459723335114}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &517012893
 GameObject:
   m_ObjectHideFlags: 0
@@ -18972,7 +18966,7 @@ PrefabInstance:
     - target: {fileID: 5314114187486040629, guid: 1f27dad60dc434a4a99809e2345b64ba,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7121000224476904260, guid: 1f27dad60dc434a4a99809e2345b64ba,
         type: 3}
@@ -19396,11 +19390,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wizard
       objectReference: {fileID: 0}
-    - target: {fileID: 7821625678117296511, guid: 819cb5388cda0254ea79d107ad8a197c,
-        type: 3}
-      propertyPath: visualRoot
-      value: 
-      objectReference: {fileID: 514415759}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20112,7 +20101,7 @@ PrefabInstance:
     - target: {fileID: 7628062123232847872, guid: 4dc9211556880df4bb5c4594c494afc3,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8282656680355673944, guid: 4dc9211556880df4bb5c4594c494afc3,
         type: 3}
@@ -20275,9 +20264,9 @@ SceneRoots:
   - {fileID: 851661549}
   - {fileID: 1079361122}
   - {fileID: 660751607}
-  - {fileID: 6355407459723335114}
   - {fileID: 640269424}
   - {fileID: 4711717907217436154}
   - {fileID: 837169999}
   - {fileID: 8763459667000230410}
   - {fileID: 819806372}
+  - {fileID: 6355407459723335114}

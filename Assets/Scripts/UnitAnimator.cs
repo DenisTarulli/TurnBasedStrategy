@@ -26,9 +26,12 @@ public class UnitAnimator : MonoBehaviour
     private HealAction healAction;
     private GrenadeAction grenadeAction;
 
+    private Unit unit;
 
     private void Awake()
     {
+        unit = GetComponent<Unit>();
+
         animator ??= GetComponent<Animator>();
 
         moveAction = GetComponent<MoveAction>();
@@ -84,21 +87,25 @@ public class UnitAnimator : MonoBehaviour
 
     private void SwordAction_OnSwordActionStarted(object sender, EventArgs e)
     {
+        if (unit != null && unit.IsDead()) return;
         animator.SetTrigger(UNIT_SWORD_SLASH);
     }
 
     private void MoveAction_OnStopMoving(object sender, EventArgs e)
     {
+        if (unit != null && unit.IsDead()) return;
         animator.SetBool(UNIT_ISWALKING, false);
     }
 
     private void MoveAction_OnStartMoving(object sender, EventArgs e)
     {
+        if (unit != null && unit.IsDead()) return;
         animator.SetBool(UNIT_ISWALKING, true);
     }
 
     private void ShootAction_OnShoot(object sender, ShootAction.OnShootEventArgs e)
     {
+        if (unit != null && unit.IsDead()) return;
         animator.SetTrigger(UNIT_SHOOT);
 
         Transform bulletProjectileTransform = Instantiate(bulletProjectilePrefab, shootPointTransform.position, Quaternion.identity);
@@ -113,26 +120,31 @@ public class UnitAnimator : MonoBehaviour
 
     private void DefendAction_OnDefendStarted(object sender, EventArgs e)
     {
+        if (unit != null && unit.IsDead()) return;
         animator.SetTrigger(UNIT_DEFEND);
     }
 
     private void InteractAction_OnInteractStarted(object sender, EventArgs e)
     {
+        if (unit != null && unit.IsDead()) return;
         animator.SetTrigger(UNIT_INTERACT);
     }
 
     private void HealAction_OnHealStarted(object sender, EventArgs e)
     {
+        if (unit != null && unit.IsDead()) return;
         animator.SetTrigger(UNIT_HEAL);
     }
 
     private void GrenadeAction_OnThrowStarted(object sender, EventArgs e)
     {
+        if (unit != null && unit.IsDead()) return;
         animator.SetTrigger(UNIT_THROW);
     }
 
     private void HealthSystem_OnDamaged(object sender, EventArgs e)
     {
+        if (unit != null && unit.IsDead()) return;
         if (animator == null) return;
         animator.SetTrigger(UNIT_HIT);
     }

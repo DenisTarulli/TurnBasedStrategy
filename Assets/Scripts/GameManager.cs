@@ -68,12 +68,20 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        StartCoroutine(GameOverAfterDelay());
+    }
+
+    private IEnumerator GameOverAfterDelay()
+    {
+        yield return new WaitForSecondsRealtime(5f);
+
         gameOverUI.SetActive(true);
         isGameOver = true;
 
         Debug.Log("GAME OVER");
         Time.timeScale = 0f;
     }
+
 
     public bool IsGameOver()
     {

@@ -106,6 +106,21 @@ public class GridSystemVisual : MonoBehaviour
         Unit selectedUnit = UnitActionSystem.Instance.GetSelectedUnit();
         BaseAction selectedAction = UnitActionSystem.Instance.GetSelectedAction();
 
+        if (selectedUnit == null)
+        {
+            return;
+        }
+
+        if (selectedUnit.IsDead())
+        {
+            return;
+        }
+
+        if (selectedAction == null)
+        {
+            return;
+        }
+
         GridVisualType gridVisualType;
 
         switch (selectedAction)
