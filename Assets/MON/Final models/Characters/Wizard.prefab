@@ -737,6 +737,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5970970234828363744}
   - component: {fileID: 5379058929269328714}
+  - component: {fileID: 5703358049357828154}
   m_Layer: 7
   m_Name: Wizard_Boots
   m_TagString: Untagged
@@ -867,6 +868,19 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.04261583, y: -0.6046004, z: -0.03838937}
     m_Extent: {x: 0.63767856, y: 0.34304202, z: 0.3732847}
   m_DirtyAABB: 0
+--- !u!114 &5703358049357828154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126091702398399702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf0c4cf434eb901418e71503d4ee3788, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyPartType: 1
 --- !u!1 &1188666114276541726
 GameObject:
   m_ObjectHideFlags: 0
@@ -1127,6 +1141,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4492194247664576279}
   - component: {fileID: 3667857637208204636}
+  - component: {fileID: 2987439818566541970}
   m_Layer: 7
   m_Name: Wizard_RightArm
   m_TagString: Untagged
@@ -1257,6 +1272,19 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.32152063, y: 0.15438074, z: 0.011107452}
     m_Extent: {x: 0.25929773, y: 0.36523646, z: 0.20138618}
   m_DirtyAABB: 0
+--- !u!114 &2987439818566541970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679514612103886400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf0c4cf434eb901418e71503d4ee3788, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyPartType: 3
 --- !u!1 &1710917202850474925
 GameObject:
   m_ObjectHideFlags: 0
@@ -1332,6 +1360,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7964239431101491885}
   - component: {fileID: 247493344214506487}
+  - component: {fileID: 4565470691213465133}
   m_Layer: 7
   m_Name: Wizard_Head
   m_TagString: Untagged
@@ -1462,6 +1491,19 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.05046332, y: 0.957783, z: 0.081364214}
     m_Extent: {x: 0.44406882, y: 0.33962238, z: 0.4467944}
   m_DirtyAABB: 0
+--- !u!114 &4565470691213465133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759442488836508789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf0c4cf434eb901418e71503d4ee3788, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyPartType: 0
 --- !u!1 &1820896244981429969
 GameObject:
   m_ObjectHideFlags: 0
@@ -1504,6 +1546,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3340522953975768363}
   - component: {fileID: 1744748764498406073}
+  - component: {fileID: 1312569016276160246}
   m_Layer: 7
   m_Name: Wizard_Tunica
   m_TagString: Untagged
@@ -1634,6 +1677,19 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0434992, y: -0.093388885, z: 0.022436231}
     m_Extent: {x: 0.6036329, y: 0.6125823, z: 0.41968727}
   m_DirtyAABB: 0
+--- !u!114 &1312569016276160246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868650970394534016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf0c4cf434eb901418e71503d4ee3788, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyPartType: 5
 --- !u!1 &1912110118031514272
 GameObject:
   m_ObjectHideFlags: 0
@@ -3446,6 +3502,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9137234809917384751}
   - component: {fileID: 6378381144552168374}
+  - component: {fileID: 7082263403581164089}
   m_Layer: 7
   m_Name: Wizard_LeftArm
   m_TagString: Untagged
@@ -3576,6 +3633,19 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.2934123, y: 0.19618541, z: -0.007086307}
     m_Extent: {x: 0.23854938, y: 0.36891943, z: 0.20690396}
   m_DirtyAABB: 0
+--- !u!114 &7082263403581164089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6741383649685909758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf0c4cf434eb901418e71503d4ee3788, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyPartType: 2
 --- !u!1 &6801657309215362509
 GameObject:
   m_ObjectHideFlags: 0
@@ -3630,6 +3700,7 @@ GameObject:
   - component: {fileID: 734096954883060872}
   - component: {fileID: 850827643650346085}
   - component: {fileID: 7821625678117296511}
+  - component: {fileID: 6876953093133926505}
   m_Layer: 7
   m_Name: Wizard
   m_TagString: Player
@@ -3866,6 +3937,25 @@ MonoBehaviour:
   explosionRadius: 1.5
   upwardModifier: 0.3
   destroyExplodedAfter: 5
+--- !u!114 &6876953093133926505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6908595701589666960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2f18afa5d327684dbd61ecfb3b05ab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyParts:
+  - {fileID: 5703358049357828154}
+  - {fileID: 4565470691213465133}
+  - {fileID: 7082263403581164089}
+  - {fileID: 2987439818566541970}
+  - {fileID: 9037994621617209391}
+  - {fileID: 1312569016276160246}
 --- !u!1 &6918392439561991014
 GameObject:
   m_ObjectHideFlags: 0
@@ -3876,6 +3966,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1414659579315611056}
   - component: {fileID: 508076922367096575}
+  - component: {fileID: 9037994621617209391}
   m_Layer: 7
   m_Name: Wizard_Shoulders
   m_TagString: Untagged
@@ -4006,6 +4097,19 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0075190514, y: 0.3994699, z: -0.03600216}
     m_Extent: {x: 0.45201832, y: 0.2126564, z: 0.33058065}
   m_DirtyAABB: 0
+--- !u!114 &9037994621617209391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6918392439561991014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf0c4cf434eb901418e71503d4ee3788, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyPartType: 4
 --- !u!1 &6927402136330976313
 GameObject:
   m_ObjectHideFlags: 0

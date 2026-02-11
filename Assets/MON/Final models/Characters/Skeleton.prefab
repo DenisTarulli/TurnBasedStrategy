@@ -2951,7 +2951,7 @@ MonoBehaviour:
   maxEnergy: 0
   expToGive: 5
   passiveEnergyGain: 0
-  visualRoot: {fileID: 0}
+  visualRoot: {fileID: 6848236589497110584}
   isEnemy: 1
 --- !u!114 &665629657134296130
 MonoBehaviour:
