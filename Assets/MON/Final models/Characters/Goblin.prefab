@@ -1724,6 +1724,7 @@ GameObject:
   - component: {fileID: 4275041411132739587}
   - component: {fileID: 2213385246990512725}
   - component: {fileID: -390125309866171617}
+  - component: {fileID: 4566787318890262529}
   m_Layer: 7
   m_Name: Goblin
   m_TagString: Untagged
@@ -1786,7 +1787,7 @@ MonoBehaviour:
   maxEnergy: 10
   expToGive: 2
   passiveEnergyGain: 0
-  visualRoot: {fileID: 0}
+  visualRoot: {fileID: 7182169192770261481}
   isEnemy: 1
 --- !u!114 &5310146286060733109
 MonoBehaviour:
@@ -1877,11 +1878,27 @@ MonoBehaviour:
   explodedPrefab: {fileID: 7121000224476904260, guid: 1699da9f152d7264484ad49c604a75c6,
     type: 3}
   visualRoot: {fileID: 7121000224476904260}
-  minExplosionForce: 1
+  minExplosionForce: 5
   maxExplosionForce: 7
   explosionRadius: 1.5
   upwardModifier: 0.3
   destroyExplodedAfter: 5
+--- !u!114 &4566787318890262529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5314114187486040629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7dd90e8d16f79b4abddea4c907664ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyParts:
+  - bodyPart: 3
+    renderer: {fileID: 4237051697389164648}
+    color: {r: 0, g: 1, b: 0.04328513, a: 0}
 --- !u!1 &5528544493292399302
 GameObject:
   m_ObjectHideFlags: 0

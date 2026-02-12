@@ -2889,6 +2889,7 @@ GameObject:
   - component: {fileID: 3518958802913310279}
   - component: {fileID: 154090624489082795}
   - component: {fileID: -89999986999850024}
+  - component: {fileID: 5455163062768268563}
   m_Layer: 7
   m_Name: Skeleton
   m_TagString: Untagged
@@ -3031,11 +3032,30 @@ MonoBehaviour:
   explodedPrefab: {fileID: 8282656680355673944, guid: e25b5f43d7cfcba4887bbe3a45261e1c,
     type: 3}
   visualRoot: {fileID: 5793589876279976559}
-  minExplosionForce: 1
+  minExplosionForce: 5
   maxExplosionForce: 7
   explosionRadius: 1.5
   upwardModifier: 0.3
   destroyExplodedAfter: 5
+--- !u!114 &5455163062768268563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7628062123232847872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7dd90e8d16f79b4abddea4c907664ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyParts:
+  - bodyPart: 0
+    renderer: {fileID: 6485732740608002278}
+    color: {r: 1, g: 0, b: 0, a: 0}
+  - bodyPart: 2
+    renderer: {fileID: 1828233729866020663}
+    color: {r: 0.53539926, g: 0.014019207, b: 0.6754716, a: 0}
 --- !u!1 &7709014198648067853
 GameObject:
   m_ObjectHideFlags: 0

@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator GameOverAfterDelay()
     {
-        yield return new WaitForSecondsRealtime(5f);
+        yield return new WaitForSecondsRealtime(3f);
 
         gameOverUI.SetActive(true);
         isGameOver = true;
@@ -95,6 +95,8 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
+        Time.timeScale = 1f;
+        StaticReset.ResetAll();
         Loader.Load(Loader.Scene.GameScene);
     }
 
