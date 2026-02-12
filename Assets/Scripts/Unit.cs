@@ -261,6 +261,12 @@ public class Unit : MonoBehaviour
         // Avisar a los sistemas
         OnAnyUnitDead?.Invoke(this, EventArgs.Empty);
 
+        // DAR EXPERIENCIA SI ES ENEMIGO
+        if (IsEnemy())
+        {
+            PlayerStats.Instance.ChangeExp(expToGive);
+        }
+
         // Game Over
         if (!IsEnemy())
         {
