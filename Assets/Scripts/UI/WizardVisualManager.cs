@@ -11,10 +11,10 @@ public class WizardVisualManager : MonoBehaviour
 
     private readonly BodyPartColor.BodyPartType[] paintOrder =
     {
-        BodyPartColor.BodyPartType.LeftArm,
         BodyPartColor.BodyPartType.Boots,
         BodyPartColor.BodyPartType.Head,
         BodyPartColor.BodyPartType.RightArm,
+        BodyPartColor.BodyPartType.LeftArm,
         BodyPartColor.BodyPartType.Shoulders,
         BodyPartColor.BodyPartType.Tunic
     };

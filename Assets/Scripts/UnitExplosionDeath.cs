@@ -52,6 +52,8 @@ public class UnitExplosionDeath : MonoBehaviour
         // Copiar pose del personaje vivo
         CopyPose(visualRoot, explodedTransform);
 
+        RendererColorCloner.CloneColors(gameObject, explodedTransform.gameObject);
+
         // Explosión física
         float explosionForce = UnityEngine.Random.Range(
             minExplosionForce,
@@ -115,4 +117,61 @@ public class UnitExplosionDeath : MonoBehaviour
             );
         }
     }
+    private void CopyColors(Transform sourceRoot, Transform targetRoot)
+    {
+        SkinnedMeshRenderer[] sourceRenderers =
+            sourceRoot.GetComponentsInChildren<SkinnedMeshRenderer>(true);
+
+        SkinnedMeshRenderer[] targetRenderers =
+            targetRoot.GetComponentsInChildren<SkinnedMeshRenderer>(true);
+
+        foreach (var sourceRenderer in sourceRenderers)
+        {
+            foreach (var targetRenderer in targetRenderers)
+            {
+                if (targetRenderer.name != sourceRenderer.name)
+                    continue;
+
+                // Intentar copiar MaterialPropertyBlock (wizard)
+                MaterialPropertyBlock mpb = new MaterialPropertyBlock();
+                sourceRenderer.GetPropertyBlock(mpb);
+
+                if (mpb != null)
+                {
+                    targetRenderer.SetPropertyBlock(mpb);
+                }
+
+                // Copiar color del material (enemigos)
+                Material[] sourceMats = sourceRenderer.materials;
+                Material[] targetMats = targetRenderer.materials;
+
+                for (int i = 0; i < Mathf.Min(sourceMats.Length, targetMats.Length); i++)
+                {
+                    if (sourceMats[i].HasProperty("_BaseColor"))
+                    {
+                        Color c = sourceMats[i].GetColor("_BaseColor");
+                        targetMats[i].SetColor("_BaseColor", c);
+                    }
+                }
+
+                targetRenderer.materials = targetMats;
+            }
+        }
+    }
+    private void CopyRendererColors(GameObject source, GameObject target)
+    {
+        var sourceRenderers = source.GetComponentsInChildren<SkinnedMeshRenderer>(true);
+        var targetRenderers = target.GetComponentsInChildren<SkinnedMeshRenderer>(true);
+
+        int count = Mathf.Min(sourceRenderers.Length, targetRenderers.Length);
+
+        for (int i = 0; i < count; i++)
+        {
+            var mpb = new MaterialPropertyBlock();
+            sourceRenderers[i].GetPropertyBlock(mpb);
+            targetRenderers[i].SetPropertyBlock(mpb);
+        }
+    }
+
+
 }

@@ -34,4 +34,17 @@ public class BodyPartColor : MonoBehaviour
         mpb.SetColor("_BaseColor", color);
         skinnedMeshRenderer.SetPropertyBlock(mpb);
     }
+    public Color GetCurrentColor()
+    {
+        MaterialPropertyBlock block = new MaterialPropertyBlock();
+        skinnedMeshRenderer.GetPropertyBlock(block);
+
+        if (block != null && block.HasColor("_BaseColor"))
+        {
+            return block.GetColor("_BaseColor");
+        }
+
+        return Color.white;
+    }
+
 }
