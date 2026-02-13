@@ -85,6 +85,7 @@ public class ShootAction : BaseAction
 
     private void Shoot()
     {
+        SoundManager.Instance.PlaySFX(SoundManager.SoundType.ArmaDisparo, 0.8f);
         int extraDamage = 0;
 
         if (!unit.IsEnemy() && BuffSystem.Instance.IsPowerBuffActive())
@@ -181,7 +182,7 @@ public class ShootAction : BaseAction
         targetUnit = LevelGrid.Instance.GetUnitAtGridPosition(gridPosition);
 
         state = State.Aiming;
-        float aimingStateTime = 1f;
+        float aimingStateTime = 0.5f;
         stateTimer = aimingStateTime;
 
         canShootBullet = true;

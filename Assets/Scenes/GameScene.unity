@@ -19305,6 +19305,11 @@ PrefabInstance:
     - target: {fileID: 850827643650346085, guid: 819cb5388cda0254ea79d107ad8a197c,
         type: 3}
       propertyPath: health
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063975567637803892, guid: 819cb5388cda0254ea79d107ad8a197c,
+        type: 3}
+      propertyPath: damageMitigated
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4466711017896993649, guid: 819cb5388cda0254ea79d107ad8a197c,
