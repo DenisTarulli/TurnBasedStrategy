@@ -59,4 +59,8 @@ public class KeyPedestal : MonoBehaviour, IInteractable
     {
         keyObjectVisual.SetActive(false);
     }
+    public SoundManager.SoundType GetInteractSound()
+    {
+        return SoundManager.SoundType.RecolectarLlave;
+    }
 }

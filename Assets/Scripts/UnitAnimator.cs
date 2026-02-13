@@ -89,6 +89,7 @@ public class UnitAnimator : MonoBehaviour
     {
         if (unit != null && unit.IsDead()) return;
         animator.SetTrigger(UNIT_SWORD_SLASH);
+        SoundManager.Instance.PlaySFX(unit.GetSwordHitSound());
     }
 
     private void MoveAction_OnStopMoving(object sender, EventArgs e)
@@ -140,6 +141,7 @@ public class UnitAnimator : MonoBehaviour
     {
         if (unit != null && unit.IsDead()) return;
         animator.SetTrigger(UNIT_THROW);
+        SoundManager.Instance.PlaySFX(SoundManager.SoundType.GranadaExplosion);
     }
 
     private void HealthSystem_OnDamaged(object sender, EventArgs e)

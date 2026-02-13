@@ -101,6 +101,7 @@ public class GrenadeAction : BaseAction
 
     private IEnumerator ThrowSequence(Action onActionComplete)
     {
+
         Vector3 targetWorldPosition = LevelGrid.Instance.GetWorldPosition(targetGridPosition);
 
         Vector3 direction = (targetWorldPosition - unit.transform.position).normalized;

@@ -19,6 +19,7 @@ public class Unit : MonoBehaviour
     [SerializeField] private GameObject visualRoot;
     private bool isDead;
 
+    [SerializeField] private SoundManager.SoundType swordHitSound;
     public static void ResetStaticData()
     {
         OnAnyActionPointsChanged = null;
@@ -327,5 +328,9 @@ public class Unit : MonoBehaviour
     public bool IsDead()
     {
         return isDead;
+    }
+    public SoundManager.SoundType GetSwordHitSound()
+    {
+        return swordHitSound;
     }
 }

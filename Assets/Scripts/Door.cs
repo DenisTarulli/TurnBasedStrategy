@@ -72,4 +72,8 @@ public class Door : MonoBehaviour, IInteractable
     {
         return isOpen;
     }
+    public SoundManager.SoundType GetInteractSound()
+    {
+        return SoundManager.SoundType.AbrirPuerta;
+    }
 }

@@ -1788,6 +1788,7 @@ MonoBehaviour:
   expToGive: 2
   passiveEnergyGain: 0
   visualRoot: {fileID: 7182169192770261481}
+  swordHitSound: 7
   isEnemy: 1
 --- !u!114 &5310146286060733109
 MonoBehaviour:

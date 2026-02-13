@@ -56,4 +56,8 @@ public class Chest : MonoBehaviour, IInteractable
         timer = interactDuration;
         isActive = true;
     }
+    public SoundManager.SoundType GetInteractSound()
+    {
+        return SoundManager.SoundType.AbrirCofre;
+    }
 }

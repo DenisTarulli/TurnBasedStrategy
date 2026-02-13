@@ -85,7 +85,6 @@ public class ShootAction : BaseAction
 
     private void Shoot()
     {
-        SoundManager.Instance.PlaySFX(SoundManager.SoundType.ArmaDisparo, 0.8f);
         int extraDamage = 0;
 
         if (!unit.IsEnemy() && BuffSystem.Instance.IsPowerBuffActive())
@@ -179,6 +178,7 @@ public class ShootAction : BaseAction
 
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
+        SoundManager.Instance.PlaySFX(SoundManager.SoundType.ArmaDisparo);
         targetUnit = LevelGrid.Instance.GetUnitAtGridPosition(gridPosition);
 
         state = State.Aiming;
