@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyPedestal : MonoBehaviour, IInteractable
+public class KeyPedestal : MonoBehaviour, IInteractable, IInteractSound
 {
     [SerializeField] private GameObject keyObjectVisual;
     private GridPosition gridPosition;

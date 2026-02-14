@@ -128,7 +128,18 @@ public class UnitAnimator : MonoBehaviour
     private void InteractAction_OnInteractStarted(object sender, EventArgs e)
     {
         if (unit != null && unit.IsDead()) return;
+
         animator.SetTrigger(UNIT_INTERACT);
+
+        if (sender is InteractAction interactAction)
+        {
+            IInteractable interactable = interactAction.GetCurrentInteractable();
+
+            if (interactable is IInteractSound soundProvider)
+            {
+                SoundManager.Instance.PlaySFX(soundProvider.GetInteractSound());
+            }
+        }
     }
 
     private void HealAction_OnHealStarted(object sender, EventArgs e)

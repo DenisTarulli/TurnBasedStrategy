@@ -26,7 +26,7 @@ public class SoundManager : MonoBehaviour
         public SoundType type;
         public AudioClip clip;
         [Range(0f, 10f)] public float delay;
-        [Range(0f, 1f)] public float volume = 1f;
+        [Range(0f, 2f)] public float volume = 1f;
     }
 
     [SerializeField] private List<SoundData> sounds = new List<SoundData>();

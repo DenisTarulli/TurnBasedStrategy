@@ -11,6 +11,8 @@ public class InteractAction : BaseAction
 
     [SerializeField] private float rotateSpeed = 100f; // grados por segundo
 
+    private IInteractable currentInteractable;
+
     public override string GetActionName()
     {
         return "Interact";
@@ -63,6 +65,8 @@ public class InteractAction : BaseAction
     // ACÁ EMPIEZA LO IMPORTANTE
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
+        currentInteractable = LevelGrid.Instance.GetInteractableAtGridPosition(gridPosition);
+
         StartCoroutine(InteractSequence(gridPosition, onActionComplete));
     }
 
@@ -107,5 +111,10 @@ public class InteractAction : BaseAction
     public int GetMaxInteractDistance()
     {
         return maxInteractDistance;
+    }
+
+    public IInteractable GetCurrentInteractable()
+    {
+        return currentInteractable;
     }
 }
