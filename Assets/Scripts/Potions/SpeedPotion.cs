@@ -21,6 +21,7 @@ public class SpeedPotion : BasePotion
         {
             BuffSystem.Instance.SetSpeedBuff(true);
             OnSpeedPotionConsumed?.Invoke(this, EventArgs.Empty);
+            SoundManager.Instance.PlaySFX(SoundManager.SoundType.ConsumirPocion);
         }
     }
 }

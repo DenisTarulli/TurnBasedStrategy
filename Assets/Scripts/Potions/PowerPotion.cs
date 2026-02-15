@@ -13,6 +13,7 @@ public class PowerPotion : BasePotion
         if (PotionSystem.Instance.TryConsumePotion(this))
         {
             BuffSystem.Instance.SetPowerBuff(true);
+            SoundManager.Instance.PlaySFX(SoundManager.SoundType.ConsumirPocion);
         }
     }
 }

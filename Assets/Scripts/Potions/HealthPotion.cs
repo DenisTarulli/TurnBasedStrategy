@@ -14,6 +14,7 @@ public class HealthPotion : BasePotion
         if (PotionSystem.Instance.TryConsumePotion(this))
         {
             BuffSystem.Instance.SetHealthBuff(true);
+            SoundManager.Instance.PlaySFX(SoundManager.SoundType.ConsumirPocion);
         }
     }
 }

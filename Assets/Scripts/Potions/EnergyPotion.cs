@@ -13,6 +13,7 @@ public class EnergyPotion : BasePotion
         if (PotionSystem.Instance.TryConsumePotion(this))
         {
             BuffSystem.Instance.SetEnergyBuff(true);
+            SoundManager.Instance.PlaySFX(SoundManager.SoundType.ConsumirPocion);
         }
     }
 }

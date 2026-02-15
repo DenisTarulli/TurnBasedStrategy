@@ -13,6 +13,7 @@ public class ResistancePotion : BasePotion
         if (PotionSystem.Instance.TryConsumePotion(this))
         {
             BuffSystem.Instance.SetResistanceBuff(true);
+            SoundManager.Instance.PlaySFX(SoundManager.SoundType.ConsumirPocion);
         }
     }
 }

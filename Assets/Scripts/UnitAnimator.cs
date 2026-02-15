@@ -99,12 +99,14 @@ public class UnitAnimator : MonoBehaviour
     {
         if (unit != null && unit.IsDead()) return;
         animator.SetBool(UNIT_ISWALKING, false);
+        SoundManager.Instance.StopFootsteps();
     }
 
     private void MoveAction_OnStartMoving(object sender, EventArgs e)
     {
         if (unit != null && unit.IsDead()) return;
         animator.SetBool(UNIT_ISWALKING, true);
+        SoundManager.Instance.PlayFootsteps();
     }
 
     private void ShootAction_OnShoot(object sender, ShootAction.OnShootEventArgs e)
@@ -126,6 +128,7 @@ public class UnitAnimator : MonoBehaviour
     {
         if (unit != null && unit.IsDead()) return;
         animator.SetTrigger(UNIT_DEFEND);
+        SoundManager.Instance.PlaySFX(SoundManager.SoundType.EscudoActivado);
     }
 
     private void InteractAction_OnInteractStarted(object sender, EventArgs e)
@@ -149,6 +152,7 @@ public class UnitAnimator : MonoBehaviour
     {
         if (unit != null && unit.IsDead()) return;
         animator.SetTrigger(UNIT_HEAL);
+        SoundManager.Instance.PlaySFX(SoundManager.SoundType.Curarse);
     }
 
     private void GrenadeAction_OnThrowStarted(object sender, EventArgs e)
