@@ -36,6 +36,7 @@ public class DestructibleCrate : MonoBehaviour
         Destroy(gameObject);
 
         OnAnyDestroyed?.Invoke(this, EventArgs.Empty);
+        SoundManager.Instance.PlaySFX(SoundManager.SoundType.MuertePersonaje);
     }
 
     public GridPosition GetGridPosition()
