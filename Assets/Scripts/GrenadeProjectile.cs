@@ -54,6 +54,11 @@ public class GrenadeProjectile : MonoBehaviour
 
             foreach (GridPosition gridPosition in gridPositionsInRange)
             {
+                if (!LevelGrid.Instance.IsValidGridPosition(gridPosition))
+                {
+                    continue;
+                }
+
                 Unit unitInGridPosition = LevelGrid.Instance.GetUnitAtGridPosition(gridPosition);
                 DestructibleCrate destructibleCrate = LevelGrid.Instance.GetDestructibleCrateAtGridPosition(gridPosition);
 

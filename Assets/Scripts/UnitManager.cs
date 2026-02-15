@@ -10,6 +10,8 @@ public class UnitManager : MonoBehaviour
     private List<Unit> friendlyUnitList;
     private List<Unit> enemyUnitList;
 
+    private Unit playerUnit;
+
     private void Awake()
     {
         if (Instance != null)
@@ -61,6 +63,11 @@ public class UnitManager : MonoBehaviour
         else
         {
             friendlyUnitList.Remove(unit);
+
+            if (unit == playerUnit)
+            {
+                playerUnit = null;
+            }
         }
     }
 
@@ -77,5 +84,18 @@ public class UnitManager : MonoBehaviour
     public List<Unit> GetEnemyUnitList()
     {
         return enemyUnitList;
+    }
+
+    public Unit GetPlayerUnit()
+    {
+        foreach (Unit unit in friendlyUnitList)
+        {
+            if (!unit.IsDead())
+            {
+                return unit;
+            }
+        }
+
+        return null;
     }
 }

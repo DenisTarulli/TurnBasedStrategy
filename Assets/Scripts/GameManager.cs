@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -26,12 +25,15 @@ public class GameManager : MonoBehaviour
 
     private bool isGamePaused = false;
     private bool isGameOver = false;
+    private bool isGameWon = false;
 
-    [SerializeField] private GameObject gameOverUI;
+    [Header("UI")]
+    [SerializeField] public GameObject gameOverUI;
+    [SerializeField] public GameObject gameWonUI;
 
     private void Update()
     {
-        if (isGameOver)
+        if (isGameOver || isGameWon)
         {
             return;
         }
@@ -42,6 +44,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // =========================
+    // PAUSA
+    // =========================
     public void TogglePauseGame()
     {
         if (ShopSystem.Instance.IsShopOpen())
@@ -54,20 +59,21 @@ public class GameManager : MonoBehaviour
         if (isGamePaused)
         {
             Time.timeScale = 0f;
-
             OnGamePaused?.Invoke(this, EventArgs.Empty);
         }
         else
         {
             Time.timeScale = 1f;
-
             OnGameUnpaused?.Invoke(this, EventArgs.Empty);
         }
-
     }
 
+    // =========================
+    // GAME OVER (DERROTA)
+    // =========================
     public void GameOver()
     {
+        if (isGameOver || isGameWon) return;
         StartCoroutine(GameOverAfterDelay());
     }
 
@@ -82,14 +88,55 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
     }
 
+    // =========================
+    // GAME WON (VICTORIA)
+    // =========================
+    public void GameWon()
+    {
+        if (isGameWon || isGameOver) return;
+        StartCoroutine(GameWonAfterDelay());
+    }
 
+    private IEnumerator GameWonAfterDelay()
+    {
+        yield return new WaitForSecondsRealtime(3f);
+
+        gameWonUI.SetActive(true);
+        isGameWon = true;
+
+        Debug.Log("GAME WON");
+        Time.timeScale = 0f;
+    }
+
+    // =========================
+    // GETTERS
+    // =========================
     public bool IsGameOver()
     {
         return isGameOver;
     }
 
+    public bool IsGameWon()
+    {
+        return isGameWon;
+    }
+
+    public void SetPlayerDead()
+    {
+        isPlayerDead = true;
+    }
+
+    public bool IsPlayerDead()
+    {
+        return isPlayerDead;
+    }
+
+    // =========================
+    // UI BUTTONS
+    // =========================
     public void MainMenu()
     {
+        Time.timeScale = 1f;
         Loader.Load(Loader.Scene.MainMenuScene);
         SoundManager.Instance.RestartMusic();
     }
@@ -109,18 +156,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator GameOverCoroutine(float delay)
     {
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSecondsRealtime(delay);
         GameOver();
     }
-    public void SetPlayerDead()
-    {
-        isPlayerDead = true;
-    }
-
-    public bool IsPlayerDead()
-    {
-        return isPlayerDead;
-    }
-
-
 }

@@ -47,7 +47,7 @@ public class TurnSystem : MonoBehaviour
 
         if (UnitManager.Instance.GetEnemyUnitList().Count == 0)
         {
-            GameManager.Instance.GameOver();
+            GameManager.Instance.GameWon();
         }
     }
 
@@ -66,7 +66,15 @@ public class TurnSystem : MonoBehaviour
 
             if (turnNumber > turnLimit)
             {
-                GameManager.Instance.GameOver();
+                Unit playerUnit = UnitManager.Instance.GetPlayerUnit();
+
+                if (playerUnit != null && !playerUnit.IsDead())
+                {
+                    playerUnit.Damage(9999); // o playerUnit.Damage(playerUnit.GetHealth())
+                    Debug.Log("le hizo daño");
+                }
+                Debug.Log("no le hizo daño");
+                return;
             }
         }
 
