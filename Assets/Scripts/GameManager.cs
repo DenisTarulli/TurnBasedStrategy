@@ -91,6 +91,7 @@ public class GameManager : MonoBehaviour
     public void MainMenu()
     {
         Loader.Load(Loader.Scene.MainMenuScene);
+        SoundManager.Instance.RestartMusic();
     }
 
     public void Restart()
@@ -98,6 +99,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         StaticReset.ResetAll();
         Loader.Load(Loader.Scene.GameScene);
+        SoundManager.Instance.RestartMusic();
     }
 
     public void StartGameOverWithDelay(float delay)

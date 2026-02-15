@@ -333,4 +333,8 @@ public class Unit : MonoBehaviour
     {
         return swordHitSound;
     }
+    public SoundManager.SoundType GetDeathSound()
+    {
+        return SoundManager.SoundType.MuertePersonaje;
+    }
 }

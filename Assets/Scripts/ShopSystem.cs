@@ -31,11 +31,13 @@ public class ShopSystem : MonoBehaviour
     {
         shopOpen = true;
         Time.timeScale = 0f;
+        SoundManager.Instance.PauseSFX();
     }
 
     public void CloseShop()
     {
         Time.timeScale = 1f;
+        SoundManager.Instance.ResumeSFX();
 
         ClaimRewards();
 

@@ -28,6 +28,7 @@ public class UnitAnimator : MonoBehaviour
 
     private Unit unit;
 
+
     private void Awake()
     {
         unit = GetComponent<Unit>();
@@ -82,6 +83,8 @@ public class UnitAnimator : MonoBehaviour
         {
             healthSystem.OnDamaged += HealthSystem_OnDamaged;
         }
+
+        healthSystem.OnDead += HealthSystem_OnDead;
     }
 
 
@@ -162,6 +165,13 @@ public class UnitAnimator : MonoBehaviour
         animator.SetTrigger(UNIT_HIT);
     }
 
+    private void HealthSystem_OnDead(object sender, EventArgs e)
+    {
+        if (unit == null) return;
+
+        SoundManager.Instance.PlaySFX(unit.GetDeathSound());
+    }
+
 
     private void OnDestroy()
     {
@@ -204,6 +214,8 @@ public class UnitAnimator : MonoBehaviour
         if (healthSystem != null)
         {
             healthSystem.OnDamaged -= HealthSystem_OnDamaged;
+
+            healthSystem.OnDead -= HealthSystem_OnDead;
         }
     }
 
