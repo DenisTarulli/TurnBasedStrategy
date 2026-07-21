@@ -6,9 +6,10 @@ public class ActionButtonUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI actionNameText;
     [SerializeField] private TextMeshProUGUI actionCostText;
+    [SerializeField] private TextMeshProUGUI actionPointsCostText;
     [SerializeField] private Button button;
+    [SerializeField] private Image actionIcon;
     [SerializeField] private GameObject selectedGameObject;
-    [SerializeField] private GameObject selectedGameObjectText;
 
     private BaseAction baseAction;
 
@@ -19,8 +20,10 @@ public class ActionButtonUI : MonoBehaviour
     public void SetBaseAction(BaseAction baseAction)
     {
         this.baseAction = baseAction;
+        actionIcon.sprite = baseAction.GetIcon();
         actionNameText.text = baseAction.GetActionName().ToUpper();
         actionCostText.text = baseAction.GetEnergyCost().ToString();
+        actionPointsCostText.text = "1"; 
 
         button.onClick.AddListener(() =>
         {
@@ -36,6 +39,5 @@ public class ActionButtonUI : MonoBehaviour
     {
         BaseAction selectedBaseAction = UnitActionSystem.Instance.GetSelectedAction();
         selectedGameObject.SetActive(selectedBaseAction == baseAction);
-        selectedGameObjectText.SetActive(selectedBaseAction == baseAction);
     }
 }

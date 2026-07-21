@@ -7,6 +7,10 @@ public class UnitActionSystemUI : MonoBehaviour
 {
     [SerializeField] private Transform actionButtonPrefab;
     [SerializeField] private Transform actionButtonContainterTransform;
+    [SerializeField] private RectTransform backgroundRectTransform;
+    [SerializeField] private float actionButtonCellSizeX;
+    [SerializeField] private float backgroundHeight;
+    [SerializeField] private float extraWidthAmount;
 
     private List<ActionButtonUI> actionButtonUIList;
 
@@ -21,6 +25,7 @@ public class UnitActionSystemUI : MonoBehaviour
         UnitActionSystem.Instance.OnSelectedActionChanged += UnitActionSystem_OnSelectedActionChanged;
         CreateUnitActionButtons();
         UpdateSelectedVisual();
+        AdjustBackgroundSize();
     }
     private void UnitActionSystem_OnSelectedActionChanged(object sender, EventArgs e)
     {
@@ -60,5 +65,12 @@ public class UnitActionSystemUI : MonoBehaviour
         {
             actionButtonUI.UpdateSelectedVisual();
         }
+    }
+
+    private void AdjustBackgroundSize()
+    {
+        float backgroundNewWidth = (actionButtonCellSizeX * (actionButtonUIList.Count + 1)) + extraWidthAmount; 
+        backgroundRectTransform.sizeDelta = new Vector2(backgroundNewWidth, backgroundHeight);
+        Debug.Log(backgroundRectTransform.rect);
     }
 }

@@ -15,6 +15,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 941020660096621766, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 843a4d01df4690f438182c8d867604a1,
+        type: 3}
+    - target: {fileID: 941020660096621766, guid: 4a02b210b4bf4484699592c8ad94742b,
+        type: 3}
       propertyPath: energyCost
       value: 2
       objectReference: {fileID: 0}
@@ -30,6 +36,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1818496213098754558, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 0f6a7bfa455a45d48a1093e5447c0705,
+        type: 3}
+    - target: {fileID: 1818496213098754558, guid: 4a02b210b4bf4484699592c8ad94742b,
+        type: 3}
       propertyPath: energyCost
       value: 1
       objectReference: {fileID: 0}
@@ -38,6 +50,12 @@ PrefabInstance:
       propertyPath: damageToDeal
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2450972907125092273, guid: 4a02b210b4bf4484699592c8ad94742b,
+        type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 08d80c6379a89cc4594450ba8fc97976,
+        type: 3}
     - target: {fileID: 2450972907125092273, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
       propertyPath: energyCost
@@ -55,6 +73,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2675619301542887084, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 6d60ae3b4a0c96e49b1ff2c31e0b0bac,
+        type: 3}
+    - target: {fileID: 2675619301542887084, guid: 4a02b210b4bf4484699592c8ad94742b,
+        type: 3}
       propertyPath: energyCost
       value: 2
       objectReference: {fileID: 0}
@@ -63,6 +87,12 @@ PrefabInstance:
       propertyPath: maxMoveDistance
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6301559735661326554, guid: 4a02b210b4bf4484699592c8ad94742b,
+        type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 7a799c5bc212a6a4da294d568125d069,
+        type: 3}
     - target: {fileID: 6301559735661326554, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
       propertyPath: energyCost
@@ -83,6 +113,12 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6626201822665126324, guid: 4a02b210b4bf4484699592c8ad94742b,
+        type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 850c41a1767af634095694707d1d358f,
+        type: 3}
     - target: {fileID: 6626201822665126324, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
       propertyPath: energyCost
@@ -138,6 +174,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7263831377536425997, guid: 4a02b210b4bf4484699592c8ad94742b,
+        type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 3d0f999c4c436d1469bc27ca99ccace6,
+        type: 3}
     - target: {fileID: 7263831377536425997, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
       propertyPath: energyCost
