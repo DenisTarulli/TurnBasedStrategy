@@ -71,6 +71,5 @@ public class UnitActionSystemUI : MonoBehaviour
     {
         float backgroundNewWidth = (actionButtonCellSizeX * (actionButtonUIList.Count + 1)) + extraWidthAmount; 
         backgroundRectTransform.sizeDelta = new Vector2(backgroundNewWidth, backgroundHeight);
-        Debug.Log(backgroundRectTransform.rect);
     }
 }

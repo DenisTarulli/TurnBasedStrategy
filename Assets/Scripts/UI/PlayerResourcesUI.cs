@@ -8,18 +8,24 @@ public class PlayerResourcesUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI energyText;
     [SerializeField] private TextMeshProUGUI actionPointsText;
     [SerializeField] private TextMeshProUGUI nextTurnEnergyGainText;
+    [SerializeField] private GameObject energyIconContainer;
+    [SerializeField] private GameObject actionPointsIconContainer;
     [SerializeField] private Unit playerUnit;
+
+    private GameObject[] energyIconArray;
+    private GameObject[] actionPointsIconArray;
 
     private void Start()
     {
         Unit.OnAnyEnergyChanged += Unit_OnAnyEnergyChanged;
         Unit.OnAnyActionPointsChanged += Unit_OnAnyActionPointsChanged;
-        playerUnit.OnMaxEnergyChanged += PlayerUnit_OnMaxEnergyChanged;
+        playerUnit.OnPassiveEnergyGainChange += PlayerUnit_OnPassiveEnergyChange;
         BuffSystem.Instance.OnEnergyBuffChanged += BuffSystem_OnEnergyBuffChanged;
 
         UpdatePlayerResourcesText(energyText, playerUnit.GetEnergy(), playerUnit.GetMaxEnergy());
         UpdatePlayerResourcesText(actionPointsText, playerUnit.GetActionPoints(), playerUnit.GetMaxActionPoints());
         UpdateNextTurnEnergyGainText();
+        SetIconsArray();
     }
 
     private void BuffSystem_OnEnergyBuffChanged(object sender, System.EventArgs e)
@@ -27,9 +33,9 @@ public class PlayerResourcesUI : MonoBehaviour
         UpdateNextTurnEnergyGainText();
     }
 
-    private void PlayerUnit_OnMaxEnergyChanged(object sender, System.EventArgs e)
+    private void PlayerUnit_OnPassiveEnergyChange(object sender, System.EventArgs e)
     {
-        UpdatePlayerResourcesText(energyText, playerUnit.GetEnergy(), playerUnit.GetMaxEnergy());
+        UpdateNextTurnEnergyGainText();
     }
 
     private void Unit_OnAnyEnergyChanged(object sender, System.EventArgs e)
@@ -39,6 +45,7 @@ public class PlayerResourcesUI : MonoBehaviour
         if (unit == playerUnit)
         {
             UpdatePlayerResourcesText(energyText, playerUnit.GetEnergy(), playerUnit.GetMaxEnergy());
+            UpdatePlayerEnergyIcons(playerUnit.GetEnergy());
             UpdateNextTurnEnergyGainText();
         }        
     }
@@ -50,7 +57,27 @@ public class PlayerResourcesUI : MonoBehaviour
         if (unit == playerUnit)
         {
             UpdatePlayerResourcesText(actionPointsText, playerUnit.GetActionPoints(), playerUnit.GetMaxActionPoints());
+            UpdatePlayerActionPointsIcons(playerUnit.GetActionPoints());
             UpdateNextTurnEnergyGainText();
+        }
+    }
+
+    private void SetIconsArray()
+    {
+        int energyIconAmount = energyIconContainer.transform.childCount;
+        int actionPointsIconAmount = actionPointsIconContainer.transform.childCount;
+
+        energyIconArray = new GameObject[energyIconAmount];
+        actionPointsIconArray = new GameObject[actionPointsIconAmount];
+
+        for (int i = 0; i < energyIconAmount; i++)
+        {
+            energyIconArray[i] = energyIconContainer.transform.GetChild(i).gameObject;
+        }
+
+        for (int i = 0; i < actionPointsIconAmount; i++)
+        {
+            actionPointsIconArray[i] = actionPointsIconContainer.transform.GetChild(i).gameObject;
         }
     }
 
@@ -62,5 +89,34 @@ public class PlayerResourcesUI : MonoBehaviour
     private void UpdateNextTurnEnergyGainText()
     {
         nextTurnEnergyGainText.text = $"+{playerUnit.GetNextTurnEnergyRegen()}";
+    }
+
+    private void UpdatePlayerEnergyIcons(int energyCurrentValue)
+    {
+        for (int i = 0; i < energyIconArray.Length; i++)
+        {
+            if (energyCurrentValue <= i)
+            {
+                energyIconArray[i].SetActive(false);
+            }
+            else
+            {
+                energyIconArray[i].SetActive(true);
+            }
+        }
+    }
+    private void UpdatePlayerActionPointsIcons(int actionPointsCurrentValue)
+    {
+        for (int i = 0; i < actionPointsIconArray.Length; i++)
+        {
+            if (actionPointsCurrentValue <= i)
+            {
+                actionPointsIconArray[i].SetActive(false);
+            }
+            else
+            {
+                actionPointsIconArray[i].SetActive(true);
+            }
+        }
     }
 }
