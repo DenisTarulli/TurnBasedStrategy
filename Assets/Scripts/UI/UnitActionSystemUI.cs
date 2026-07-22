@@ -48,6 +48,7 @@ public class UnitActionSystemUI : MonoBehaviour
             Transform actionButtonTransform = Instantiate(actionButtonPrefab, actionButtonContainterTransform);
             ActionButtonUI actionButtonUI = actionButtonTransform.GetComponent<ActionButtonUI>();
             actionButtonUI.SetBaseAction(baseAction);
+            actionButtonUI.SetTooltip(baseAction.GetTooltip());
 
             actionButtonUIList.Add(actionButtonUI);
         }

@@ -21,6 +21,7 @@ public abstract class BaseAction : MonoBehaviour
 
     [SerializeField] protected int energyCost;
     [SerializeField] protected Sprite icon;
+    [SerializeField] protected GameObject tooltip;
 
     protected virtual void Awake()
     {
@@ -94,6 +95,11 @@ public abstract class BaseAction : MonoBehaviour
     public Sprite GetIcon()
     {
         return icon;
+    }
+
+    public GameObject GetTooltip()
+    {
+        return tooltip;
     }
 
     public EnemyAIAction GetBestEnemyAIAction()

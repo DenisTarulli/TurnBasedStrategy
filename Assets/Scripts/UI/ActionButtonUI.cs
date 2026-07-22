@@ -10,7 +10,9 @@ public class ActionButtonUI : MonoBehaviour
     [SerializeField] private Button button;
     [SerializeField] private Image actionIcon;
     [SerializeField] private GameObject selectedGameObject;
+    [SerializeField] private Transform tooltipParent;
 
+    private GameObject tooltip;
     private BaseAction baseAction;
 
     /// <summary>
@@ -39,5 +41,16 @@ public class ActionButtonUI : MonoBehaviour
     {
         BaseAction selectedBaseAction = UnitActionSystem.Instance.GetSelectedAction();
         selectedGameObject.SetActive(selectedBaseAction == baseAction);
+    }
+
+    public void SetTooltip(GameObject tooltip)
+    {
+        this.tooltip = tooltip;
+        Instantiate(tooltip, tooltipParent);
+    }
+
+    public GameObject GetTooltip()
+    {
+        return tooltip;
     }
 }
