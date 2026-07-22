@@ -92,6 +92,16 @@ public class HealthSystem : MonoBehaviour
         return (float)health / healthMax;
     }
 
+    public int GetCurrentHealth()
+    {
+        return health;
+    }
+
+    public int GetMaxHealth()
+    {
+        return healthMax;
+    }
+
     public void Heal(int healAmount)
     {
         health += healAmount;

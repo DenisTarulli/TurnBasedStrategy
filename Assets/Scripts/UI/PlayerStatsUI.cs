@@ -10,6 +10,7 @@ public class PlayerStatsUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI powerStatText;
     [SerializeField] private TextMeshProUGUI resistanceStatText;
     [SerializeField] private TextMeshProUGUI speedStatText;
+    [SerializeField] private HealthSystem playerUnitHealthSystem;
 
     private void Start()
     {
@@ -19,7 +20,14 @@ public class PlayerStatsUI : MonoBehaviour
         PlayerStats.Instance.OnResistanceChanged += PlayerStats_OnResistanceChanged;
         PlayerStats.Instance.OnSpeedChanged += PlayerStats_OnSpeedChanged;
 
+        playerUnitHealthSystem.OnHealthAmountChange += HealthSystem_OnHealthAmountChange;
+
         UpdateAllStatsText();
+    }
+
+    private void HealthSystem_OnHealthAmountChange(object sender, System.EventArgs e)
+    {
+        UpdateHealthStat();
     }
 
     private void PlayerStats_OnEnergyChanged(object sender, System.EventArgs e)
@@ -29,7 +37,7 @@ public class PlayerStatsUI : MonoBehaviour
 
     private void PlayerStats_OnHealthChanged(object sender, System.EventArgs e)
     {
-        UpdateStatAmountText(healthStatText, PlayerStats.Instance.GetHealth());
+        UpdateHealthStat();
     }
 
     private void PlayerStats_OnPowerChanged(object sender, System.EventArgs e)
@@ -50,7 +58,7 @@ public class PlayerStatsUI : MonoBehaviour
     private void UpdateAllStatsText()
     {
         UpdateStatAmountText(energyStatText, PlayerStats.Instance.GetEnergy());
-        UpdateStatAmountText(healthStatText, PlayerStats.Instance.GetHealth());
+        UpdateHealthStat();
         UpdateStatAmountText(powerStatText, PlayerStats.Instance.GetPower());
         UpdateStatAmountText(resistanceStatText, PlayerStats.Instance.GetResistance());
         UpdateStatAmountText(speedStatText, PlayerStats.Instance.GetSpeed());
@@ -59,5 +67,10 @@ public class PlayerStatsUI : MonoBehaviour
     private void UpdateStatAmountText(TextMeshProUGUI textToUpdate, int amount)
     {
         textToUpdate.text = amount.ToString();
+    }
+
+    private void UpdateHealthStat()
+    {
+        healthStatText.text = $"{playerUnitHealthSystem.GetCurrentHealth()}/{playerUnitHealthSystem.GetMaxHealth()}";
     }
 }

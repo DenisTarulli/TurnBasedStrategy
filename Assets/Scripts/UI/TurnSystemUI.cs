@@ -91,7 +91,7 @@ public class TurnSystemUI : MonoBehaviour
 
     public void UpdateTurnText()
     {
-        turnNumberText.text = $"TURN {TurnSystem.Instance.GetTurnNumber()}/{TurnSystem.Instance.GetTurnLimit()}";
+        turnNumberText.text = $"{TurnSystem.Instance.GetTurnNumber()}/{TurnSystem.Instance.GetTurnLimit()}";
     }
 
     private void UpdateEnemyTurnVisual()
