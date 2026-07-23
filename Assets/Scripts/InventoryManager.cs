@@ -145,6 +145,20 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    public int GetSpecificPotionAmount(string potionKey)
+    {
+        foreach (KeyValuePair<string, int> potions in potionsInventory)
+        {
+            if (potions.Key == potionKey)
+            {                
+                return potions.Value;
+            }
+        }
+
+        Debug.LogError($"There is no potion with the key: {potionKey}");
+        return 0;
+    }
+
     public void AddPotionsTesting()
     {
         for (int i = 0; i < potionsInventory.Count; ++i)

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,10 +24,13 @@ public class ShopSystemUI : MonoBehaviour
     [SerializeField] private Transform itemsButtonsContainer;
     [SerializeField] private GameObject shopButtonPrefab;
     [SerializeField] private int totalOptions;
+    [SerializeField] private TextMeshProUGUI goldText;
 
     [SerializeField] private BaseReward[] potionRewards;
     [SerializeField] private BaseReward[] statRewards;
     [SerializeField] private BaseReward goldReward;
+
+    [SerializeField] private PotionDisplayShopUI[] potionsToDisplay;
 
     private List<GameObject> statsButtonList = new List<GameObject>();
     private List<GameObject> itemsButtonList = new List<GameObject>();
@@ -66,7 +70,7 @@ public class ShopSystemUI : MonoBehaviour
                 int randomStat = availableInts[randomIndex];
                 availableInts.RemoveAt(randomIndex);
 
-                shopButtonUI.AddAndSetImageInContainer(statRewards[randomStat].GetImage(), statRewards[randomStat].GetSpriteColor());
+                shopButtonUI.AddAndSetImageInContainer(statRewards[randomStat].GetSprite(), statRewards[randomStat].GetSpriteColor());
 
                 shopButtonUI.GetButton().onClick.AddListener(() =>
                 {
@@ -81,7 +85,7 @@ public class ShopSystemUI : MonoBehaviour
                 int randomStat = availableInts[randomIndex];
                 availableInts.RemoveAt(randomIndex);
 
-                shopButtonUI.AddAndSetImageInContainer(statRewards[randomStat].GetImage(), statRewards[randomStat].GetSpriteColor());
+                shopButtonUI.AddAndSetImageInContainer(statRewards[randomStat].GetSprite(), statRewards[randomStat].GetSpriteColor());
 
                 shopButtonUI.GetButton().onClick.AddListener(() =>
                 {
@@ -96,7 +100,7 @@ public class ShopSystemUI : MonoBehaviour
                 int randomStat = availableInts[randomIndex];
                 availableInts.RemoveAt(randomIndex);
 
-                shopButtonUI.AddAndSetImageInContainer(statRewards[randomStat].GetImage(), statRewards[randomStat].GetSpriteColor());
+                shopButtonUI.AddAndSetImageInContainer(statRewards[randomStat].GetSprite(), statRewards[randomStat].GetSpriteColor());
 
                 shopButtonUI.GetButton().onClick.AddListener(() =>
                 {
@@ -126,7 +130,7 @@ public class ShopSystemUI : MonoBehaviour
                 int randomPotion = availableInts[randomIndex];
                 availableInts.RemoveAt(randomIndex);
 
-                shopButtonUI.AddAndSetImageInContainer(potionRewards[randomPotion].GetImage(), potionRewards[randomPotion].GetSpriteColor());
+                shopButtonUI.AddAndSetImageInContainer(potionRewards[randomPotion].GetSprite(), potionRewards[randomPotion].GetSpriteColor());
 
                 shopButtonUI.GetButton().onClick.AddListener(() =>
                 {
@@ -147,7 +151,7 @@ public class ShopSystemUI : MonoBehaviour
                 int randomPotion = availableInts[randomIndex];
                 availableInts.RemoveAt(randomIndex);
 
-                shopButtonUI.AddAndSetImageInContainer(potionRewards[randomPotion].GetImage(), potionRewards[randomPotion].GetSpriteColor());
+                shopButtonUI.AddAndSetImageInContainer(potionRewards[randomPotion].GetSprite(), potionRewards[randomPotion].GetSpriteColor());
 
                 shopButtonUI.GetButton().onClick.AddListener(() =>
                 {
@@ -164,7 +168,7 @@ public class ShopSystemUI : MonoBehaviour
             }
             else
             {
-                shopButtonUI.AddAndSetImageInContainer(goldReward.GetImage(), goldReward.GetSpriteColor());
+                shopButtonUI.AddAndSetImageInContainer(goldReward.GetSprite(), goldReward.GetSpriteColor());
 
                 shopButtonUI.GetButton().onClick.AddListener(() =>
                 {
@@ -200,6 +204,8 @@ public class ShopSystemUI : MonoBehaviour
         gameObject.SetActive(true);
         ShopSystem.Instance.OpenShop();
         CreateShopButtons();
+        UpdateGoldText();
+        UpdatePotionsDisplayAmount();
     }
 
     private void Hide()
@@ -230,6 +236,19 @@ public class ShopSystemUI : MonoBehaviour
         }
 
         return rewardsToGiveList;
+    }
+
+    private void UpdateGoldText()
+    {
+        goldText.text = $"{InventoryManager.Instance.GetGoldAmount()}";
+    }
+
+    private void UpdatePotionsDisplayAmount()
+    {
+        for (int i = 0; i < potionsToDisplay.Length; i++)
+        {
+            potionsToDisplay[i].UpdateAmountText();
+        }
     }
 
     private void OnDisable()

@@ -24,7 +24,6 @@ public class PotionSystemUI : MonoBehaviour
         AdjustBackgroundSize();
 
         potionButtonUIArray = new PotionButtonUI[potionButtonContainerTransform.childCount];
-        Debug.Log(potionButtonContainerTransform.childCount);
 
         for (int i = 0; i < potionButtonContainerTransform.childCount; i++)
         {

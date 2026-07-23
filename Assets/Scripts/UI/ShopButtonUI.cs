@@ -11,6 +11,7 @@ public class ShopButtonUI : MonoBehaviour
     [SerializeField] private Button button;
     [SerializeField] private TextMeshProUGUI buttonText;
     [SerializeField] private Color disabledTextColor;
+    [SerializeField] private Image imagePrefab;
 
     private bool isSelected;
 
@@ -36,10 +37,10 @@ public class ShopButtonUI : MonoBehaviour
         return button;
     }
 
-    public void AddAndSetImageInContainer(Image image, Color color)
+    public void AddAndSetImageInContainer(Sprite newSprite, Color color)
     {
-        Image newImage = Instantiate(image, displayContainer);
-        newImage.color = color;
+        Image newImage = Instantiate(imagePrefab, displayContainer);
+        newImage.sprite = newSprite;
     }
 
     public void SetDisabledTextColor()

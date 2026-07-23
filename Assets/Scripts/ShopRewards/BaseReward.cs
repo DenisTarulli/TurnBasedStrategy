@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public abstract class BaseReward : MonoBehaviour
 {
-    [SerializeField] private Image sprite;
+    [SerializeField] private Sprite sprite;
     [SerializeField] private Color spriteColor;
 
     public abstract void Behaviour();
 
-    public Image GetImage()
+    public Sprite GetSprite()
     {
         return sprite;
     }

@@ -10,6 +10,7 @@ public class PotionSystem : MonoBehaviour
     public event EventHandler OnSelectedPotionChange;
 
     private BasePotion selectedPotion;
+    private BasePotion[] basePotionArray;
 
     private void Awake()
     {
@@ -21,12 +22,12 @@ public class PotionSystem : MonoBehaviour
         }
 
         Instance = this;
+
+        basePotionArray = GetComponents<BasePotion>();
     }
 
     public BasePotion[] GetBasePotionArray()
     {
-        BasePotion[] basePotionArray = GetComponents<BasePotion>();
-
         return basePotionArray;
     }
 
