@@ -92,6 +92,11 @@ public class InventoryManager : MonoBehaviour
         return gold;
     }
 
+    public int GetKeysAmount()
+    {
+        return keys;
+    }
+
     public bool HasKeyPotion(string potionKey)
     {
         foreach (KeyValuePair<string, int> potions in potionsInventory)
