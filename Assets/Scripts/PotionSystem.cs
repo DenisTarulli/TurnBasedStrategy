@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,10 @@ using UnityEngine;
 public class PotionSystem : MonoBehaviour
 {
     public static PotionSystem Instance { get; private set; }
+
+    public event EventHandler OnSelectedPotionChange;
+
+    private BasePotion selectedPotion;
 
     private void Awake()
     {
@@ -37,5 +42,21 @@ public class PotionSystem : MonoBehaviour
 
         InventoryManager.Instance.RemovePotion(basePotion.GetName());
         return true;
+    }
+
+    public void SetSelectedPotion(BasePotion newSelectedPotion)
+    {
+        selectedPotion = newSelectedPotion;
+        OnSelectedPotionChange?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void Consume()
+    {
+        selectedPotion.ConsumePotion();
+    }
+
+    public BasePotion GetSelectedPotion()
+    {
+        return selectedPotion;
     }
 }
