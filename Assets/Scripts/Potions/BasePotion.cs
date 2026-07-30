@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public abstract class BasePotion : MonoBehaviour
 {
     [SerializeField] protected Sprite potionSprite;
+    [SerializeField] protected GameObject tooltip;
     protected TextMeshProUGUI potionAmountText;
     protected string potionName;
 
@@ -31,5 +32,10 @@ public abstract class BasePotion : MonoBehaviour
     public TextMeshProUGUI GetPotionAmountTextObject()
     {
         return potionAmountText;
+    }
+
+    public GameObject GetTooltip()
+    {
+        return tooltip;
     }
 }

@@ -60,7 +60,10 @@ public class PotionSystemUI : MonoBehaviour
         {
             Transform potionButtonTransform = Instantiate(potionButtonPrefab, potionButtonContainerTransform);
             potionButtonTransform.GetChild(0).GetComponent<Image>().sprite = basePotion.GetSprite();
-            potionButtonTransform.GetComponent<PotionButtonUI>().SetBasePotion(basePotion);
+
+            PotionButtonUI potionButtonUI = potionButtonTransform.GetComponent<PotionButtonUI>();
+
+            potionButtonUI.SetBasePotion(basePotion);
 
             potionButtonTransform.GetComponent<Button>().onClick.AddListener(() =>
             {
@@ -68,6 +71,7 @@ public class PotionSystemUI : MonoBehaviour
             });
 
             basePotion.SetPotionAmountTextObject(potionButtonTransform.GetComponentInChildren<TextMeshProUGUI>());
+            potionButtonUI.SetTooltip(basePotion.GetTooltip());
         }
     }
 

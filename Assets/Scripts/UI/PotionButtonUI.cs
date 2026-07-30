@@ -6,7 +6,10 @@ using UnityEngine.UI;
 public class PotionButtonUI : MonoBehaviour
 {
     [SerializeField] private GameObject selectedGameObject;
+    [SerializeField] private Transform tooltipParent;
     private BasePotion basePotion;
+
+    private GameObject tooltip;
 
     public void UpdateSelectedVisual()
     {
@@ -17,5 +20,16 @@ public class PotionButtonUI : MonoBehaviour
     public void SetBasePotion(BasePotion basePotion)
     {
         this.basePotion = basePotion;
+    }
+
+    public void SetTooltip(GameObject tooltip)
+    {
+        this.tooltip = tooltip;
+        Instantiate(tooltip, tooltipParent);
+    }
+
+    public GameObject GetTooltip()
+    {
+        return tooltip;
     }
 }
