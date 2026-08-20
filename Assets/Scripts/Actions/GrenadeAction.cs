@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class GrenadeAction : BaseAction
 {
+    public event EventHandler OnGrenadeActionStarted;
+
     [SerializeField] private Transform grenadeProjectilePrefab;
     [SerializeField] private int maxThrowDistance = 7;
     [SerializeField] private LayerMask obstaclesLayerMask;
+    [SerializeField] private float throwDelay = 0.4f;
 
 
     private void Update()
@@ -15,7 +18,7 @@ public class GrenadeAction : BaseAction
         if (!isActive)
         {
             return;
-        }        
+        }
     }
 
     public override string GetActionName()
@@ -51,7 +54,7 @@ public class GrenadeAction : BaseAction
             Vector3 targetHex = LevelGrid.Instance.GetWorldPosition(testGridPosition);
 
             Vector3 unitWorldPosition = LevelGrid.Instance.GetWorldPosition(unitGridPosition);
-            Vector3 shootDirection = (targetHex- unitWorldPosition).normalized;
+            Vector3 shootDirection = (targetHex - unitWorldPosition).normalized;
 
             float unitShoulderHeight = 1.7f;
             if (Physics.Raycast(
@@ -70,11 +73,20 @@ public class GrenadeAction : BaseAction
 
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
+        OnGrenadeActionStarted?.Invoke(this, EventArgs.Empty);
+
+        StartCoroutine(SpawnGrenadeAfterDelay(gridPosition));
+
+        ActionStart(onActionComplete);
+    }
+
+    private IEnumerator SpawnGrenadeAfterDelay(GridPosition gridPosition)
+    {
+        yield return new WaitForSeconds(throwDelay);
+
         Transform grenadeProjectileTransform = Instantiate(grenadeProjectilePrefab, unit.GetWorldPosition(), Quaternion.identity);
         GrenadeProjectile grenadeProjectile = grenadeProjectileTransform.GetComponent<GrenadeProjectile>();
         grenadeProjectile.Setup(gridPosition, OnGrenadeBehaviourComplete);
-
-        ActionStart(onActionComplete);
     }
 
     private void OnGrenadeBehaviourComplete()

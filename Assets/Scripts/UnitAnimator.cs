@@ -6,6 +6,10 @@ public class UnitAnimator : MonoBehaviour
     private const string UNIT_ISWALKING = "IsWalking";
     private const string UNIT_SHOOT = "Shoot";
     private const string UNIT_SWORD_SLASH = "SwordSlash";
+    private const string UNIT_GRENADE_THROW = "GrenadeThrow";
+    private const string UNIT_HEAL = "Heal";
+    private const string UNIT_DEFEND = "Defend";
+    private const string UNIT_INTERACT = "Interact";
 
     [SerializeField] private Animator animator;
     [SerializeField] private Transform bulletProjectilePrefab;
@@ -30,6 +34,26 @@ public class UnitAnimator : MonoBehaviour
         {
             swordAction.OnSwordActionStarted += SwordAction_OnSwordActionStarted;
             swordAction.OnSwordActionCompleted += SwordAction_OnSwordActionCompleted;
+        }
+
+        if (TryGetComponent<GrenadeAction>(out GrenadeAction grenadeAction))
+        {
+            grenadeAction.OnGrenadeActionStarted += GrenadeAction_OnGrenadeActionStarted;
+        }
+
+        if (TryGetComponent<HealAction>(out HealAction healAction))
+        {
+            healAction.OnHealActionStarted += HealAction_OnHealActionStarted;
+        }
+
+        if (TryGetComponent<DefendAction>(out DefendAction defendAction))
+        {
+            defendAction.OnDefendActionStarted += DefendAction_OnDefendActionStarted;
+        }
+
+        if (TryGetComponent<InteractAction>(out InteractAction interactAction))
+        {
+            interactAction.OnInteractActionStarted += InteractAction_OnInteractActionStarted;
         }
     }
 
@@ -71,6 +95,26 @@ public class UnitAnimator : MonoBehaviour
         targetUnitShootAtPosition.y = shootPointTransform.position.y;
 
         bulletProjectile.Setup(targetUnitShootAtPosition);
+    }
+
+    private void GrenadeAction_OnGrenadeActionStarted(object sender, EventArgs e)
+    {
+        animator.SetTrigger(UNIT_GRENADE_THROW);
+    }
+
+    private void HealAction_OnHealActionStarted(object sender, EventArgs e)
+    {
+        animator.SetTrigger(UNIT_HEAL);
+    }
+
+    private void DefendAction_OnDefendActionStarted(object sender, EventArgs e)
+    {
+        animator.SetTrigger(UNIT_DEFEND);
+    }
+
+    private void InteractAction_OnInteractActionStarted(object sender, EventArgs e)
+    {
+        animator.SetTrigger(UNIT_INTERACT);
     }
 
     private void EquipSword()

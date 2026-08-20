@@ -323,6 +323,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7263831377536425997, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
+      propertyPath: throwDelay
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7263831377536425997, guid: 4a02b210b4bf4484699592c8ad94742b,
+        type: 3}
       propertyPath: maxThrowDistance
       value: 3
       objectReference: {fileID: 0}
