@@ -249,6 +249,11 @@ PrefabInstance:
       propertyPath: actionPointsMax
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8999692434505470798, guid: 4a02b210b4bf4484699592c8ad94742b,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 8448597460994335955}
     m_RemovedComponents:
     - {fileID: 1293953526380841009, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
     - {fileID: 2450972907125092273, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
@@ -413,6 +418,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gobbling
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 0164d1249b08acc45a44726f86c02265,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c6d4c0d5a2a99684d8148d33785ab6f3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -431,6 +441,12 @@ Transform:
 --- !u!4 &2584888564880277161 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0164d1249b08acc45a44726f86c02265,
+    type: 3}
+  m_PrefabInstance: {fileID: 2618252784949336386}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &8448597460994335955 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 0164d1249b08acc45a44726f86c02265,
     type: 3}
   m_PrefabInstance: {fileID: 2618252784949336386}
   m_PrefabAsset: {fileID: 0}

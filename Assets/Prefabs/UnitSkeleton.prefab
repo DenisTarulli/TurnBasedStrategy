@@ -102,7 +102,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 26a10cc54fde8e843978f2e6f3ec3d71, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 6576570162772918644, guid: 0352cd5c119f5cd4d97d5b57395cb1e1,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -111,8 +111,39 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7036213049465896255, guid: 0352cd5c119f5cd4d97d5b57395cb1e1,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3164571418487827623}
   m_SourcePrefab: {fileID: 100100000, guid: 0352cd5c119f5cd4d97d5b57395cb1e1, type: 3}
+--- !u!1 &3531351499056946034 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7036213049465896255, guid: 0352cd5c119f5cd4d97d5b57395cb1e1,
+    type: 3}
+  m_PrefabInstance: {fileID: 5810847515933992525}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &3164571418487827623
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3531351499056946034}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 0352cd5c119f5cd4d97d5b57395cb1e1, type: 3}
+  m_Controller: {fileID: 9100000, guid: 26a10cc54fde8e843978f2e6f3ec3d71, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &6282238330998981030 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0352cd5c119f5cd4d97d5b57395cb1e1,
@@ -172,7 +203,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 26a10cc54fde8e843978f2e6f3ec3d71, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 6558083519788646354, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
       propertyPath: m_Name
@@ -253,6 +284,11 @@ PrefabInstance:
       propertyPath: actionPointsMax
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8999692434505470798, guid: 4a02b210b4bf4484699592c8ad94742b,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 3164571418487827623}
     m_RemovedComponents:
     - {fileID: 1293953526380841009, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
     - {fileID: 7263831377536425997, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
