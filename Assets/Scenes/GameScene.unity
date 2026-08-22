@@ -14360,6 +14360,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1210868342}
   m_CullTransparentMesh: 1
+--- !u!95 &1211936706 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 130273087042378716, guid: 29ccdb2063bf959489cca3e984c67749,
+    type: 3}
+  m_PrefabInstance: {fileID: 1888732920}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1214450251
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22499,11 +22505,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 582495026}
     m_Modifications:
+    - target: {fileID: 130273087042378716, guid: 29ccdb2063bf959489cca3e984c67749,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 26a10cc54fde8e843978f2e6f3ec3d71, type: 2}
     - target: {fileID: 268328076920173276, guid: 29ccdb2063bf959489cca3e984c67749,
         type: 3}
       propertyPath: m_Name
       value: UnitSkeleton
       objectReference: {fileID: 0}
+    - target: {fileID: 2620778701305372224, guid: 29ccdb2063bf959489cca3e984c67749,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1211936706}
     - target: {fileID: 4381618366281776166, guid: 29ccdb2063bf959489cca3e984c67749,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22554,7 +22570,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3164571418487827623, guid: 29ccdb2063bf959489cca3e984c67749, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
