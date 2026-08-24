@@ -10,6 +10,7 @@ public class UnitAnimator : MonoBehaviour
     private const string UNIT_HEAL = "Heal";
     private const string UNIT_DEFEND = "Defend";
     private const string UNIT_INTERACT = "Interact";
+    private const string UNIT_HIT = "Hit";
 
     [SerializeField] private Animator animator;
     [SerializeField] private Transform bulletProjectilePrefab;
@@ -54,6 +55,11 @@ public class UnitAnimator : MonoBehaviour
         if (TryGetComponent<InteractAction>(out InteractAction interactAction))
         {
             interactAction.OnInteractActionStarted += InteractAction_OnInteractActionStarted;
+        }
+
+        if (TryGetComponent<HealthSystem>(out HealthSystem healthSystem))
+        {
+            healthSystem.OnDamaged += HealthSystem_OnDamaged;
         }
     }
 
@@ -115,6 +121,11 @@ public class UnitAnimator : MonoBehaviour
     private void InteractAction_OnInteractActionStarted(object sender, EventArgs e)
     {
         animator.SetTrigger(UNIT_INTERACT);
+    }
+
+    private void HealthSystem_OnDamaged(object sender, EventArgs e)
+    {
+        animator.SetTrigger(UNIT_HIT);
     }
 
     private void EquipSword()

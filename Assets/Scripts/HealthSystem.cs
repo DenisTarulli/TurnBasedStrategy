@@ -7,6 +7,7 @@ public class HealthSystem : MonoBehaviour
 {
     public event EventHandler OnDead;
     public event EventHandler OnHealthAmountChange;
+    public event EventHandler OnDamaged;
 
     [SerializeField] private int health = 20;
     private Unit unit;
@@ -65,6 +66,8 @@ public class HealthSystem : MonoBehaviour
             amountToDamage += damageAmount;
 
             health -= amountToDamage;
+
+            OnDamaged?.Invoke(this, EventArgs.Empty);
         }
 
         if (health < 0)
