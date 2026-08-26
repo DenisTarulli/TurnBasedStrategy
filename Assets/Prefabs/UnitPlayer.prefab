@@ -360,6 +360,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: -9218442299130052321}
+    - targetCorrespondingSourceObject: {fileID: 6558083519788646354, guid: 4a02b210b4bf4484699592c8ad94742b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8263606938597679089}
   m_SourcePrefab: {fileID: 100100000, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
 --- !u!4 &6432326393000925586 stripped
 Transform:
@@ -389,6 +393,23 @@ MonoBehaviour:
   scatterForceMax: 2
   scatterTorque: 2
   pieceLifetime: 6
+--- !u!114 &-8263606938597679089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7364474461005469544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 659c441e5b618604b9cf942389505cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthMaterial: {fileID: 2100000, guid: dea05d2a2f03e8e4e9267ac8d5972a11, type: 2}
+  energyMaterial: {fileID: 2100000, guid: cef5eaa2647f0bf4a8fcb9a900825d64, type: 2}
+  powerMaterial: {fileID: 2100000, guid: 06db7dd30e755ce429a740eaedeab575, type: 2}
+  resistanceMaterial: {fileID: 2100000, guid: 854ba7a89bc265a4daa41c6e87171963, type: 2}
+  speedMaterial: {fileID: 2100000, guid: 5896d359fff7a924b8e259bf0f8adfa5, type: 2}
 --- !u!1001 &7580822390015727396
 PrefabInstance:
   m_ObjectHideFlags: 0
