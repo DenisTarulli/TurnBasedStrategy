@@ -102,7 +102,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: 26a10cc54fde8e843978f2e6f3ec3d71, type: 2}
     - target: {fileID: 6576570162772918644, guid: 0352cd5c119f5cd4d97d5b57395cb1e1,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -297,6 +297,7 @@ PrefabInstance:
     - {fileID: 6301559735661326554, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
     - {fileID: 941020660096621766, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
     - {fileID: 3601897526832684530, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
+    - {fileID: 626817428373390544, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
     m_RemovedGameObjects:
     - {fileID: 132938279026215209, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
     m_AddedGameObjects:
@@ -304,8 +305,34 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6282238330998981030}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6558083519788646354, guid: 4a02b210b4bf4484699592c8ad94742b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5385769717687816266}
   m_SourcePrefab: {fileID: 100100000, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
+--- !u!1 &268328076920173276 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6558083519788646354, guid: 4a02b210b4bf4484699592c8ad94742b,
+    type: 3}
+  m_PrefabInstance: {fileID: 6393902840499096846}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-5385769717687816266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268328076920173276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8bb78405a08d7e4495dc12e6967d755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scatterForceMin: 0.5
+  scatterForceMax: 2
+  scatterTorque: 2
+  pieceLifetime: 6
 --- !u!4 &4381618366281776166 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7238716653469577512, guid: 4a02b210b4bf4484699592c8ad94742b,

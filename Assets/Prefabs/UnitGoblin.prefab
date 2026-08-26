@@ -263,6 +263,7 @@ PrefabInstance:
     - {fileID: 6301559735661326554, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
     - {fileID: 941020660096621766, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
     - {fileID: 3601897526832684530, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
+    - {fileID: 626817428373390544, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
     m_RemovedGameObjects:
     - {fileID: 132938279026215209, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
     m_AddedGameObjects:
@@ -281,8 +282,12 @@ PrefabInstance:
       addedObject: {fileID: 3249309846511100548}
     - targetCorrespondingSourceObject: {fileID: 6558083519788646354, guid: 4a02b210b4bf4484699592c8ad94742b,
         type: 3}
-      insertIndex: 7
+      insertIndex: -1
       addedObject: {fileID: 2436429922855458016}
+    - targetCorrespondingSourceObject: {fileID: 6558083519788646354, guid: 4a02b210b4bf4484699592c8ad94742b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7306290675525123071}
   m_SourcePrefab: {fileID: 100100000, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
 --- !u!4 &873821559802555435 stripped
 Transform:
@@ -335,6 +340,22 @@ MonoBehaviour:
   icon: {fileID: 0}
   tooltip: {fileID: 0}
   damageToDeal: 1
+--- !u!114 &-7306290675525123071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8913802070699169213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8bb78405a08d7e4495dc12e6967d755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionForceMin: 400
+  explosionForceMax: 600
+  explosionRadius: 10
+  pieceLifetime: 6
 --- !u!1001 &2618252784949336386
 PrefabInstance:
   m_ObjectHideFlags: 0
