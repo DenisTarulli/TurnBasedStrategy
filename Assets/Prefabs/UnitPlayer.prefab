@@ -486,6 +486,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: -8263606938597679089}
+    - targetCorrespondingSourceObject: {fileID: 6558083519788646354, guid: 4a02b210b4bf4484699592c8ad94742b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6757871792892740433}
   m_SourcePrefab: {fileID: 100100000, guid: 4a02b210b4bf4484699592c8ad94742b, type: 3}
 --- !u!4 &6432326393000925586 stripped
 Transform:
@@ -532,6 +536,27 @@ MonoBehaviour:
   powerMaterial: {fileID: 2100000, guid: 06db7dd30e755ce429a740eaedeab575, type: 2}
   resistanceMaterial: {fileID: 2100000, guid: 854ba7a89bc265a4daa41c6e87171963, type: 2}
   speedMaterial: {fileID: 2100000, guid: 5896d359fff7a924b8e259bf0f8adfa5, type: 2}
+--- !u!114 &-6757871792892740433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7364474461005469544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d6f507738434ac43b25e89e776f166d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootClip: {fileID: 8300000, guid: debe3f22bbe638f4bbb48552ff0dbfe6, type: 3}
+  swordClip: {fileID: 0}
+  grenadeClip: {fileID: 8300000, guid: 97392eb4e159951408bb758f12c89673, type: 3}
+  healClip: {fileID: 8300000, guid: ed2ad261ee73190488d4b66b00522801, type: 3}
+  defendClip: {fileID: 8300000, guid: 0e4d33c81e39cbc4287d8a0611054cfe, type: 3}
+  interactClip: {fileID: 8300000, guid: b8481de8d7784f041bff03dff386df8c, type: 3}
+  damageClip: {fileID: 0}
+  footstepClips:
+  - {fileID: 8300000, guid: 2c3283d03ef3ba245aaa793a949f005f, type: 3}
 --- !u!1001 &7580822390015727396
 PrefabInstance:
   m_ObjectHideFlags: 0
