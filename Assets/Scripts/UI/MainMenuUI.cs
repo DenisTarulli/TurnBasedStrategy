@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class MainMenuUI : MonoBehaviour
 {
@@ -17,7 +20,12 @@ public class MainMenuUI : MonoBehaviour
 
         quitButton.onClick.AddListener(() =>
         {
-            Application.Quit();
+#if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+#else
+                // Cierra la aplicación en el ejecutable final (.exe)
+                Application.Quit();
+#endif
         });
 
         Time.timeScale = 1f;
