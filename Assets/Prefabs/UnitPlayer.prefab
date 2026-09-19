@@ -554,7 +554,7 @@ MonoBehaviour:
   healClip: {fileID: 8300000, guid: ed2ad261ee73190488d4b66b00522801, type: 3}
   defendClip: {fileID: 8300000, guid: 0e4d33c81e39cbc4287d8a0611054cfe, type: 3}
   interactClip: {fileID: 8300000, guid: b8481de8d7784f041bff03dff386df8c, type: 3}
-  damageClip: {fileID: 0}
+  damageClip: {fileID: 8300000, guid: 75042e68539c36f43bb3ae081604f3a0, type: 3}
   footstepClips:
   - {fileID: 8300000, guid: 2c3283d03ef3ba245aaa793a949f005f, type: 3}
 --- !u!1001 &7580822390015727396

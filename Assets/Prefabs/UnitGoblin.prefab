@@ -378,7 +378,7 @@ MonoBehaviour:
   healClip: {fileID: 0}
   defendClip: {fileID: 0}
   interactClip: {fileID: 0}
-  damageClip: {fileID: 0}
+  damageClip: {fileID: 8300000, guid: b48dceca6e02fad43adedcd215393e91, type: 3}
   footstepClips: []
 --- !u!1001 &2618252784949336386
 PrefabInstance:
