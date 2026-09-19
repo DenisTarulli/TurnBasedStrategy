@@ -10304,7 +10304,7 @@ PrefabInstance:
         type: 3}
       propertyPath: animator
       value: 
-      objectReference: {fileID: 1211936706}
+      objectReference: {fileID: 959043366}
     - target: {fileID: 4381618366281776166, guid: 29ccdb2063bf959489cca3e984c67749,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10799,7 +10799,7 @@ PrefabInstance:
         type: 3}
       propertyPath: animator
       value: 
-      objectReference: {fileID: 1211936706}
+      objectReference: {fileID: 469161296}
     - target: {fileID: 4381618366281776166, guid: 29ccdb2063bf959489cca3e984c67749,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11313,6 +11313,12 @@ Transform:
   - {fileID: 1971339513}
   m_Father: {fileID: 1115798868}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &469161296 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 130273087042378716, guid: 29ccdb2063bf959489cca3e984c67749,
+    type: 3}
+  m_PrefabInstance: {fileID: 446895420}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &476021322
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13088,7 +13094,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &582495026
 Transform:
   m_ObjectHideFlags: 0
@@ -19319,6 +19325,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33307b805295e4146bf5702e9965ddf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &959043366 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 130273087042378716, guid: 29ccdb2063bf959489cca3e984c67749,
+    type: 3}
+  m_PrefabInstance: {fileID: 422784602}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &959754424
 GameObject:
   m_ObjectHideFlags: 0
@@ -27227,7 +27239,7 @@ PrefabInstance:
         type: 3}
       propertyPath: animator
       value: 
-      objectReference: {fileID: 1211936706}
+      objectReference: {fileID: 1970940386}
     - target: {fileID: 4381618366281776166, guid: 29ccdb2063bf959489cca3e984c67749,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -41463,6 +41475,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1363648685212350626, guid: 7d69a72d19e939c45a9fd1f60a90c35a,
     type: 3}
   m_PrefabInstance: {fileID: 1970750496}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1970940386 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 130273087042378716, guid: 29ccdb2063bf959489cca3e984c67749,
+    type: 3}
+  m_PrefabInstance: {fileID: 1323520300}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1971339513 stripped
 Transform:
