@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6f507738434ac43b25e89e776f166d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootClip: {fileID: 8300000, guid: debe3f22bbe638f4bbb48552ff0dbfe6, type: 3}
+  shootClip: {fileID: 8300000, guid: e774657f3ebfa444ea5f2917585a6dee, type: 3}
   swordClip: {fileID: 0}
   grenadeClip: {fileID: 0}
   healClip: {fileID: 0}

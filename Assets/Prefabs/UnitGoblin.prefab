@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootClip: {fileID: 0}
-  swordClip: {fileID: 8300000, guid: 80f4b6bca7b1671438f23e0e67cb0cf4, type: 3}
+  swordClip: {fileID: 8300000, guid: 9c3585089b5b0cf409158067857fb69c, type: 3}
   grenadeClip: {fileID: 0}
   healClip: {fileID: 0}
   defendClip: {fileID: 0}
