@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     private bool isGameOver = false;
 
     [SerializeField] private GameObject gameOverUI;
+    [SerializeField] private GameObject gameWinUI;
 
     private void Update()
     {
@@ -70,6 +71,15 @@ public class GameManager : MonoBehaviour
         isGameOver = true;
 
         Debug.Log("GAME OVER");
+        Time.timeScale = 0f;
+    }
+
+    public void GameWin()
+    {
+        gameWinUI.SetActive(true);
+        isGameOver = true;
+
+        Debug.Log("GAME WIN");
         Time.timeScale = 0f;
     }
 

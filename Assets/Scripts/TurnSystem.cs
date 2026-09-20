@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TurnSystem : MonoBehaviour
 {
-    public static TurnSystem Instance { get; private set; }    
+    public static TurnSystem Instance { get; private set; }
 
     private void Awake()
     {
@@ -47,7 +47,7 @@ public class TurnSystem : MonoBehaviour
 
         if (UnitManager.Instance.GetEnemyUnitList().Count == 0)
         {
-            GameManager.Instance.GameOver();
+            GameManager.Instance.GameWin();
         }
     }
 
