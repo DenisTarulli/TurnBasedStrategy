@@ -56,7 +56,7 @@ public class HealthSystem : MonoBehaviour
         Debug.Log($"damageAmount: {damageAmount}");
         if (damageAmount > damageModifier)
         {
-            int amountToDamage = 1;
+            int amountToDamage = 0;
 
             if (!unit.IsEnemy())
             {
