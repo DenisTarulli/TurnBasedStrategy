@@ -28,6 +28,20 @@ public class PlayerResourcesUI : MonoBehaviour
         SetIconsArray();
     }
 
+    private void OnDestroy()
+    {
+        Unit.OnAnyEnergyChanged -= Unit_OnAnyEnergyChanged;
+        Unit.OnAnyActionPointsChanged -= Unit_OnAnyActionPointsChanged;
+        if (playerUnit != null)
+        {
+            playerUnit.OnPassiveEnergyGainChange -= PlayerUnit_OnPassiveEnergyChange;
+        }
+        if (BuffSystem.Instance != null)
+        {
+            BuffSystem.Instance.OnEnergyBuffChanged -= BuffSystem_OnEnergyBuffChanged;
+        }
+    }
+
     private void BuffSystem_OnEnergyBuffChanged(object sender, System.EventArgs e)
     {
         UpdateNextTurnEnergyGainText();

@@ -37,6 +37,11 @@ public class UnitActionSystem : MonoBehaviour
         Unit.OnAnyUnitDead += Unit_OnAnyUnitDead;
     }
 
+    private void OnDestroy()
+    {
+        Unit.OnAnyUnitDead -= Unit_OnAnyUnitDead;
+    }
+
     private void Unit_OnAnyUnitDead(object sender, EventArgs e)
     {
         Unit unit = sender as Unit;

@@ -14,6 +14,12 @@ public class CameraManager : MonoBehaviour
         HideActionCamera();
     }
 
+    private void OnDestroy()
+    {
+        BaseAction.OnAnyActionStarted -= BaseAction_OnAnyActionStarted;
+        BaseAction.OnAnyActionCompleted -= BaseAction_OnAnyActionCompleted;
+    }
+
     private void ShowActionCamera()
     {
         actionCameraGameObject.SetActive(true);

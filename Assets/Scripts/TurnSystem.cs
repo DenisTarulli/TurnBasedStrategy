@@ -38,6 +38,12 @@ public class TurnSystem : MonoBehaviour
         Unit.OnAnyUnitDead += Unit_OnAnyUnitDead;
     }
 
+    private void OnDestroy()
+    {
+        Door.OnAnyDoorOpened -= Door_OnAnyDoorOpened;
+        Unit.OnAnyUnitDead -= Unit_OnAnyUnitDead;
+    }
+
     private void Unit_OnAnyUnitDead(object sender, EventArgs e)
     {
         if (currentRoom != additionalRooms)

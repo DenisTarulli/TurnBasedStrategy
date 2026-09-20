@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
+        Time.timeScale = 1f;
     }
 
     public event EventHandler OnGamePaused;
@@ -90,11 +91,13 @@ public class GameManager : MonoBehaviour
 
     public void MainMenu()
     {
+        Time.timeScale = 1f;
         Loader.Load(Loader.Scene.MainMenuScene);
     }
 
     public void Restart()
     {
+        Time.timeScale = 1f;
         Loader.Load(Loader.Scene.GameScene);
     }
 }

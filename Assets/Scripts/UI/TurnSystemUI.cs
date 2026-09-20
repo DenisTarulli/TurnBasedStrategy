@@ -35,6 +35,18 @@ public class TurnSystemUI : MonoBehaviour
         UpdateEndTurnButtonVisibility();
     }
 
+    private void OnDestroy()
+    {
+        if (TurnSystem.Instance != null)
+        {
+            TurnSystem.Instance.OnTurnChanged -= TurnSystem_OnTurnChanged;
+            TurnSystem.Instance.OnNewRoomEntered -= TurnSystem_OnNewRoomEntered;
+        }
+
+        BaseAction.OnAnyActionStarted -= BaseAction_OnAnyActionStarted;
+        BaseAction.OnAnyActionCompleted -= BaseAction_OnAnyActionCompleted;
+    }
+
     private void TurnSystem_OnNewRoomEntered(object sender, EventArgs e)
     {
         UpdateTurnText();

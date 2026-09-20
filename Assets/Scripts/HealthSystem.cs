@@ -33,6 +33,19 @@ public class HealthSystem : MonoBehaviour
         TurnSystem.Instance.OnTurnChanged += TurnSystem_OnTurnChanged;
     }
 
+    private void OnDestroy()
+    {
+        if (TurnSystem.Instance != null)
+        {
+            TurnSystem.Instance.OnTurnChanged -= TurnSystem_OnTurnChanged;
+        }
+
+        if (!unit.IsEnemy() && PlayerStats.Instance != null)
+        {
+            PlayerStats.Instance.OnHealthChanged -= PlayerStats_OnHealthChanged;
+        }
+    }
+
     private void PlayerStats_OnHealthChanged(object sender, EventArgs e)
     {
         healthMax = initialHealthMax + PlayerStats.Instance.GetHealth();

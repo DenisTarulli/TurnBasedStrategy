@@ -27,7 +27,10 @@ public class InputManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        playerInputActions.Player.Disable();
+        if (playerInputActions != null)
+        {
+            playerInputActions.Player.Disable();
+        }
     }
 
     public bool IsEscapeButtonDownThisFrame()

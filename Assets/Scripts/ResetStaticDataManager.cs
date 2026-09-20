@@ -5,6 +5,13 @@ using UnityEngine;
 public class ResetStaticDataManager : MonoBehaviour
 {
     private void Awake()
+    
+        {
+            ResetAllStaticData();
+
+        }
+    
+       public static void ResetAllStaticData()
     {
         Unit.ResetStaticData();
         BaseAction.ResetStaticData();
@@ -12,5 +19,8 @@ public class ResetStaticDataManager : MonoBehaviour
         ShootAction.ResetStaticData();
         DestructibleCrate.ResetStaticData();
         GrenadeProjectile.ResetStaticData();
+        Door.ResetStaticData();
+        SpeedPotion.ResetStaticData();
     }
-}
+    }
+
