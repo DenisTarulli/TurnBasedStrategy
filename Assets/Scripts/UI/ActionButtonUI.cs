@@ -14,6 +14,12 @@ public class ActionButtonUI : MonoBehaviour
 
     private GameObject tooltip;
     private BaseAction baseAction;
+    private UIJuiceFeedback uiJuiceFeedback;
+
+    private void Awake()
+    {
+        uiJuiceFeedback = GetComponent<UIJuiceFeedback>();
+    }
 
     /// <summary>
     /// Assigns the given action to the onClick event of the button
@@ -29,8 +35,29 @@ public class ActionButtonUI : MonoBehaviour
 
         button.onClick.AddListener(() =>
         {
+            Unit selectedUnit = UnitActionSystem.Instance.GetSelectedUnit();
+            if (selectedUnit != null && 
+                (!selectedUnit.CanSpendActionPointsToTakeAction(baseAction) || 
+                 !selectedUnit.CanSpendEnergyToTakeAction(baseAction)))
+            {
+                PlayJuiceFeedback();
+            }
+
             UnitActionSystem.Instance.SetSelectedAction(baseAction);
         });
+    }
+
+    public void PlayJuiceFeedback()
+    {
+        if (uiJuiceFeedback != null)
+        {
+            uiJuiceFeedback.PlayJuice();
+        }
+    }
+
+    public BaseAction GetBaseAction()
+    {
+        return baseAction;
     }
 
     /// <summary>

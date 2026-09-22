@@ -23,10 +23,34 @@ public class UnitActionSystemUI : MonoBehaviour
     {
         UnitActionSystem.Instance.OnSelectedUnitChanged += UnitActionSystem_OnSelectedUnitChanged;
         UnitActionSystem.Instance.OnSelectedActionChanged += UnitActionSystem_OnSelectedActionChanged;
+        UnitActionSystem.Instance.OnActionFailedNoResources += UnitActionSystem_OnActionFailedNoResources;
         CreateUnitActionButtons();
         UpdateSelectedVisual();
         AdjustBackgroundSize();
     }
+
+    private void OnDestroy()
+    {
+        if (UnitActionSystem.Instance != null)
+        {
+            UnitActionSystem.Instance.OnSelectedUnitChanged -= UnitActionSystem_OnSelectedUnitChanged;
+            UnitActionSystem.Instance.OnSelectedActionChanged -= UnitActionSystem_OnSelectedActionChanged;
+            UnitActionSystem.Instance.OnActionFailedNoResources -= UnitActionSystem_OnActionFailedNoResources;
+        }
+    }
+
+    private void UnitActionSystem_OnActionFailedNoResources(object sender, BaseAction failedAction)
+    {
+        foreach (ActionButtonUI actionButtonUI in actionButtonUIList)
+        {
+            if (actionButtonUI.GetBaseAction() == failedAction)
+            {
+                actionButtonUI.PlayJuiceFeedback();
+                break;
+            }
+        }
+    }
+
     private void UnitActionSystem_OnSelectedActionChanged(object sender, EventArgs e)
     {
         UpdateSelectedVisual();

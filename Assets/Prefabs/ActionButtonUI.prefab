@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 2000768757611674665}
   - component: {fileID: 2330120173205099316}
   - component: {fileID: 3204367880205761426}
+  - component: {fileID: 3167832467161550576}
   m_Layer: 5
   m_Name: ActionButtonUI
   m_TagString: Untagged
@@ -340,8 +341,6 @@ MonoBehaviour:
   button: {fileID: 5347029764641167115}
   actionIcon: {fileID: 414284738517705137}
   selectedGameObject: {fileID: 4258642050661273609}
-  tooltipPrefab: {fileID: 2302392582559988849, guid: 9a44a869c441d0e4daad24c0c4c3d62a,
-    type: 3}
   tooltipParent: {fileID: 2842897032519822629}
 --- !u!114 &3204367880205761426
 MonoBehaviour:
@@ -388,6 +387,28 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &3167832467161550576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550163206837423316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78ad20168b525e44caa9f7ba9b6aede8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetRectTransform: {fileID: 8045052762568077267}
+  targetTexts:
+  - {fileID: 7634182084621356992}
+  - {fileID: 7327142906056017509}
+  targetImages:
+  - {fileID: 8032646042052411535}
+  shakeDuration: 0.2
+  shakeStrength: 8
+  flashColor: {r: 0.9, g: 0.2, b: 0.2, a: 1}
+  flashDuration: 0.3
 --- !u!1 &1832559385888209469
 GameObject:
   m_ObjectHideFlags: 0

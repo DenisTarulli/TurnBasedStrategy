@@ -11,6 +11,7 @@ public class UnitActionSystem : MonoBehaviour
     public event EventHandler OnSelectedActionChanged;
     public event EventHandler<bool> OnBusyChanged;
     public event EventHandler OnActionStarted;
+    public event EventHandler<BaseAction> OnActionFailedNoResources;
 
     [SerializeField] private Unit selectedUnit;
     [SerializeField] private LayerMask unitsLayerMask;
@@ -84,6 +85,14 @@ public class UnitActionSystem : MonoBehaviour
     {
         if (InputManager.Instance.IsMouseButtonDownThisFrame())
         {
+            if (selectedUnit != null && selectedAction != null &&
+                (!selectedUnit.CanSpendActionPointsToTakeAction(selectedAction) ||
+                 !selectedUnit.CanSpendEnergyToTakeAction(selectedAction)))
+            {
+                OnActionFailedNoResources?.Invoke(this, selectedAction);
+                return;
+            }
+
             GridPosition mouseGridPosition = LevelGrid.Instance.GetGridPosition(MouseWorld.GetPosition());
 
             if (!selectedAction.IsValidActionGridPosition(mouseGridPosition))
@@ -94,7 +103,8 @@ public class UnitActionSystem : MonoBehaviour
 
             if (!selectedUnit.TrySpendActionPointsAndEnergyToTakeAction(selectedAction))
             {
-                // Not enough action points
+                // Not enough action points or energy
+                OnActionFailedNoResources?.Invoke(this, selectedAction);
                 return;
             }
 
