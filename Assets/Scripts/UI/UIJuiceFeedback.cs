@@ -28,10 +28,14 @@ public class UIJuiceFeedback : MonoBehaviour
     [SerializeField] private Color flashColor = new Color(0.9f, 0.2f, 0.2f, 1f); // Rojo de advertencia
     [SerializeField] private float flashDuration = 0.3f;
 
+    public event System.Action OnJuiceCompleted;
+
     private Vector3 shakeBasePosition;
     private bool isShaking = false;
-    private Dictionary<TextMeshProUGUI, Color> originalTextColors = new Dictionary<TextMeshProUGUI, Color>();
-    private Dictionary<Image, Color> originalImageColors = new Dictionary<Image, Color>();
+    private bool isFlashing = false;
+
+    private Dictionary<TextMeshProUGUI, Color> flashBaseTextColors = new Dictionary<TextMeshProUGUI, Color>();
+    private Dictionary<Image, Color> flashBaseImageColors = new Dictionary<Image, Color>();
 
     private Coroutine shakeCoroutine;
     private Coroutine flashCoroutine;
@@ -69,25 +73,6 @@ public class UIJuiceFeedback : MonoBehaviour
 
             Image localImage = GetComponent<Image>();
             if (localImage != null) targetImages.Add(localImage);
-        }
-
-        // Cachear colores originales para evitar que múltiples clicks los corrompan
-        originalTextColors.Clear();
-        foreach (TextMeshProUGUI text in targetTexts)
-        {
-            if (text != null && !originalTextColors.ContainsKey(text))
-            {
-                originalTextColors[text] = text.color;
-            }
-        }
-
-        originalImageColors.Clear();
-        foreach (Image img in targetImages)
-        {
-            if (img != null && !originalImageColors.ContainsKey(img))
-            {
-                originalImageColors[img] = img.color;
-            }
         }
 
         isInitialized = true;
@@ -135,10 +120,36 @@ public class UIJuiceFeedback : MonoBehaviour
     {
         if (!gameObject.activeInHierarchy) return;
 
-        if (flashCoroutine != null)
+        if (isFlashing)
         {
-            StopCoroutine(flashCoroutine);
-            RestoreOriginalColors();
+            if (flashCoroutine != null)
+            {
+                StopCoroutine(flashCoroutine);
+            }
+            RestoreFlashBaseColors();
+        }
+        else
+        {
+            // Capturar el color actual que tenga el texto o imagen (por ejemplo gris si está deshabilitado)
+            flashBaseTextColors.Clear();
+            foreach (TextMeshProUGUI text in targetTexts)
+            {
+                if (text != null && !flashBaseTextColors.ContainsKey(text))
+                {
+                    flashBaseTextColors[text] = text.color;
+                }
+            }
+
+            flashBaseImageColors.Clear();
+            foreach (Image img in targetImages)
+            {
+                if (img != null && !flashBaseImageColors.ContainsKey(img))
+                {
+                    flashBaseImageColors[img] = img.color;
+                }
+            }
+
+            isFlashing = true;
         }
 
         flashCoroutine = StartCoroutine(ColorFlashRoutine());
@@ -170,7 +181,7 @@ public class UIJuiceFeedback : MonoBehaviour
         // 1. Aplicar el color de advertencia instantáneamente
         SetColorToAllTargets(flashColor);
 
-        // 2. Transicionar de vuelta suavemente al color original usando Lerp
+        // 2. Transicionar de vuelta suavemente al color base que tenía (ej. gris) usando Lerp
         float elapsed = 0f;
 
         while (elapsed < flashDuration)
@@ -178,7 +189,7 @@ public class UIJuiceFeedback : MonoBehaviour
             elapsed += Time.unscaledDeltaTime;
             float t = Mathf.Clamp01(elapsed / flashDuration);
 
-            foreach (var kvp in originalTextColors)
+            foreach (var kvp in flashBaseTextColors)
             {
                 if (kvp.Key != null)
                 {
@@ -186,7 +197,7 @@ public class UIJuiceFeedback : MonoBehaviour
                 }
             }
 
-            foreach (var kvp in originalImageColors)
+            foreach (var kvp in flashBaseImageColors)
             {
                 if (kvp.Key != null)
                 {
@@ -197,31 +208,34 @@ public class UIJuiceFeedback : MonoBehaviour
             yield return null;
         }
 
-        RestoreOriginalColors();
+        RestoreFlashBaseColors();
+        isFlashing = false;
         flashCoroutine = null;
+
+        OnJuiceCompleted?.Invoke();
     }
 
     private void SetColorToAllTargets(Color color)
     {
-        foreach (var kvp in originalTextColors)
+        foreach (var kvp in flashBaseTextColors)
         {
             if (kvp.Key != null) kvp.Key.color = color;
         }
 
-        foreach (var kvp in originalImageColors)
+        foreach (var kvp in flashBaseImageColors)
         {
             if (kvp.Key != null) kvp.Key.color = color;
         }
     }
 
-    private void RestoreOriginalColors()
+    private void RestoreFlashBaseColors()
     {
-        foreach (var kvp in originalTextColors)
+        foreach (var kvp in flashBaseTextColors)
         {
             if (kvp.Key != null) kvp.Key.color = kvp.Value;
         }
 
-        foreach (var kvp in originalImageColors)
+        foreach (var kvp in flashBaseImageColors)
         {
             if (kvp.Key != null) kvp.Key.color = kvp.Value;
         }
@@ -247,6 +261,10 @@ public class UIJuiceFeedback : MonoBehaviour
             isShaking = false;
         }
 
-        RestoreOriginalColors();
+        if (isFlashing)
+        {
+            RestoreFlashBaseColors();
+            isFlashing = false;
+        }
     }
 }
