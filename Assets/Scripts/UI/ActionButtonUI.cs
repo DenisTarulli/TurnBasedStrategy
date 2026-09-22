@@ -1,8 +1,9 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ActionButtonUI : MonoBehaviour
+public class ActionButtonUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TextMeshProUGUI actionNameText;
     [SerializeField] private TextMeshProUGUI actionCostText;
@@ -19,6 +20,30 @@ public class ActionButtonUI : MonoBehaviour
     private void Awake()
     {
         uiJuiceFeedback = GetComponent<UIJuiceFeedback>();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (PlayerResourcesUI.Instance != null && baseAction != null)
+        {
+            PlayerResourcesUI.Instance.ShowHoverResourceCostPreview(baseAction.GetEnergyCost(), baseAction.GetActionPointsCost());
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (PlayerResourcesUI.Instance != null)
+        {
+            PlayerResourcesUI.Instance.ClearHoverResourceCostPreview();
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (PlayerResourcesUI.Instance != null)
+        {
+            PlayerResourcesUI.Instance.ClearHoverResourceCostPreview();
+        }
     }
 
     /// <summary>

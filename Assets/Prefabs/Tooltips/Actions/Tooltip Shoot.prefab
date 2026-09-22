@@ -335,7 +335,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Action: Sword'
+  m_text: 'Action: Shoot'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 57a458c0e2e1ff94687e74f5e1c7d9ad, type: 2}
   m_sharedMaterial: {fileID: -723722023078039489, guid: 57a458c0e2e1ff94687e74f5e1c7d9ad,
