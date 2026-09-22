@@ -64,10 +64,39 @@ public class GridSystemVisual : MonoBehaviour
         }
 
         UnitActionSystem.Instance.OnSelectedActionChanged += UnitActionSystem_OnSelectedActionChanged;
+        UnitActionSystem.Instance.OnSelectedUnitChanged += UnitActionSystem_OnSelectedUnitChanged;
+        UnitActionSystem.Instance.OnBusyChanged += UnitActionSystem_OnBusyChanged;
         LevelGrid.Instance.OnAnyUnitMovedGridPosition += LevelGrid_OnAnyUnitMovedGridPosition;
         BaseAction.OnAnyActionCompleted += BaseAction_OnAnyActionCompleted;
+        Unit.OnAnyActionPointsChanged += Unit_OnAnyActionPointsChanged;
+        Unit.OnAnyEnergyChanged += Unit_OnAnyEnergyChanged;
+        TurnSystem.Instance.OnTurnChanged += TurnSystem_OnTurnChanged;
 
         UpdateGridVisual();
+    }
+
+    private void OnDestroy()
+    {
+        if (UnitActionSystem.Instance != null)
+        {
+            UnitActionSystem.Instance.OnSelectedActionChanged -= UnitActionSystem_OnSelectedActionChanged;
+            UnitActionSystem.Instance.OnSelectedUnitChanged -= UnitActionSystem_OnSelectedUnitChanged;
+            UnitActionSystem.Instance.OnBusyChanged -= UnitActionSystem_OnBusyChanged;
+        }
+
+        if (LevelGrid.Instance != null)
+        {
+            LevelGrid.Instance.OnAnyUnitMovedGridPosition -= LevelGrid_OnAnyUnitMovedGridPosition;
+        }
+
+        BaseAction.OnAnyActionCompleted -= BaseAction_OnAnyActionCompleted;
+        Unit.OnAnyActionPointsChanged -= Unit_OnAnyActionPointsChanged;
+        Unit.OnAnyEnergyChanged -= Unit_OnAnyEnergyChanged;
+
+        if (TurnSystem.Instance != null)
+        {
+            TurnSystem.Instance.OnTurnChanged -= TurnSystem_OnTurnChanged;
+        }
     }
 
     public void HideAllGridPosition()
@@ -103,8 +132,34 @@ public class GridSystemVisual : MonoBehaviour
     {
         HideAllGridPosition();
 
+        if (TurnSystem.Instance != null && !TurnSystem.Instance.IsPlayerTurn())
+        {
+            return;
+        }
+
+        if (UnitActionSystem.Instance == null)
+        {
+            return;
+        }
+
+        if (UnitActionSystem.Instance.IsBusy())
+        {
+            return;
+        }
+
         Unit selectedUnit = UnitActionSystem.Instance.GetSelectedUnit();
         BaseAction selectedAction = UnitActionSystem.Instance.GetSelectedAction();
+
+        if (selectedUnit == null || selectedAction == null)
+        {
+            return;
+        }
+
+        if (!selectedUnit.CanSpendActionPointsToTakeAction(selectedAction) ||
+            !selectedUnit.CanSpendEnergyToTakeAction(selectedAction))
+        {
+            return;
+        }
 
         GridVisualType gridVisualType;
 
@@ -152,12 +207,44 @@ public class GridSystemVisual : MonoBehaviour
         UpdateGridVisual();
     }
 
+    private void UnitActionSystem_OnSelectedUnitChanged(object sender, EventArgs e)
+    {
+        UpdateGridVisual();
+    }
+
+    private void UnitActionSystem_OnBusyChanged(object sender, bool isBusy)
+    {
+        if (isBusy)
+        {
+            HideAllGridPosition();
+        }
+        else
+        {
+            UpdateGridVisual();
+        }
+    }
+
     private void LevelGrid_OnAnyUnitMovedGridPosition(object sender, EventArgs e)
     {
         UpdateGridVisual();
     }
 
     private void BaseAction_OnAnyActionCompleted(object sender, EventArgs e)
+    {
+        UpdateGridVisual();
+    }
+
+    private void Unit_OnAnyActionPointsChanged(object sender, EventArgs e)
+    {
+        UpdateGridVisual();
+    }
+
+    private void Unit_OnAnyEnergyChanged(object sender, EventArgs e)
+    {
+        UpdateGridVisual();
+    }
+
+    private void TurnSystem_OnTurnChanged(object sender, EventArgs e)
     {
         UpdateGridVisual();
     }
