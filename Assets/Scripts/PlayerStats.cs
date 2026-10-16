@@ -123,4 +123,9 @@ public class PlayerStats : MonoBehaviour
     {
         return level;
     }
+
+    public float GetExpNormalized()
+    {
+        return (float)exp / expToLevelUp;
+    }
 }

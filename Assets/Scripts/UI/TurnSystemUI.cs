@@ -9,7 +9,9 @@ public class TurnSystemUI : MonoBehaviour
     [SerializeField] private Color endTurnEnabledColor;
     [SerializeField] private Color endTurnDisabledColor;
     [SerializeField] private TextMeshProUGUI turnNumberText;
+    [SerializeField] private Image endTurnIcon;
     [SerializeField] private GameObject enemyTurnVisualGameObject;
+    [SerializeField] private GameObject endTurnButtonBackground;
     private Unit playerUnit;
     private TextMeshProUGUI endTurnButtonText;
 
@@ -31,6 +33,18 @@ public class TurnSystemUI : MonoBehaviour
         UpdateTurnText();
         UpdateEnemyTurnVisual();
         UpdateEndTurnButtonVisibility();
+    }
+
+    private void OnDestroy()
+    {
+        if (TurnSystem.Instance != null)
+        {
+            TurnSystem.Instance.OnTurnChanged -= TurnSystem_OnTurnChanged;
+            TurnSystem.Instance.OnNewRoomEntered -= TurnSystem_OnNewRoomEntered;
+        }
+
+        BaseAction.OnAnyActionStarted -= BaseAction_OnAnyActionStarted;
+        BaseAction.OnAnyActionCompleted -= BaseAction_OnAnyActionCompleted;
     }
 
     private void TurnSystem_OnNewRoomEntered(object sender, EventArgs e)
@@ -71,10 +85,12 @@ public class TurnSystemUI : MonoBehaviour
         if (endTurnButton.interactable)
         {
             endTurnButtonText.color = endTurnEnabledColor;
+            endTurnIcon.color = endTurnEnabledColor;
         }
         else
         {
             endTurnButtonText.color = endTurnDisabledColor;
+            endTurnIcon.color= endTurnDisabledColor;
         }
     }
 
@@ -87,7 +103,7 @@ public class TurnSystemUI : MonoBehaviour
 
     public void UpdateTurnText()
     {
-        turnNumberText.text = $"TURN {TurnSystem.Instance.GetTurnNumber()}/{TurnSystem.Instance.GetTurnLimit()}";
+        turnNumberText.text = $"{TurnSystem.Instance.GetTurnNumber()}/{TurnSystem.Instance.GetTurnLimit()}";
     }
 
     private void UpdateEnemyTurnVisual()
@@ -98,5 +114,6 @@ public class TurnSystemUI : MonoBehaviour
     private void UpdateEndTurnButtonVisibility()
     {
         endTurnButton.gameObject.SetActive(TurnSystem.Instance.IsPlayerTurn());
+        endTurnButtonBackground.SetActive(TurnSystem.Instance.IsPlayerTurn());
     }
 }

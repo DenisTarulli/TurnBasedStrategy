@@ -7,5 +7,6 @@ public class ResistanceStatReward : BaseReward
     public override void Behaviour()
     {
         PlayerStats.Instance.ChangeResistance(1);
+        PlayerCosmeticColorSystem.Instance.PaintResistanceColor();
     }
 }

@@ -61,4 +61,24 @@ public class UnitWorldUI : MonoBehaviour
     {
         UpdateHealthBar();
     }
+    private void OnDestroy()
+    {
+        if (!unit.IsEnemy())
+        {
+            Unit.OnAnyEnergyChanged -= Unit_OnAnyEnergyChanged;
+            if (PlayerStats.Instance != null)
+            {
+                PlayerStats.Instance.OnHealthChanged -= PlayerStats_OnHealthChanged;
+            }
+        }
+
+        Unit.OnAnyActionPointsChanged -= Unit_OnAnyActionPointsChanged;
+        if (healthSystem != null)
+        {
+            healthSystem.OnHealthAmountChange -= HealthSystem_OnHealthAmountChange;
+        }
+    }
 }
+
+
+

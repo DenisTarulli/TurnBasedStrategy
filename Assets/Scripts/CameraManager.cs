@@ -14,6 +14,12 @@ public class CameraManager : MonoBehaviour
         HideActionCamera();
     }
 
+    private void OnDestroy()
+    {
+        BaseAction.OnAnyActionStarted -= BaseAction_OnAnyActionStarted;
+        BaseAction.OnAnyActionCompleted -= BaseAction_OnAnyActionCompleted;
+    }
+
     private void ShowActionCamera()
     {
         actionCameraGameObject.SetActive(true);
@@ -32,7 +38,7 @@ public class CameraManager : MonoBehaviour
                 Unit targetUnit = shootAction.GetTargetUnit();
 
                 // Shoulder height
-                Vector3 cameraCharacterHeight = Vector3.up * 1.7f;
+                Vector3 cameraCharacterHeight = Vector3.up * 1.5f;
 
                 // Direction from the shooter to the target unit
                 Vector3 shootDirection = (targetUnit.GetWorldPosition() - shooterUnit.GetWorldPosition()).normalized;

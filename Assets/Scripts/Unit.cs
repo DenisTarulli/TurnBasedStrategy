@@ -8,7 +8,7 @@ public class Unit : MonoBehaviour
     [SerializeField] private int expToGive = 0;
     [SerializeField] private int passiveEnergyGain;
     private int currentEnergy;
-    private int initialMaxEnergy;
+    private int initialEnergyGain;
 
     public static event EventHandler OnAnyActionPointsChanged;
     public static event EventHandler OnAnyEnergyChanged;
@@ -23,7 +23,7 @@ public class Unit : MonoBehaviour
         OnAnyUnitDead = null;
     }
 
-    public event EventHandler OnMaxEnergyChanged;
+    public event EventHandler OnPassiveEnergyGainChange;
 
     [SerializeField] private bool isEnemy;
 
@@ -45,7 +45,7 @@ public class Unit : MonoBehaviour
 
         currentActionPoints = actionPointsMax;
         currentEnergy = maxEnergy;
-        initialMaxEnergy = maxEnergy;
+        initialEnergyGain = passiveEnergyGain;
 
         hasStolen = true;
     }
@@ -69,8 +69,8 @@ public class Unit : MonoBehaviour
 
     private void PlayerStats_OnEnergyChanged(object sender, EventArgs e)
     {
-        maxEnergy = initialMaxEnergy + PlayerStats.Instance.GetEnergy();
-        OnMaxEnergyChanged?.Invoke(this, EventArgs.Empty);
+        passiveEnergyGain = initialEnergyGain + PlayerStats.Instance.GetEnergy();
+        OnPassiveEnergyGainChange?.Invoke(this, EventArgs.Empty);
     }
 
     private void Update()

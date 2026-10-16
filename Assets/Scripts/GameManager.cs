@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
+        Time.timeScale = 1f;
     }
 
     public event EventHandler OnGamePaused;
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
     private bool isGameOver = false;
 
     [SerializeField] private GameObject gameOverUI;
+    [SerializeField] private GameObject gameWinUI;
 
     private void Update()
     {
@@ -73,6 +75,15 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
     }
 
+    public void GameWin()
+    {
+        gameWinUI.SetActive(true);
+        isGameOver = true;
+
+        Debug.Log("GAME WIN");
+        Time.timeScale = 0f;
+    }
+
     public bool IsGameOver()
     {
         return isGameOver;
@@ -80,11 +91,13 @@ public class GameManager : MonoBehaviour
 
     public void MainMenu()
     {
+        Time.timeScale = 1f;
         Loader.Load(Loader.Scene.MainMenuScene);
     }
 
     public void Restart()
     {
+        Time.timeScale = 1f;
         Loader.Load(Loader.Scene.GameScene);
     }
 }

@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UnitInventoryUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI goldText;
     [SerializeField] private TextMeshProUGUI expText;
     [SerializeField] private TextMeshProUGUI keysText;
+    [SerializeField] private Image expBar;
 
     private void Start()
     {
@@ -19,6 +21,8 @@ public class UnitInventoryUI : MonoBehaviour
         int requiredExp = PlayerStats.Instance.GetExpToLevelUp();
 
         UpdateExpText(currentExp, requiredExp);
+        UpdateExpBar();
+        UpdateInventoryAmounts();
     }
 
     private void PlayerStats_OnExpChanged(object sender, System.EventArgs e)
@@ -27,20 +31,33 @@ public class UnitInventoryUI : MonoBehaviour
         int requiredExp = PlayerStats.Instance.GetExpToLevelUp();
 
         UpdateExpText(currentExp, requiredExp);
+        UpdateExpBar();
     }
 
     private void InventoryManager_OnKeysAmountChanged(object sender, InventoryManager.OnKeysAmountChangedEventArgs e)
     {
-        keysText.text = $"Keys: {e.keys}";
+        keysText.text = $"{e.keys}";
     }
 
     private void InventoryManager_OnGoldAmountChanged(object sender, InventoryManager.OnGoldAmountChangedEventArgs e)
     {
-        goldText.text = $"Gold: {e.gold}";
+        goldText.text = $"{e.gold}";
     }
 
     private void UpdateExpText(int currentExp, int requiredExp)
     {
-        expText.text = $"Exp: {currentExp}/{requiredExp}";
+        expText.text = $"{currentExp}/{requiredExp}";
+    }
+
+    private void UpdateExpBar()
+    {
+        expBar.fillAmount = PlayerStats.Instance.GetExpNormalized();
+    }
+
+    private void UpdateInventoryAmounts()
+    {
+        goldText.text = $"{InventoryManager.Instance.GetGoldAmount()}";
+        keysText.text = $"{InventoryManager.Instance.GetKeysAmount()}";
+        expText.text = $"{PlayerStats.Instance.GetExp()/PlayerStats.Instance.GetExpToLevelUp()}";
     }
 }

@@ -92,6 +92,11 @@ public class InventoryManager : MonoBehaviour
         return gold;
     }
 
+    public int GetKeysAmount()
+    {
+        return keys;
+    }
+
     public bool HasKeyPotion(string potionKey)
     {
         foreach (KeyValuePair<string, int> potions in potionsInventory)
@@ -138,6 +143,20 @@ public class InventoryManager : MonoBehaviour
                 return;
             }
         }
+    }
+
+    public int GetSpecificPotionAmount(string potionKey)
+    {
+        foreach (KeyValuePair<string, int> potions in potionsInventory)
+        {
+            if (potions.Key == potionKey)
+            {                
+                return potions.Value;
+            }
+        }
+
+        Debug.LogError($"There is no potion with the key: {potionKey}");
+        return 0;
     }
 
     public void AddPotionsTesting()

@@ -7,6 +7,7 @@ public class HealthSystem : MonoBehaviour
 {
     public event EventHandler OnDead;
     public event EventHandler OnHealthAmountChange;
+    public event EventHandler OnDamaged;
 
     [SerializeField] private int health = 20;
     private Unit unit;
@@ -30,6 +31,19 @@ public class HealthSystem : MonoBehaviour
         }
 
         TurnSystem.Instance.OnTurnChanged += TurnSystem_OnTurnChanged;
+    }
+
+    private void OnDestroy()
+    {
+        if (TurnSystem.Instance != null)
+        {
+            TurnSystem.Instance.OnTurnChanged -= TurnSystem_OnTurnChanged;
+        }
+
+        if (!unit.IsEnemy() && PlayerStats.Instance != null)
+        {
+            PlayerStats.Instance.OnHealthChanged -= PlayerStats_OnHealthChanged;
+        }
     }
 
     private void PlayerStats_OnHealthChanged(object sender, EventArgs e)
@@ -65,6 +79,8 @@ public class HealthSystem : MonoBehaviour
             amountToDamage += damageAmount;
 
             health -= amountToDamage;
+
+            OnDamaged?.Invoke(this, EventArgs.Empty);
         }
 
         if (health < 0)
@@ -90,6 +106,16 @@ public class HealthSystem : MonoBehaviour
     public float GetHealthNormalized()
     {
         return (float)health / healthMax;
+    }
+
+    public int GetCurrentHealth()
+    {
+        return health;
+    }
+
+    public int GetMaxHealth()
+    {
+        return healthMax;
     }
 
     public void Heal(int healAmount)

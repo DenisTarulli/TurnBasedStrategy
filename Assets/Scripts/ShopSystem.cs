@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopSystem : MonoBehaviour
 {
@@ -22,15 +24,21 @@ public class ShopSystem : MonoBehaviour
     public event EventHandler OnShopClosed;
 
     private bool shopOpen = false;
-    private int goldReward = 16;
+    private int goldReward = 15;
 
     private ShopButtonUI selectedStatReward;
     private ShopButtonUI selectedItemReward;
+
+    [SerializeField] private Button confirmButton;
+    [SerializeField] private TextMeshProUGUI confirmButtonText;
+    [SerializeField] private Color disabledColor;
+    [SerializeField] private Color enabledColor;
 
     public void OpenShop()
     {
         shopOpen = true;
         Time.timeScale = 0f;
+        ToggleConfirmButton();
     }
 
     public void CloseShop()
@@ -40,7 +48,6 @@ public class ShopSystem : MonoBehaviour
         ClaimRewards();
 
         shopOpen = false;
-        goldReward -= 2;
         OnShopClosed?.Invoke(this, EventArgs.Empty);
     }
 
@@ -52,6 +59,16 @@ public class ShopSystem : MonoBehaviour
         {
             reward.Behaviour();
         }
+    }
+
+    private bool AreBothRewardsSelected()
+    {
+        if (selectedStatReward == null || selectedItemReward == null)
+        {
+            return false;
+        }
+        else 
+            return true;
     }
 
     public bool IsShopOpen()
@@ -68,12 +85,14 @@ public class ShopSystem : MonoBehaviour
     {
         selectedStatReward = button;
         UpdateSelectedVisual();
+        ToggleConfirmButton();
     }
 
     public void SetSelectedItemRewardButton(ShopButtonUI button)
     {
         selectedItemReward = button;
         UpdateSelectedVisual();
+        ToggleConfirmButton();
     }
 
     public ShopButtonUI GetSelectedStatReward()
@@ -118,6 +137,20 @@ public class ShopSystem : MonoBehaviour
             }
 
             shopButtonUI.UpdateSelectedVisual();
+        }
+    }
+
+    private void ToggleConfirmButton()
+    {
+        if (AreBothRewardsSelected())
+        {
+            confirmButtonText.color = enabledColor;
+            confirmButton.interactable = true;
+        }
+        else
+        {
+            confirmButtonText.color = disabledColor;
+            confirmButton.interactable = false;
         }
     }
 }

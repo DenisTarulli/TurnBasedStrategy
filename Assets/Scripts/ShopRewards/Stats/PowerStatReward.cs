@@ -7,5 +7,6 @@ public class PowerStatReward : BaseReward
     public override void Behaviour()
     {
         PlayerStats.Instance.ChangePower(1);
+        PlayerCosmeticColorSystem.Instance.PaintEnergyColor();
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class InteractAction : BaseAction
 {
+    public event EventHandler OnInteractActionStarted;
+
     private int maxInteractDistance = 1;
 
     private void Update()
@@ -121,6 +123,8 @@ public class InteractAction : BaseAction
         IInteractable interactable = LevelGrid.Instance.GetInteractableAtGridPosition(gridPosition);
 
         interactable.Interact(OnInteractComplete);
+
+        OnInteractActionStarted?.Invoke(this, EventArgs.Empty);
 
         ActionStart(onActionComplete);
     }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class BaseAction : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public abstract class BaseAction : MonoBehaviour
     protected Unit playerUnit;
 
     [SerializeField] protected int energyCost;
+    [SerializeField] protected Sprite icon;
+    [SerializeField] protected GameObject tooltip;
 
     protected virtual void Awake()
     {
@@ -87,6 +90,16 @@ public abstract class BaseAction : MonoBehaviour
     public Unit GetUnit()
     {
         return unit;
+    }
+
+    public Sprite GetIcon()
+    {
+        return icon;
+    }
+
+    public GameObject GetTooltip()
+    {
+        return tooltip;
     }
 
     public EnemyAIAction GetBestEnemyAIAction()

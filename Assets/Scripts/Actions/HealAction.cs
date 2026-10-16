@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class HealAction : BaseAction
 {
+    public event EventHandler OnHealActionStarted;
+
     [SerializeField] private int healAmount = 20;
 
     private float timer;
@@ -75,6 +77,8 @@ public class HealAction : BaseAction
     {
         timer = 0.25f;
         alreadyHealed = false;
+
+        OnHealActionStarted?.Invoke(this, EventArgs.Empty);
 
         ActionStart(onActionComplete);
     }
